@@ -1,0 +1,61 @@
+:root {
+  /* brand & text */
+  --brand-blue:  #005596;
+  --brand-green: #54B948;
+  --fg:          #000000;  /* primary text on light */
+  --muted-fg:    #374151;  /* gray-700-ish */
+
+  /* surfaces */
+  --bg:          #ffffff;  /* page background (light) */
+  --surface:     #ffffff;  /* cards/sections */
+  --muted-bg:    #f9fafb;  /* section alt background */
+
+  /* borders/overlays */
+  --border:      #e5e7eb;  /* gray-200-ish */
+  --overlay:     rgba(0,0,0,0.4);
+}
+
+html.dark {
+  /* text */
+  --fg:          #e5e7eb;   /* light gray text */
+  --muted-fg:    #9ca3af;   /* muted text */
+
+  /* surfaces */
+  --bg:          #0c0c0c;   /* page background - slightly darker than footer */
+  --surface:     #111111;   /* cards/sections slightly lifted */
+  --muted-bg:    #111111;   /* section alt background */
+
+  /* borders */
+  --border:      #1a1a1a;   /* subtle separation */
+
+  /* overlays */
+  --overlay:     rgba(0,0,0,0.5);
+}
+
+/* semantic utility hooks */
+.bg-app       { background: var(--bg); }
+.bg-surface   { background: var(--surface); }
+.bg-muted     { background: var(--muted-bg); }
+.text-app     { color: var(--fg); }
+.text-muted   { color: var(--muted-fg); }
+.text-brand   { color: var(--brand-blue); }
+.text-accent  { color: var(--brand-green); }
+.border-app   { border-color: var(--border); }
+
+/* ===== Dark Mode Background Only (10% darker) ===== */
+
+/* ===== Dark Mode Page Background (10% darker than footer) ===== */
+
+/* Footer is #0a0a0a — make page background #090909 */
+html.dark {
+  --bg: #090909;      /* page background */
+}
+
+/* Apply only to the page shell */
+html.dark,
+html.dark body,
+html.dark #root,
+html.dark .bg-app,
+html.dark .bg-primary {
+  background-color: var(--bg) !important;
+}
