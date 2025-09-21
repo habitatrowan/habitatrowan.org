@@ -8,7 +8,7 @@ import About from './pages/About';
 import OwnHome from './pages/OwnHome';
 import Contact from './pages/Contact';
 import Locations from './pages/Locations';
-import News from './pages/News';
+import News from './pages/Gallery';
 import GetInvolved from './pages/GetInvolved';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import ToS from './pages/ToS';
@@ -54,7 +54,7 @@ function App() {
               <Route path="/own-home" element={<OwnHome />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/locations" element={<Locations />} />
-              <Route path="/news" element={<News />} />
+              <Route path="/gallery" element={<News />} />
               <Route path="/privacy" element={<PrivacyPolicy />} />
               <Route path="/tos" element={<ToS />} />
             </Routes>

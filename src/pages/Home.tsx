@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Users, Home, ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
 
+
 /** --------- tiny in-file scroll reveal helper (no deps) ---------- */
 function useReveal<T extends HTMLElement>() {
   const ref = useRef<T | null>(null);

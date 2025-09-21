@@ -15,8 +15,8 @@ const Footer = () => {
     { name: 'About', href: '/about' },
     { name: 'Get Involved', href: '/get-involved' },
     { name: 'Own a Home', href: '/own-home' },
+    { name: 'Gallery', href: '/gallery' },
     { name: 'Locations', href: '/locations' },
-    { name: 'News', href: '/news' },
     { name: 'Contact', href: '/contact' },
     { name: 'Donate', href: '/get-involved#donate' },
   ];

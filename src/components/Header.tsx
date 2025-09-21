@@ -18,15 +18,15 @@ const Header = () => {
 
   const getInvolvedDropdownItems = [
     { name: 'Volunteer', href: '/get-involved#volunteer' },
-    { name: 'Ways to Donate', href: '/get-involved#donate' }
+    { name: 'Support Us', href: '/get-involved#donate' }
   ];
 
   const navigation = [
     { name: 'About', href: '/about', dropdown: aboutDropdownItems },
     { name: 'Get Involved', href: '/get-involved', dropdown: getInvolvedDropdownItems },
     { name: 'Own a Home', href: '/own-home' },
+    { name: 'Gallery', href: '/gallery' },
     { name: 'Locations', href: '/locations' },
-    { name: 'News', href: '/news' },
     { name: 'Contact', href: '/contact' }
   ];
 
