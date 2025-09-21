@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Users, Home, ChevronLeft, ChevronRight, ArrowRight, Clock } from 'lucide-react';
+import { Users, Home, ChevronLeft, ChevronRight, Clock } from 'lucide-react';
 
 /** --------- tiny in-file scroll reveal helper (no deps) ---------- */
 function useReveal<T extends HTMLElement>() {
@@ -121,29 +121,30 @@ const HomePage = () => {
   const nextGallery = () => setGalleryIndex((p) => (p + 1) % photoGallery.length);
   const prevGallery = () => setGalleryIndex((p) => (p - 1 + photoGallery.length) % photoGallery.length);
 
-  // tweet carousel logic
+  // tweet carousel logic (no scrollIntoView; uses container.scrollTo to avoid page jump)
   const tweetsRef = useRef<HTMLDivElement | null>(null);
   const [tweetIndex, setTweetIndex] = useState(0);
 
   useEffect(() => {
     const el = tweetsRef.current;
     if (!el) return;
-
     const items = Array.from(el.querySelectorAll('.tweet-card')) as HTMLElement[];
     if (!items.length) return;
 
-    const toIndex = (idx: number) => {
+    const scrollToIndex = (idx: number) => {
       const safe = (idx + items.length) % items.length;
       setTweetIndex(safe);
-      items[safe].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+      const target = items[safe];
+      const targetLeft = target.offsetLeft - el.offsetLeft;
+      el.scrollTo({ left: targetLeft, behavior: 'smooth' });
     };
 
-    const id = setInterval(() => toIndex(tweetIndex + 1), 4500);
+    const id = setInterval(() => scrollToIndex(tweetIndex + 1), 4500);
     return () => clearInterval(id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tweetIndex, updates.length]);
 
-  // reveal refs (ordered to match layout)
+  // reveal refs
   const heroRef = useReveal<HTMLDivElement>();
   const updatesRef = useReveal<HTMLDivElement>();
   const partnersRef = useReveal<HTMLDivElement>();
@@ -154,7 +155,6 @@ const HomePage = () => {
 
   return (
     <div className={`${NEUTRAL_TEXT}`}>
-      {/* ===== Hero (mobile-optimized) ===== */}
       {/* ===== Hero (centered, mobile-optimized) ===== */}
       <section className="relative w-full overflow-hidden">
         {/* background image */}
@@ -166,13 +166,13 @@ const HomePage = () => {
         <div className="absolute inset-0 bg-black/45" />
 
         {/* centering container */}
-        <div className="relative z-10 min-h-[78vh] sm:min-h-[72vh] lg:aspect-[16/9] grid place-items-center px-4 sm:px-6">
+        <div ref={heroRef} className="relative z-10 min-h-[78vh] sm:min-h-[72vh] lg:aspect-[16/9] grid place-items-center px-4 sm:px-6 reveal">
           <div className="max-w-3xl md:max-w-4xl text-center text-white">
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-4 md:mb-6 leading-tight">
               Building <span className="text-[#005596]">Homes</span>,
-              <span className="hidden sm:inline"><br /></span>
+              <span className="hidden sm:inline"><br/></span>
               <span className="sm:hidden"> </span>
-              Building <span className="text-[#54B948]">Hope</span>.
+              Building <span className="text-[#54B948]">Hope</span>
             </h1>
 
             <p className="text-base sm:text-lg md:text-2xl mb-6 md:mb-8 max-w-2xl mx-auto text-white/95">
@@ -205,7 +205,6 @@ const HomePage = () => {
           </div>
         </div>
       </section>
-
 
       <div className="h-px w-full bg-neutral-200 dark:bg-neutral-800" />
 
@@ -302,10 +301,11 @@ const HomePage = () => {
                 <button
                   key={index}
                   onClick={() => setGalleryIndex(index)}
-                  className={`w-3 h-3 rounded-full transition-all ${index === galleryIndex
-                    ? 'bg-neutral-400 dark:bg-neutral-900'
-                    : 'bg-neutral-300 dark:bg-neutral-600'
-                    }`}
+                  className={`w-3 h-3 rounded-full transition-all ${
+                    index === galleryIndex
+                      ? 'bg-neutral-400 dark:bg-neutral-900'
+                      : 'bg-neutral-300 dark:bg-neutral-600'
+                  }`}
                   aria-label={`Go to gallery slide ${index + 1}`}
                 />
               ))}
@@ -379,14 +379,14 @@ const HomePage = () => {
             </div>
 
             <button
-              onClick={prevImage}
+              onClick={() => setCurrentImageIndex((p) => (p - 1 + featuredImages.length) % featuredImages.length)}
               className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/10 dark:bg-black/20 hover:-translate-y-[55%] hover:ring-2 ring-neutral-300 dark:ring-neutral-700 text-white p-2 rounded-full transition-all"
             >
               <ChevronLeft className="w-6 h-6" />
             </button>
 
             <button
-              onClick={nextImage}
+              onClick={() => setCurrentImageIndex((p) => (p + 1) % featuredImages.length)}
               className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/10 dark:bg-black/20 hover:-translate-y-[55%] hover:ring-2 ring-neutral-300 dark:ring-neutral-700 text-white p-2 rounded-full transition-all"
             >
               <ChevronRight className="w-6 h-6" />
@@ -397,10 +397,11 @@ const HomePage = () => {
                 <button
                   key={index}
                   onClick={() => setCurrentImageIndex(index)}
-                  className={`w-3 h-3 rounded-full transition-all ${index === currentImageIndex
-                    ? 'bg-neutral-400 dark:bg-neutral-900'
-                    : 'bg-neutral-300 dark:bg-neutral-600'
-                    }`}
+                  className={`w-3 h-3 rounded-full transition-all ${
+                    index === currentImageIndex
+                      ? 'bg-neutral-400 dark:bg-neutral-900'
+                      : 'bg-neutral-300 dark:bg-neutral-600'
+                  }`}
                 />
               ))}
             </div>
