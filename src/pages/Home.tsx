@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Users, Home, ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
-
+import { Users, Home, ChevronLeft, ChevronRight, ArrowRight, Clock } from 'lucide-react';
 
 /** --------- tiny in-file scroll reveal helper (no deps) ---------- */
 function useReveal<T extends HTMLElement>() {
@@ -34,7 +33,7 @@ const CARD_BASE =
   `${NEUTRAL_CARD} ${NEUTRAL_BORDER} rounded-xl shadow-[0_6px_24px_rgba(0,0,0,0.12)] transition-all duration-300 ease-[cubic-bezier(.22,.61,.36,1)] hover:-translate-y-0.5 hover:shadow-[0_10px_40px_rgba(0,0,0,0.18)] hover:ring-2 ring-neutral-300 dark:ring-neutral-700`;
 
 const BTN_BASE =
-  'inline-flex items-center justify-center px-8 py-4 rounded-xl font-semibold shadow-[0_2px_12px_rgba(0,0,0,0.08)] transition-all duration-200 ease-[cubic-bezier(.22,.61,.36,1)] hover:-translate-y-0.5 hover:shadow-[0_6px_24px_rgba(0,0,0,0.12)] hover:ring-2 ring-offset-0 ring-neutral-300 dark:ring-neutral-700 focus:outline-none';
+  'inline-flex items-center justify-center px-4 md:px-5 py-2.5 md:py-3 rounded-xl font-semibold shadow-[0_2px_12px_rgba(0,0,0,0.08)] transition-all duration-200 ease-[cubic-bezier(.22,.61,.36,1)] hover:-translate-y-0.5 hover:shadow-[0_6px_24px_rgba(0,0,0,0.12)] ring-offset-0 focus:outline-none text-sm md:text-base';
 
 const HomePage = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -47,7 +46,6 @@ const HomePage = () => {
     '/images/googler4.png',
   ];
 
-  // renamed from partnerGallery -> photoGallery
   const photoGallery = [
     '/images/gallery1.jpg',
     '/images/gallery2.jpg',
@@ -72,6 +70,31 @@ const HomePage = () => {
     { number: '500+', label: 'Volunteers Annually', icon: Users }
   ];
 
+  // ---------- tweet-like updates ----------
+  const updates = [
+    {
+      title: 'Weather Closure',
+      body: 'We are closed today due to severe weather. Stay safe — we’ll post when we reopen.',
+      time: 'Mar 12, 2025 • 8:05 AM'
+    },
+    {
+      title: 'Milestone!',
+      body: 'We just finished our 155th home. Huge thanks to every volunteer and partner who swung a hammer.',
+      time: 'Mar 8, 2025 • 4:20 PM'
+    },
+    {
+      title: 'ReStore Donation Day',
+      body: 'Extra hands needed this Saturday for a big donation intake. Stop by if you can lend an hour.',
+      time: 'Mar 6, 2025 • 9:10 AM'
+    },
+    {
+      title: 'Info Session Reminder',
+      body: 'Homeownership info session this Saturday at 10:00 AM at our office. No registration required.',
+      time: 'Mar 1, 2025 • 2:00 PM'
+    }
+  ];
+
+  // timers
   useEffect(() => {
     const imageTimer = setInterval(() => {
       setCurrentImageIndex((prev) => (prev + 1) % featuredImages.length);
@@ -98,6 +121,28 @@ const HomePage = () => {
   const nextGallery = () => setGalleryIndex((p) => (p + 1) % photoGallery.length);
   const prevGallery = () => setGalleryIndex((p) => (p - 1 + photoGallery.length) % photoGallery.length);
 
+  // tweet carousel logic
+  const tweetsRef = useRef<HTMLDivElement | null>(null);
+  const [tweetIndex, setTweetIndex] = useState(0);
+
+  useEffect(() => {
+    const el = tweetsRef.current;
+    if (!el) return;
+
+    const items = Array.from(el.querySelectorAll('.tweet-card')) as HTMLElement[];
+    if (!items.length) return;
+
+    const toIndex = (idx: number) => {
+      const safe = (idx + items.length) % items.length;
+      setTweetIndex(safe);
+      items[safe].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+    };
+
+    const id = setInterval(() => toIndex(tweetIndex + 1), 4500);
+    return () => clearInterval(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tweetIndex, updates.length]);
+
   // reveal refs (ordered to match layout)
   const heroRef = useReveal<HTMLDivElement>();
   const updatesRef = useReveal<HTMLDivElement>();
@@ -109,44 +154,50 @@ const HomePage = () => {
 
   return (
     <div className={`${NEUTRAL_TEXT}`}>
-      {/* ===== Hero ===== */}
-      <section className="relative w-full aspect-[16/9] overflow-hidden">
-        {/* BG image */}
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000"
-          style={{ backgroundImage: "url('/images/heroimage.jpg')" }}
-        >
-          <div className="absolute inset-0 bg-black/45" />
-        </div>
+      {/* ===== Hero (mobile-optimized) ===== */}
+      {/* ===== Hero (centered, mobile-optimized) ===== */}
+      <section className="relative w-full overflow-hidden">
+        {/* background image */}
+        <img
+          src="/images/heroimage.jpg"
+          alt="Habitat Rowan hero"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black/45" />
 
-        {/* Content */}
-        <div ref={heroRef} className="relative z-10 h-full flex items-center justify-center text-center text-white px-4 reveal">
-          <div className="max-w-4xl mx-auto">
-            <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-[1.05] drop-shadow-[0_6px_24px_rgba(0,0,0,0.35)]">
-              Building <span className="text-[#005596]">Homes</span>,<br />
-              Building <span className="text-[#54B948]">Hope</span>
+        {/* centering container */}
+        <div className="relative z-10 min-h-[78vh] sm:min-h-[72vh] lg:aspect-[16/9] grid place-items-center px-4 sm:px-6">
+          <div className="max-w-3xl md:max-w-4xl text-center text-white">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-4 md:mb-6 leading-tight">
+              Building <span className="text-[#005596]">Homes</span>,
+              <span className="hidden sm:inline"><br /></span>
+              <span className="sm:hidden"> </span>
+              Building <span className="text-[#54B948]">Hope</span>.
             </h1>
-            <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto text-white/95">
-              Seeking to put God's love into action, bringing people together to build homes, communities and hope in Rowan County.
+
+            <p className="text-base sm:text-lg md:text-2xl mb-6 md:mb-8 max-w-2xl mx-auto text-white/95">
+              Seeking to put God&apos;s love into action, bringing people together to build homes, communities and hope in Rowan County.
             </p>
-            <div className="flex flex-col md:flex-row gap-4 justify-center items-center">
+
+            {/* small CTAs */}
+            <div className="flex flex-col xs:flex-row gap-2.5 sm:gap-3 justify-center items-center">
               <Link
                 to="/get-involved#donate"
-                className={`${BTN_BASE} text-white`}
+                className={`${BTN_BASE} w-full xs:w-auto text-white`}
                 style={{ backgroundColor: '#005596' }}
               >
                 Donate Now
               </Link>
               <Link
                 to="/get-involved#volunteer"
-                className={`${BTN_BASE} text-white`}
+                className={`${BTN_BASE} w-full xs:w-auto text-white`}
                 style={{ backgroundColor: '#54B948' }}
               >
                 Volunteer Today
               </Link>
               <Link
                 to="/own-home"
-                className={`${BTN_BASE} ${NEUTRAL_TEXT} ${NEUTRAL_CARD} ${NEUTRAL_BORDER}`}
+                className={`${BTN_BASE} w-full xs:w-auto ${NEUTRAL_TEXT} ${NEUTRAL_CARD} ${NEUTRAL_BORDER}`}
               >
                 Apply for a Home
               </Link>
@@ -155,34 +206,44 @@ const HomePage = () => {
         </div>
       </section>
 
+
       <div className="h-px w-full bg-neutral-200 dark:bg-neutral-800" />
 
-      {/* ===== Latest Updates ===== */}
-      <section className="py-16">
-        <div ref={updatesRef} className="max-w-4xl mx-auto px-4 reveal">
-          <h2 className="text-4xl font-extrabold text-center mb-12">
+      {/* ===== Latest Updates → Tweet Carousel ===== */}
+      <section className="py-12 sm:py-16">
+        <div ref={updatesRef} className="max-w-6xl mx-auto px-4 reveal">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-center mb-6 sm:mb-10">
             <span className="text-[#005596]">Latest</span> <span className="text-[#54B948]">Updates</span>
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className={`${CARD_BASE} p-6`}>
-              <h3 className="text-xl font-bold mb-4 text-[#005596] dark:text-[#54B948]">ReStore Grand Opening</h3>
-              <p className={`${NEUTRAL_MUTED} mb-4`}>
-                Visit our newly renovated ReStore location featuring expanded inventory and improved shopping experience.
-              </p>
-              <Link to="/locations" className="inline-flex items-center text-[#005596] dark:text-[#54B948] hover:translate-x-0.5 transition-transform">
-                Learn More <ArrowRight className="w-4 h-4 ml-2" />
-              </Link>
-            </div>
 
-            <div className={`${CARD_BASE} p-6`}>
-              <h3 className="text-xl font-bold mb-4 text-[#005596] dark:text-[#54B948]">Volunteer Appreciation Event</h3>
-              <p className={`${NEUTRAL_MUTED} mb-4`}>
-                Join us for our annual volunteer appreciation dinner celebrating all our amazing volunteers.
-              </p>
-              <Link to="/volunteer" className="inline-flex items-center text-[#005596] dark:text-[#54B948] hover:translate-x-0.5 transition-transform">
-                Learn More <ArrowRight className="w-4 h-4 ml-2" />
-              </Link>
-            </div>
+          <div
+            ref={tweetsRef}
+            className="flex gap-4 sm:gap-6 overflow-x-auto snap-x snap-mandatory px-1 py-1 scrollbar-thin scrollbar-thumb-neutral-300 dark:scrollbar-thumb-neutral-700"
+            style={{ scrollBehavior: 'smooth' }}
+          >
+            {updates.map((t, i) => (
+              <article
+                key={i}
+                className={`${CARD_BASE} tweet-card min-w-[85%] xs:min-w-[70%] sm:min-w-[360px] max-w-[480px] snap-start p-5 sm:p-6`}
+              >
+                <div className="flex items-center gap-2 text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 mb-2">
+                  <div
+                    className="w-2 h-2 rounded-full"
+                    style={{ background: 'linear-gradient(90deg, #005596 0%, #54B948 100%)' }}
+                  />
+                  <span>Update</span>
+                </div>
+                <h3 className="text-lg sm:text-xl font-semibold mb-2">
+                  <span className="text-[#005596]">{t.title.split(' ')[0]}</span>{' '}
+                  <span className="text-[#54B948]">{t.title.split(' ').slice(1).join(' ')}</span>
+                </h3>
+                <p className={`${NEUTRAL_MUTED} text-sm sm:text-base mb-3`}>{t.body}</p>
+                <div className="flex items-center gap-2 text-xs sm:text-sm text-neutral-500 dark:text-neutral-400">
+                  <Clock className="w-4 h-4" />
+                  <time>{t.time}</time>
+                </div>
+              </article>
+            ))}
           </div>
         </div>
       </section>
@@ -192,10 +253,10 @@ const HomePage = () => {
       {/* ===== Partners (text carousel) ===== */}
       <section className="py-16 bg-neutral-50 dark:bg-neutral-950">
         <div ref={partnersRef} className="max-w-4xl mx-auto px-4 text-center reveal">
-          <h2 className="text-4xl font-extrabold text-center mb-8">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-center mb-8">
             <span className="text-[#005596]">Our</span> <span className="text-[#54B948]">Partners</span>
           </h2>
-          <div className="h-20 flex items-center justify-center">
+          <div className="h-16 sm:h-20 flex items-center justify-center">
             <h3 className={`text-2xl font-semibold ${NEUTRAL_TEXT} transition-opacity duration-500`}>
               {partners[currentPartnerIndex]}
             </h3>
@@ -208,8 +269,7 @@ const HomePage = () => {
 
       <div className="h-px w-full bg-neutral-200 dark:bg-neutral-800" />
 
-
-      {/* ===== Photo Gallery Image Carousel (renamed) ===== */}
+      {/* ===== Photo Gallery Image Carousel ===== */}
       <section className="py-10">
         <div ref={galleryRef} className="max-w-6xl mx-auto px-4 reveal">
           <div className="relative">
@@ -242,11 +302,10 @@ const HomePage = () => {
                 <button
                   key={index}
                   onClick={() => setGalleryIndex(index)}
-                  className={`w-3 h-3 rounded-full transition-all ${
-                    index === galleryIndex
-                      ? 'bg-neutral-400 dark:bg-neutral-900'   // active: slightly darker than inactive
-                      : 'bg-neutral-300 dark:bg-neutral-600'   // inactive
-                  }`}
+                  className={`w-3 h-3 rounded-full transition-all ${index === galleryIndex
+                    ? 'bg-neutral-400 dark:bg-neutral-900'
+                    : 'bg-neutral-300 dark:bg-neutral-600'
+                    }`}
                   aria-label={`Go to gallery slide ${index + 1}`}
                 />
               ))}
@@ -260,11 +319,11 @@ const HomePage = () => {
       {/* ===== Mission ===== */}
       <section className="py-16 bg-neutral-100 dark:bg-neutral-950">
         <div ref={missionRef} className="max-w-4xl mx-auto px-4 text-center reveal">
-          <h2 className="text-4xl font-extrabold mb-6 leading-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold mb-6 leading-tight">
             <span className="text-[#005596]">Our</span> <span className="text-[#54B948]">Mission</span>
           </h2>
-          <p className={`text-xl ${NEUTRAL_MUTED} leading-relaxed`}>
-            Seeking to put God's love into action, Habitat for Humanity brings people together to build homes, communities and hope.
+          <p className={`text-lg sm:text-xl ${NEUTRAL_MUTED} leading-relaxed`}>
+            Seeking to put God&apos;s love into action, Habitat for Humanity brings people together to build homes, communities and hope.
           </p>
         </div>
       </section>
@@ -274,7 +333,7 @@ const HomePage = () => {
       {/* ===== Impact Statistics ===== */}
       <section className="py-16">
         <div ref={impactRef} className="max-w-6xl mx-auto px-4 reveal">
-          <h2 className="text-4xl font-extrabold text-center mb-12">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-center mb-12">
             <span className="text-[#005596]">Our</span> <span className="text-[#54B948]">Impact</span>
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -306,7 +365,7 @@ const HomePage = () => {
       {/* ===== What the Community Says (featured images carousel) ===== */}
       <section className="py-16 bg-neutral-50 dark:bg-neutral-950">
         <div ref={featuredRef} className="max-w-6xl mx-auto px-4 reveal">
-          <h2 className="text-4xl font-extrabold text-center mb-12">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-center mb-12">
             <span className="text-[#005596]">What</span> <span className="text-[#54B948]">the Community Says</span>
           </h2>
 
@@ -338,11 +397,10 @@ const HomePage = () => {
                 <button
                   key={index}
                   onClick={() => setCurrentImageIndex(index)}
-                  className={`w-3 h-3 rounded-full transition-all ${
-                    index === currentImageIndex
-                      ? 'bg-neutral-400 dark:bg-neutral-900'   // active: slightly darker than inactive
-                      : 'bg-neutral-300 dark:bg-neutral-600'   // inactive
-                  }`}
+                  className={`w-3 h-3 rounded-full transition-all ${index === currentImageIndex
+                    ? 'bg-neutral-400 dark:bg-neutral-900'
+                    : 'bg-neutral-300 dark:bg-neutral-600'
+                    }`}
                 />
               ))}
             </div>
@@ -354,6 +412,11 @@ const HomePage = () => {
       <style>{`
         .reveal { opacity: 0; transform: translateY(24px); }
         .reveal-in { opacity: 1; transform: translateY(0); transition: opacity 600ms cubic-bezier(.22,.61,.36,1), transform 600ms cubic-bezier(.22,.61,.36,1); }
+        /* Optional: nicer mobile scrollbar for the tweets strip */
+        .scrollbar-thin { scrollbar-width: thin; }
+        .scrollbar-thumb-neutral-300::-webkit-scrollbar { height: 8px; }
+        .scrollbar-thumb-neutral-300::-webkit-scrollbar-thumb { background-color: rgba(163,163,163,0.8); border-radius: 8px; }
+        .dark .scrollbar-thumb-neutral-700::-webkit-scrollbar-thumb { background-color: rgba(64,64,64,0.8); }
       `}</style>
     </div>
   );

@@ -56,7 +56,7 @@ const Header = () => {
             <img
               src="/images/rowanlogo_long.png"
               alt="Habitat for Humanity of Rowan County"
-              className="h-12 md:h-32 lg:h-36 xl:h-40 2xl:h-44 w-auto object-contain"
+              className="h-32 md:h-32 lg:h-36 xl:h-40 2xl:h-44 w-auto object-contain"
             />
           </Link>
 
