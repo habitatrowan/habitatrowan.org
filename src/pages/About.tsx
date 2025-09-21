@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Target, Eye, User, Mail, Phone } from 'lucide-react';
+import { Target, Eye, Mail, Phone } from 'lucide-react';
 
 /** --- tiny in-file scroll reveal helper (no deps) --- */
 function useReveal<T extends HTMLElement>() {
@@ -130,11 +130,11 @@ const historyMilestones = [
 
 const About = () => {
   useEffect(() => {
-    // Handle hash navigation
+    // Handle hash navigation – align to top so titles aren't hidden by sticky header
     const hash = window.location.hash;
     if (hash) {
       const el = document.querySelector(hash);
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }, []);
 
@@ -161,11 +161,10 @@ const About = () => {
           </p>
         </div>
 
-        {/* Divider */}
         <div className="h-px w-full bg-neutral-200 dark:bg-neutral-800 mb-16" />
 
         {/* About Habitat Section */}
-        <section id="about-habitat" className="mb-16">
+        <section id="about-habitat" className="mb-16 scroll-mt-28">
           <div ref={aboutRef} className="max-w-4xl mx-auto reveal">
             <h2 className="text-3xl font-extrabold mb-8">
               <span className="text-[#005596]">About</span> <span className="text-[#54B948]">Habitat for Humanity of Rowan County</span>
@@ -211,11 +210,10 @@ const About = () => {
           </div>
         </section>
 
-        {/* Divider */}
         <div className="h-px w-full bg-neutral-200 dark:bg-neutral-800 mb-16" />
 
         {/* Mission */}
-        <section id="mission" className="mb-16">
+        <section id="mission" className="mb-16 scroll-mt-28">
           <div ref={missionRef} className="text-center max-w-4xl mx-auto reveal">
             <Target className="w-16 h-16 mx-auto mb-6" style={{ color: '#54B948' }} />
             <h2 className="text-3xl font-extrabold mb-6">
@@ -228,7 +226,7 @@ const About = () => {
         </section>
 
         {/* Vision */}
-        <section id="vision" className="mb-16">
+        <section id="vision" className="mb-16 scroll-mt-28">
           <div ref={visionRef} className="text-center max-w-4xl mx-auto reveal">
             <Eye className="w-16 h-16 mx-auto mb-6" style={{ color: '#54B948' }} />
             <h2 className="text-3xl font-extrabold mb-6">
@@ -240,18 +238,22 @@ const About = () => {
           </div>
         </section>
 
-        {/* Divider */}
         <div className="h-px w-full bg-neutral-200 dark:bg-neutral-800 mb-16" />
 
         {/* President */}
-        <section id="president" className="mb-16">
+        <section id="president" className="mb-16 scroll-mt-28">
           <div ref={presRef} className="max-w-4xl mx-auto reveal">
+            <h2 className="text-3xl font-extrabold mb-8 text-center">
+              <span className="text-[#005596]">Our</span>{' '}
+              <span className="text-[#54B948]">President</span>
+            </h2>
+
             <div className={`${CARD_BASE} p-8`}>
               <div className="flex flex-col md:flex-row items-center gap-8">
-
                 <div className="flex-1">
                   <h2 className="text-3xl font-extrabold mb-2">
-                    <span className="text-[#005596]">Jeff</span> <span className="text-[#54B948]">Wetmore</span>
+                    <span className="text-[#005596]">Jeff</span>{' '}
+                    <span className="text-[#54B948]">Wetmore</span>
                   </h2>
                   <h3 className={`text-lg mb-4 ${NEUTRAL_MUTED}`}>President</h3>
 
@@ -283,11 +285,10 @@ const About = () => {
           </div>
         </section>
 
-        {/* Divider */}
         <div className="h-px w-full bg-neutral-200 dark:bg-neutral-800 mb-16" />
 
         {/* Staff */}
-        <section id="staff" className="mb-16">
+        <section id="staff" className="mb-16 scroll-mt-28">
           <div ref={staffRef} className="max-w-6xl mx-auto reveal">
             <h2 className="text-3xl font-extrabold mb-8 text-center">
               <span className="text-[#005596]">Our</span> <span className="text-[#54B948]">Staff</span>
@@ -331,11 +332,10 @@ const About = () => {
           </div>
         </section>
 
-        {/* Divider */}
         <div className="h-px w-full bg-neutral-200 dark:bg-neutral-800 mb-16" />
 
         {/* History */}
-        <section id="history" className="mb-16">
+        <section id="history" className="mb-16 scroll-mt-28">
           <div ref={historyRef} className="max-w-4xl mx-auto reveal">
             <h2 className="text-3xl font-extrabold mb-8 text-center">
               <span className="text-[#005596]">Our</span> <span className="text-[#54B948]">History</span>

@@ -53,6 +53,12 @@ const SUPPORT_SECTIONS = [
   { id: 'support-ebay',         label: 'eBay',                 icon: ExternalLink },
 ];
 
+// optional: alias old/incorrect hashes to the new anchor
+const HASH_ALIASES: Record<string, string> = {
+  '#support-us': '#support-nav',
+  '#supportus': '#support-nav',
+};
+
 const acceptedItems = [
   'Furniture (sofas, chairs, tables, dressers)',
   'Appliances (working condition)',
@@ -93,12 +99,22 @@ const GetInvolved = () => {
   const nextCarousel = () => setCarouselIndex((p) => (p + 1) % carouselImages.length);
   const prevCarousel = () => setCarouselIndex((p) => (p - 1 + carouselImages.length) % carouselImages.length);
 
-  // Smooth scroll handler
+  // Smooth scroll handler (respects scroll-margin-top on targets)
   const scrollToId = (id: string) => {
     const el = document.getElementById(id);
     if (!el) return;
     el.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
+
+  // Sticky-header friendly hash scrolling on mount
+  useEffect(() => {
+    let hash = window.location.hash;
+    if (!hash) return;
+    // normalize with aliases
+    if (HASH_ALIASES[hash]) hash = HASH_ALIASES[hash];
+    const el = document.querySelector(hash) as HTMLElement | null;
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, []);
 
   // Observe support sections to update active nav on scroll
   useEffect(() => {
@@ -109,7 +125,8 @@ const GetInvolved = () => {
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
         if (visible?.target?.id) setActiveSupportId(visible.target.id);
       },
-      { root: null, rootMargin: '0px 0px -60% 0px', threshold: [0.15, 0.3, 0.6] }
+      // top 40% of the viewport is treated as "header space" so we don't mark late sections active too soon
+      { root: null, rootMargin: '-40% 0px -50% 0px', threshold: [0.15, 0.3, 0.6] }
     );
     SUPPORT_SECTIONS.forEach(s => {
       const node = document.getElementById(s.id);
@@ -240,7 +257,7 @@ const GetInvolved = () => {
         <div className="h-px w-full bg-neutral-200 dark:bg-neutral-800 mb-16" />
 
         {/* Volunteer Section (single, blended) */}
-        <section id="volunteer" className="mb-20">
+        <section id="volunteer" className="mb-20 scroll-mt-[var(--header-offset)]">
           <div ref={volunteerRef} className="text-center mb-10 reveal">
             <h2 className="text-3xl font-extrabold mb-4">
               <span className="text-[#005596]">Volunteer</span> <span className="text-[#54B948]">with Us</span>
@@ -301,7 +318,10 @@ const GetInvolved = () => {
         <div className="h-px w-full bg-neutral-200 dark:bg-neutral-800 mb-16" />
 
         {/* Support Section (one big component, inline sections with anchors) */}
-        <section id="support" className="mb-16">
+        <section id="support" className="mb-16 scroll-mt-[var(--header-offset)]">
+          {/* anchor for header nav – link your header to /get-involved#support-nav */}
+          <span id="support-nav" className="block h-0" />
+
           <div ref={supportHeaderRef} className="text-center mb-6 reveal">
             <h2 className="text-3xl font-extrabold mb-3">
               <span className="text-[#005596]">Support</span> <span className="text-[#54B948]">Us</span>
@@ -340,7 +360,7 @@ const GetInvolved = () => {
           {/* Single blended card with all support content */}
           <div className={`max-w-5xl mx-auto ${CARD_BASE} p-8 space-y-10`}>
             {/* Make a Donation */}
-            <div id="support-donate">
+            <div id="support-donate" className="scroll-mt-[var(--header-offset)]">
               <h3 className="text-2xl font-extrabold mb-3">
                 <span className="text-[#005596]">Make</span> <span className="text-[#54B948]">a Donation</span>
               </h3>
@@ -361,7 +381,7 @@ const GetInvolved = () => {
             <div className="h-px w-full bg-neutral-200 dark:bg-neutral-800" />
 
             {/* Donating Items */}
-            <div id="support-items">
+            <div id="support-items" className="scroll-mt-[var(--header-offset)]">
               <h3 className="text-2xl font-extrabold mb-3">
                 <span className="text-[#005596]">Donating</span> <span className="text-[#54B948]">Items</span>
               </h3>
@@ -399,7 +419,7 @@ const GetInvolved = () => {
             <div className="h-px w-full bg-neutral-200 dark:bg-neutral-800" />
 
             {/* Land Donations */}
-            <div id="support-land">
+            <div id="support-land" className="scroll-mt-[var(--header-offset)]">
               <h3 className="text-2xl font-extrabold mb-3">
                 <span className="text-[#005596]">Land</span> <span className="text-[#54B948]">Donations</span>
               </h3>
@@ -421,7 +441,7 @@ const GetInvolved = () => {
             <div className="h-px w-full bg-neutral-200 dark:bg-neutral-800" />
 
             {/* Professional Services */}
-            <div id="support-professional">
+            <div id="support-professional" className="scroll-mt-[var(--header-offset)]">
               <h3 className="text-2xl font-extrabold mb-3">
                 <span className="text-[#005596]">Professional</span> <span className="text-[#54B948]">Services</span>
               </h3>
@@ -436,7 +456,7 @@ const GetInvolved = () => {
             <div className="h-px w-full bg-neutral-200 dark:bg-neutral-800" />
 
             {/* eBay */}
-            <div id="support-ebay">
+            <div id="support-ebay" className="scroll-mt-[var(--header-offset)]">
               <h3 className="text-2xl font-extrabold mb-3">
                 <span className="text-[#005596]">Shop</span> <span className="text-[#54B948]">& Support</span>
               </h3>
@@ -459,19 +479,20 @@ const GetInvolved = () => {
           </div>
 
           {/* Bottom CTAs (ONLY place with buttons besides top nav) */}
-
+          {/* <BottomCTA />  — uncomment when you want it rendered here */}
         </section>
 
-        {/* Optional: remove Need Help section to avoid extra buttons/links */}
       </div>
 
       {/* legacy anchor so old /get-involved#donate links still work */}
       <div id="donate" aria-hidden="true" className="h-0 w-0 overflow-hidden" />
-      \
 
-      {/* Scroll reveal styles */}
-
+      {/* Scroll reveal styles + global sticky header offset */}
       <style>{`
+        :root {
+          /* Tweak this once to match your sticky header height */
+          --header-offset: 96px;
+        }
         .reveal { opacity: 0; transform: translateY(24px); }
         .reveal-in { opacity: 1; transform: translateY(0); transition: opacity 600ms cubic-bezier(.22,.61,.36,1), transform 600ms cubic-bezier(.22,.61,.36,1); }
       `}</style>

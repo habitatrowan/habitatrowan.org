@@ -94,6 +94,15 @@ const HomePage = () => {
     }
   ];
 
+  // ---------- sticky-header friendly hash scrolling ----------
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash) {
+      const el = document.querySelector(hash);
+      if (el) (el as HTMLElement).scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, []);
+
   // timers
   useEffect(() => {
     const imageTimer = setInterval(() => {
@@ -156,7 +165,7 @@ const HomePage = () => {
   return (
     <div className={`${NEUTRAL_TEXT}`}>
       {/* ===== Hero (centered, mobile-optimized) ===== */}
-      <section className="relative w-full overflow-hidden">
+      <section id="hero" className="relative w-full overflow-hidden scroll-mt-28">
         {/* background image */}
         <img
           src="/images/heroimage.jpg"
@@ -209,7 +218,7 @@ const HomePage = () => {
       <div className="h-px w-full bg-neutral-200 dark:bg-neutral-800" />
 
       {/* ===== Latest Updates → Tweet Carousel ===== */}
-      <section className="py-12 sm:py-16">
+      <section id="updates" className="py-12 sm:py-16 scroll-mt-28">
         <div ref={updatesRef} className="max-w-6xl mx-auto px-4 reveal">
           <h2 className="text-3xl sm:text-4xl font-extrabold text-center mb-6 sm:mb-10">
             <span className="text-[#005596]">Latest</span> <span className="text-[#54B948]">Updates</span>
@@ -250,7 +259,7 @@ const HomePage = () => {
       <div className="h-px w-full bg-neutral-200 dark:bg-neutral-800" />
 
       {/* ===== Partners (text carousel) ===== */}
-      <section className="py-16 bg-neutral-50 dark:bg-neutral-950">
+      <section id="partners" className="py-16 bg-neutral-50 dark:bg-neutral-950 scroll-mt-28">
         <div ref={partnersRef} className="max-w-4xl mx-auto px-4 text-center reveal">
           <h2 className="text-3xl sm:text-4xl font-extrabold text-center mb-8">
             <span className="text-[#005596]">Our</span> <span className="text-[#54B948]">Partners</span>
@@ -269,7 +278,7 @@ const HomePage = () => {
       <div className="h-px w-full bg-neutral-200 dark:bg-neutral-800" />
 
       {/* ===== Photo Gallery Image Carousel ===== */}
-      <section className="py-10">
+      <section id="gallery" className="py-10 scroll-mt-28">
         <div ref={galleryRef} className="max-w-6xl mx-auto px-4 reveal">
           <div className="relative">
             <div className="relative w-full aspect-[16/9] rounded-xl overflow-hidden shadow-[0_6px_24px_rgba(0,0,0,0.12)]">
@@ -317,7 +326,7 @@ const HomePage = () => {
       <div className="h-px w-full bg-neutral-200 dark:bg-neutral-800" />
 
       {/* ===== Mission ===== */}
-      <section className="py-16 bg-neutral-100 dark:bg-neutral-950">
+      <section id="mission" className="py-16 bg-neutral-100 dark:bg-neutral-950 scroll-mt-28">
         <div ref={missionRef} className="max-w-4xl mx-auto px-4 text-center reveal">
           <h2 className="text-3xl sm:text-4xl font-extrabold mb-6 leading-tight">
             <span className="text-[#005596]">Our</span> <span className="text-[#54B948]">Mission</span>
@@ -331,7 +340,7 @@ const HomePage = () => {
       <div className="h-px w-full bg-neutral-200 dark:bg-neutral-800" />
 
       {/* ===== Impact Statistics ===== */}
-      <section className="py-16">
+      <section id="impact" className="py-16 scroll-mt-28">
         <div ref={impactRef} className="max-w-6xl mx-auto px-4 reveal">
           <h2 className="text-3xl sm:text-4xl font-extrabold text-center mb-12">
             <span className="text-[#005596]">Our</span> <span className="text-[#54B948]">Impact</span>
@@ -362,8 +371,8 @@ const HomePage = () => {
 
       <div className="h-px w-full bg-neutral-200 dark:bg-neutral-800" />
 
-      {/* ===== What the Community Says (featured images carousel) ===== */}
-      <section className="py-16 bg-neutral-50 dark:bg-neutral-950">
+      {/* ===== Testimonials / Community Says ===== */}
+      <section id="testimonials" className="py-16 bg-neutral-50 dark:bg-neutral-950 scroll-mt-28">
         <div ref={featuredRef} className="max-w-6xl mx-auto px-4 reveal">
           <h2 className="text-3xl sm:text-4xl font-extrabold text-center mb-12">
             <span className="text-[#005596]">What</span> <span className="text-[#54B948]">the Community Says</span>
