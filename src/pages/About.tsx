@@ -248,12 +248,7 @@ const About = () => {
           <div ref={presRef} className="max-w-4xl mx-auto reveal">
             <div className={`${CARD_BASE} p-8`}>
               <div className="flex flex-col md:flex-row items-center gap-8">
-                <div
-                  className="w-48 h-48 rounded-full flex items-center justify-center"
-                  style={{ background: 'linear-gradient(90deg, #005596 0%, #54B948 100%)' }}
-                >
-                  <User className="w-24 h-24 text-white" />
-                </div>
+
                 <div className="flex-1">
                   <h2 className="text-3xl font-extrabold mb-2">
                     <span className="text-[#005596]">Jeff</span> <span className="text-[#54B948]">Wetmore</span>
