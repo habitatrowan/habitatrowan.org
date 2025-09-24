@@ -1,5 +1,6 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Target, Eye, Mail, Phone } from 'lucide-react';
+import { fetchJson } from '../utils/fetchJson'; // adjust path if needed
 
 /** --- tiny in-file scroll reveal helper (no deps) --- */
 function useReveal<T extends HTMLElement>() {
@@ -44,9 +45,12 @@ type Staff = {
   description?: string;
 };
 
+type HistoryMilestone = { year: string; event: string };
+
 const MAIN_PHONE = '(704) 642-1222';
 
-const staffMembers: Staff[] = [
+/** ===== Defaults used as graceful fallback if JSON is missing/malformed ===== */
+const DEFAULT_STAFF: Staff[] = [
   {
     name: 'Coleman Emerson',
     title: 'Executive Director',
@@ -116,7 +120,7 @@ const staffMembers: Staff[] = [
   }
 ];
 
-const historyMilestones = [
+const DEFAULT_HISTORY: HistoryMilestone[] = [
   { year: '1985', event: 'Habitat for Humanity of Rowan County was established by a group of dedicated volunteers' },
   { year: '1987', event: 'First home completed on East Council Street in Salisbury' },
   { year: '1992', event: 'Reached milestone of 10 homes built in the community' },
@@ -129,6 +133,10 @@ const historyMilestones = [
 ];
 
 const About = () => {
+  // state backed by JSON, with graceful fallback to defaults
+  const [staffMembers, setStaffMembers] = useState<Staff[]>(DEFAULT_STAFF);
+  const [historyMilestones, setHistoryMilestones] = useState<HistoryMilestone[]>(DEFAULT_HISTORY);
+
   useEffect(() => {
     // Handle hash navigation – align to top so titles aren't hidden by sticky header
     const hash = window.location.hash;
@@ -136,6 +144,20 @@ const About = () => {
       const el = document.querySelector(hash);
       if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
+  }, []);
+
+  // fetch JSON on mount
+  useEffect(() => {
+    (async () => {
+      const staff = await fetchJson<Staff[]>('/data/about_staff.json');
+      if (Array.isArray(staff) && staff.every(s => s.name && s.title)) {
+        setStaffMembers(staff);
+      }
+      const history = await fetchJson<HistoryMilestone[]>('/data/about_history.json');
+      if (Array.isArray(history) && history.every(h => h.year && h.event)) {
+        setHistoryMilestones(history);
+      }
+    })();
   }, []);
 
   // reveal refs

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Users, Home, ChevronLeft, ChevronRight, Clock } from 'lucide-react';
+import { Users, Home as HomeIcon, ChevronLeft, ChevronRight, Clock } from 'lucide-react';
+import { fetchJson } from '../utils/fetchJson'; // adjust path if your utils live elsewhere
 
 /** --------- tiny in-file scroll reveal helper (no deps) ---------- */
 function useReveal<T extends HTMLElement>() {
@@ -25,6 +26,14 @@ function useReveal<T extends HTMLElement>() {
   return ref;
 }
 
+type UpdateItem = { title: string; body: string; time: string };
+type ImpactItem = { number: string; label: string; icon: 'Home' | 'Users' };
+
+const ICONS = {
+  Home: HomeIcon,
+  Users,
+};
+
 const NEUTRAL_TEXT = 'text-neutral-900 dark:text-neutral-50';
 const NEUTRAL_MUTED = 'text-neutral-600 dark:text-neutral-300';
 const NEUTRAL_CARD = 'bg-white dark:bg-neutral-900';
@@ -35,10 +44,43 @@ const CARD_BASE =
 const BTN_BASE =
   'inline-flex items-center justify-center px-4 md:px-5 py-2.5 md:py-3 rounded-xl font-semibold shadow-[0_2px_12px_rgba(0,0,0,0.08)] transition-all duration-200 ease-[cubic-bezier(.22,.61,.36,1)] hover:-translate-y-0.5 hover:shadow-[0_6px_24px_rgba(0,0,0,0.12)] ring-offset-0 focus:outline-none text-sm md:text-base';
 
+// ===== Defaults used as graceful fallback if JSON is missing/malformed =====
+const DEFAULT_UPDATES: UpdateItem[] = [
+  {
+    title: 'Weather Closure',
+    body: 'We are closed today due to severe weather. Stay safe — we’ll post when we reopen.',
+    time: 'Mar 12, 2025 • 8:05 AM',
+  },
+  {
+    title: 'Milestone!',
+    body: 'We just finished our 155th home. Huge thanks to every volunteer and partner who swung a hammer.',
+    time: 'Mar 8, 2025 • 4:20 PM',
+  },
+  {
+    title: 'ReStore Donation Day',
+    body: 'Extra hands needed this Saturday for a big donation intake. Stop by if you can lend an hour.',
+    time: 'Mar 6, 2025 • 9:10 AM',
+  },
+  {
+    title: 'Info Session Reminder',
+    body: 'Homeownership info session this Saturday at 10:00 AM at our office. No registration required.',
+    time: 'Mar 1, 2025 • 2:00 PM',
+  },
+];
+
+const DEFAULT_IMPACT: ImpactItem[] = [
+  { number: '143', label: 'Homes Built', icon: 'Home' },
+  { number: '6-8', label: 'Homes Built Annually', icon: 'Home' },
+  { number: '500+', label: 'Volunteers Annually', icon: 'Users' },
+];
+
 const HomePage = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [currentPartnerIndex, setCurrentPartnerIndex] = useState(0);
   const [galleryIndex, setGalleryIndex] = useState(0);
+
+  const [updatesState, setUpdatesState] = useState<UpdateItem[]>(DEFAULT_UPDATES);
+  const [impactState, setImpactState] = useState<ImpactItem[]>(DEFAULT_IMPACT);
 
   const featuredImages = [
     '/images/googler2.png',
@@ -62,36 +104,6 @@ const HomePage = () => {
     'City of Salisbury',
     'First Baptist Church',
     'Truist',
-  ];
-
-  const stats = [
-    { number: '143', label: 'Homes Built', icon: Home },
-    { number: '6-8', label: 'Homes Built Annually', icon: Home },
-    { number: '500+', label: 'Volunteers Annually', icon: Users }
-  ];
-
-  // ---------- tweet-like updates ----------
-  const updates = [
-    {
-      title: 'Weather Closure',
-      body: 'We are closed today due to severe weather. Stay safe — we’ll post when we reopen.',
-      time: 'Mar 12, 2025 • 8:05 AM'
-    },
-    {
-      title: 'Milestone!',
-      body: 'We just finished our 155th home. Huge thanks to every volunteer and partner who swung a hammer.',
-      time: 'Mar 8, 2025 • 4:20 PM'
-    },
-    {
-      title: 'ReStore Donation Day',
-      body: 'Extra hands needed this Saturday for a big donation intake. Stop by if you can lend an hour.',
-      time: 'Mar 6, 2025 • 9:10 AM'
-    },
-    {
-      title: 'Info Session Reminder',
-      body: 'Homeownership info session this Saturday at 10:00 AM at our office. No registration required.',
-      time: 'Mar 1, 2025 • 2:00 PM'
-    }
   ];
 
   // ---------- sticky-header friendly hash scrolling ----------
@@ -151,7 +163,7 @@ const HomePage = () => {
     const id = setInterval(() => scrollToIndex(tweetIndex + 1), 4500);
     return () => clearInterval(id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [tweetIndex, updates.length]);
+  }, [tweetIndex, updatesState.length]);
 
   // reveal refs
   const heroRef = useReveal<HTMLDivElement>();
@@ -161,6 +173,20 @@ const HomePage = () => {
   const missionRef = useReveal<HTMLDivElement>();
   const impactRef = useReveal<HTMLDivElement>();
   const featuredRef = useReveal<HTMLDivElement>();
+
+  // Fetch JSON (Latest Updates + Impact) with fallback to defaults
+  useEffect(() => {
+    (async () => {
+      const updates = await fetchJson<UpdateItem[]>('/data/home_updates.json');
+      if (Array.isArray(updates) && updates.every(u => u.title && u.body && u.time)) {
+        setUpdatesState(updates);
+      }
+      const impact = await fetchJson<ImpactItem[]>('/data/home_impact.json');
+      if (Array.isArray(impact) && impact.every(i => i.number && i.label && i.icon && ICONS[i.icon])) {
+        setImpactState(impact);
+      }
+    })();
+  }, []);
 
   return (
     <div className={`${NEUTRAL_TEXT}`}>
@@ -229,7 +255,7 @@ const HomePage = () => {
             className="flex gap-4 sm:gap-6 overflow-x-auto snap-x snap-mandatory px-1 py-1 scrollbar-thin scrollbar-thumb-neutral-300 dark:scrollbar-thumb-neutral-700"
             style={{ scrollBehavior: 'smooth' }}
           >
-            {updates.map((t, i) => (
+            {updatesState.map((t, i) => (
               <article
                 key={i}
                 className={`${CARD_BASE} tweet-card min-w-[85%] xs:min-w-[70%] sm:min-w-[360px] max-w-[480px] snap-start p-5 sm:p-6`}
@@ -346,8 +372,8 @@ const HomePage = () => {
             <span className="text-[#005596]">Our</span> <span className="text-[#54B948]">Impact</span>
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {stats.map((stat, index) => {
-              const Icon = stat.icon;
+            {impactState.map((stat, index) => {
+              const Icon = ICONS[stat.icon] || HomeIcon;
               return (
                 <div key={index} className={`${CARD_BASE} text-center p-8`}>
                   <div className="flex justify-center mb-4">
@@ -433,3 +459,4 @@ const HomePage = () => {
 };
 
 export default HomePage;
+ 
