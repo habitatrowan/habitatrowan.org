@@ -6,7 +6,7 @@
   /* Brand Colors - consistent across themes */
   --blue: #005596; /* Habitat Blue, Pantone 294 */
   --green: #54B948; /* Habitat Green, Pantone 361 */
-  
+
   /* Light theme colors */
   --bg-primary: #ffffff;
   --bg-secondary: #f8fafc;
@@ -117,17 +117,8 @@ a:focus {
   :root {
     --bg-secondary: #ffffff;
   }
-  
+
   .dark {
     --bg-secondary: #000000;
-  }
-}
-
-/* Reduced motion support */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
   }
 }

@@ -2,9 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import BottomCTA from "../components/BottomCTA";
 import {
   Download, Users, Hammer, ShoppingCart, GraduationCap,
-  Heart, Home, Phone, Mail, ExternalLink, Gift,
-  ChevronLeft, ChevronRight
+  Heart, Home, Phone, Mail, ExternalLink, Gift
 } from 'lucide-react';
+import FadeCarousel from "../components/ui/FadeCarousel";
 
 /** --- tiny in-file scroll reveal helper (no deps) --- */
 function useReveal<T extends HTMLElement>() {
@@ -95,9 +95,6 @@ const GetInvolved = () => {
     '/images/gallery3.jpg',
     '/images/gallery4.jpg',
   ];
-  const [carouselIndex, setCarouselIndex] = useState(0);
-  const nextCarousel = () => setCarouselIndex((p) => (p + 1) % carouselImages.length);
-  const prevCarousel = () => setCarouselIndex((p) => (p - 1 + carouselImages.length) % carouselImages.length);
 
   // Smooth scroll handler (respects scroll-margin-top on targets)
   const scrollToId = (id: string) => {
@@ -135,10 +132,7 @@ const GetInvolved = () => {
     return () => observer.disconnect();
   }, []);
 
-  useEffect(() => {
-    const t = setInterval(() => setCarouselIndex((p) => (p + 1) % carouselImages.length), 5000);
-    return () => clearInterval(t);
-  }, []);
+  // No need for custom carousel interval logic; handled by FadeCarousel
 
   // reveal refs
   const headerRef        = useReveal<HTMLDivElement>();
@@ -213,44 +207,14 @@ const GetInvolved = () => {
 
         {/* Header Image Carousel */}
         <section ref={carouselRef} className="mb-16 reveal">
-          <div className="relative max-w-6xl mx-auto">
-            <div className="relative w-full aspect-[16/9] rounded-xl overflow-hidden shadow-[0_6px_24px_rgba(0,0,0,0.12)]">
-              <img
-                src={carouselImages[carouselIndex]}
-                alt="Habitat activity"
-                className="w-full h-full object-cover transition-opacity duration-700"
-              />
-            </div>
-
-            <button
-              onClick={prevCarousel}
-              className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/25 hover:bg-black/35 text-white p-2 rounded-full transition-all focus:outline-none"
-              aria-label="Previous image"
-            >
-              <ChevronLeft className="w-6 h-6" />
-            </button>
-
-            <button
-              onClick={nextCarousel}
-              className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/25 hover:bg-black/35 text-white p-2 rounded-full transition-all focus:outline-none"
-              aria-label="Next image"
-            >
-              <ChevronRight className="w-6 h-6" />
-            </button>
-
-            <div className="flex justify-center mt-4 space-x-2">
-              {carouselImages.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCarouselIndex(index)}
-                  className={`w-3 h-3 rounded-full transition-all ${
-                    index === carouselIndex ? 'bg-neutral-400 dark:bg-neutral-900' : 'bg-neutral-300 dark:bg-neutral-600'
-                  }`}
-                  aria-label={`Go to slide ${index + 1}`}
-                />
-              ))}
-            </div>
-          </div>
+          {/* The parent div should not remount or reset styles on image change. Set a fixed aspect and width. */}
+          <FadeCarousel
+            images={carouselImages}
+            intervalMs={5000}
+            aspect="aspect-[16/9]"
+            rounded="rounded-xl"
+            alt="Habitat activity"
+          />
         </section>
 
         {/* Divider */}
