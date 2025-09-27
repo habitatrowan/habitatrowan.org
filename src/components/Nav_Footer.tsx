@@ -7,13 +7,13 @@ const Footer = () => {
   const { theme, setTheme } = useTheme();
 
   const navigationLinks = [
+    { name: 'Home', href: '/' },
     { name: 'About', href: '/about' },
     { name: 'Get Involved', href: '/get-involved' },
     { name: 'Own a Home', href: '/own-home' },
     { name: 'Gallery', href: '/gallery' },
     { name: 'Locations', href: '/locations' },
     { name: 'Contact', href: '/contact' },
-    { name: 'Donate', href: '/get-involved#support-donate' },
   ];
 
   const donateLinks = [
