@@ -12,22 +12,21 @@ import News from './pages/Gallery';
 import GetInvolved from './pages/GetInvolved';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import ToS from './pages/ToS';
+import DataUse from './pages/DataUse';
+import Security from './pages/Security';
 import './styles/theme.css';
 
-/** Scroll to top or to hash on every route change */
 const ScrollToTop: React.FC = () => {
   const { pathname, hash } = useLocation();
 
   useEffect(() => {
     if (hash) {
-      // If the URL has a #hash, scroll to that element smoothly
       const el = document.querySelector(hash);
       if (el) {
         el.scrollIntoView({ behavior: 'smooth', block: 'start' });
         return;
       }
     }
-    // Otherwise, always reset to the very top smoothly
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [pathname, hash]);
 
@@ -38,9 +37,7 @@ function App() {
   return (
     <ThemeProvider>
       <Router>
-        {/* Ensures every navigation jumps to top (or to hash) */}
         <ScrollToTop />
-
         <div className="min-h-screen bg-primary text-primary">
           <Header />
           <main>
@@ -48,7 +45,6 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
               <Route path="/get-involved" element={<GetInvolved />} />
-              {/* Legacy redirects */}
               <Route path="/volunteer" element={<GetInvolved />} />
               <Route path="/donate" element={<GetInvolved />} />
               <Route path="/own-home" element={<OwnHome />} />
@@ -57,6 +53,8 @@ function App() {
               <Route path="/gallery" element={<News />} />
               <Route path="/privacy" element={<PrivacyPolicy />} />
               <Route path="/tos" element={<ToS />} />
+              <Route path="/data" element={<DataUse />} />
+              <Route path="/security" element={<Security />} />
             </Routes>
           </main>
           <Footer />

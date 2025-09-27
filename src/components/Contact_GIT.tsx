@@ -1,12 +1,12 @@
-// components/Contact_Info.tsx
 import React from "react";
+import { Link } from "react-router-dom";
 import { Phone, Mail, MapPin } from "lucide-react";
 
 const NEUTRAL_MUTED = "text-neutral-600 dark:text-neutral-300";
 const NEUTRAL_CARD = "bg-white dark:bg-neutral-900";
 const NEUTRAL_BORDER = "border border-neutral-200 dark:border-neutral-700";
-const CARD_BASE = `${NEUTRAL_CARD} ${NEUTRAL_BORDER} rounded-xl p-6 transition-transform hover:-translate-y-0.5 shadow-[0_6px_24px_rgba(0,0,0,0.12)]`;
-const ICON_GRADIENT = { background: "linear-gradient(90deg, #005596 0%, #54B948 100%)" };
+const CARD_BASE = `${NEUTRAL_CARD} ${NEUTRAL_BORDER} rounded-xl p-6 shadow-[0_6px_24px_rgba(0,0,0,0.12)] flex flex-col justify-between`;
+const ICON_GRADIENT = "bg-gradient-to-r from-[#005596] to-[#54B948]";
 
 const Contact_Info: React.FC = () => {
   const address = "1707 S Main St, Salisbury, NC 28144";
@@ -44,22 +44,39 @@ const Contact_Info: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {cards.map((c) => {
           const Icon = c.icon;
-          return (
+          const isInternal = !c.newTab && c.href.startsWith("/");
+
+          const Inner = (
+            <div className="flex flex-col h-full">
+              <div className="flex items-center gap-3 mb-6">
+                <div
+                  className={`w-12 h-12 rounded-full flex items-center justify-center shadow-[0_2px_12px_rgba(0,0,0,0.12)] ${ICON_GRADIENT}`}
+                >
+                  <Icon className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="text-lg font-semibold">{c.title}</h3>
+              </div>
+              <div className="flex-1 flex items-center justify-center">
+                <p className="font-medium text-center">{c.info}</p>
+              </div>
+              <p className={`${NEUTRAL_MUTED} text-sm mt-6 text-left`}>
+                {c.description}
+              </p>
+            </div>
+          );
+
+          return isInternal ? (
+            <Link key={c.title} to={c.href} className={`${CARD_BASE} block`}>
+              {Inner}
+            </Link>
+          ) : (
             <a
               key={c.title}
               href={c.href}
               className={`${CARD_BASE} block`}
               {...(c.newTab ? { target: "_blank", rel: "noopener noreferrer" } : {})}
             >
-              <div
-                className="w-12 h-12 rounded-full flex items-center justify-center mb-4 shadow-[0_2px_12px_rgba(0,0,0,0.12)]"
-                style={ICON_GRADIENT}
-              >
-                <Icon className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="text-lg font-semibold mb-1">{c.title}</h3>
-              <p className="font-medium">{c.info}</p>
-              <p className={`${NEUTRAL_MUTED} text-sm`}>{c.description}</p>
+              {Inner}
             </a>
           );
         })}

@@ -1,4 +1,3 @@
-// pages/OwnHome.tsx
 import React, { useEffect, useRef, useState } from "react";
 import ZCarousel from "../components/z_Carousel";
 import OwnHome_Nav from "../components/OwnHome_Nav";

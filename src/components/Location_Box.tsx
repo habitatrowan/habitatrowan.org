@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Location_Box: React.FC = () => {
   return (
@@ -7,12 +8,12 @@ const Location_Box: React.FC = () => {
       style={{ background: "linear-gradient(90deg, #005596 0%, #54B948 100%)" }}
     >
       <h2 className="text-2xl md:text-3xl font-extrabold text-white mb-4">Have a Question?</h2>
-      <a
-        href="/contact"
+      <Link
+        to="/contact"
         className="inline-flex items-center justify-center px-10 md:px-12 py-3 rounded-full font-semibold text-white border border-white/30 bg-white/15 hover:bg-white/25 backdrop-blur-md transition-all min-w-[240px]"
       >
         Contact Us
-      </a>
+      </Link>
     </section>
   );
 };
