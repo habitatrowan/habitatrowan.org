@@ -1,70 +1,67 @@
 [
-    {
-      "name": "Coleman Emerson",
-      "title": "Executive Director",
-      "email": "habitat@habitatrowan.org",
-      "phone": "(704) 642-1222",
-      "description": "Coleman is nearly a lifelong resident of Rowan County. His family owned and operated a furniture store in Salisbury. After graduating from Catawba College he worked as a manufacturers representative for Bassett Furniture Industries. Later he settled down, got married, and purchased his families' interest in their furniture store. Seeking to experience first hand the value of a job focused on service he closed his store and began working for Habitat in 1998. He considers his work with Habitat to be a blessing, saying that it has allowed him to participate with some very fine people in a very fine cause."
-    },
-    {
-      "name": "Jane Hartness",
-      "title": "Volunteer Coordinator and Family Intake Specialist",
-      "email": "volunteer@habitatrowan.org",
-      "phone": "(704) 642-1222",
-      "description": "With the exception of her college years, Jane has lived in Salisbury all her life, and has been involved in church, school and community activities most of that time. She loves to work with volunteers! She has coordinated volunteer services as a profession for 25 years, and enjoys getting to know people who give their time and abilities to help a cause in which they believe. Habitat for Humanity provides a wonderful opportunity for people to help others through various activities and events. She is pleased that Rowan County has the services of Habitat and that she can be a part of this great organization."
-    },
-    {
-      "name": "Elizabeth Brady",
-      "title": "Director of ReStore Operations",
-      "email": "store@habitatrowan.org",
-      "phone": "(704) 642-1222",
-      "description": "Elizabeth has lived in Salisbury for most of her life. After graduating from Salisbury High School in 1988 and Western Carolina University in 1992, she went to work as a buyer/merchandiser for JCPenney for seven years. She spent the next 8 years raising her family and volunteering at Habitat for Humanity, the N.C. Transportation Museum, Overton Elementary School, and Milford Hills United Methodist Church. Looking to go back to work in a field that would utilize her business training but also be spiritually fulfilling, she says she found the perfect fit with Habitat. She has been ReStore Director since 2006."
-    },
-    {
-      "name": "Nate Wrights",
-      "title": "ReStore Donations Manager",
-      "email": "donations@habitatrowan.org",
-      "phone": "(704) 642-1222",
-      "description": "Nate joined Habitat for Humanity in 2010 as our Donations Manager. Nate holds a BA in Sociology and a minor in Economics from Catawba College. Nate began his service with Habitat for Humanity of Rowan County as a volunteer in 2006 while attending Catawba College."
-    },
-    {
-      "name": "Clem Berger",
-      "title": "ReStore Donations Supervisor",
-      "email": "clem@habitatrowan.org",
-      "phone": "(704) 642-1222",
-      "description": "Clem joined Habitat for Humanity in 2019. He holds a degree in Criminal Justice from Livingstone College and is a certified personal trainer. Clem loves all things football!"
-    },
-    {
-      "name": "Tyrone Rankin",
-      "title": "ReStore Receiving Associate",
-      "phone": "(704) 642-1222",
-      "description": "Tyrone began his journey with Habitat for Humanity ReStore as a volunteer while attending Salisbury High School. After graduating, he continued to volunteer and later joined the team as a receiving associate, helping with pickups from homes and businesses."
-    },
-    {
-      "name": "Clinton Jones",
-      "title": "ReStore Receiving Supervisor",
-      "email": "clinton@habitatrowan.org",
-      "phone": "(704) 642-1222"
-    },
-    {
-      "name": "Sue Gajewski",
-      "title": "ReStore Customer Service Supervisor",
-      "email": "rowanrestore@gmail.com",
-      "phone": "(704) 642-1222"
-    },
-    {
-      "name": "David Rowh",
-      "title": "Construction Supervisor",
-      "email": "build@habitatrowan.org",
-      "phone": "(704) 642-1222",
-      "description": "A native of Virginia, David first worked with Habitat for Humanity as a volunteer in Florida after Hurricane Andrew in 1992. He came to Salisbury while serving in AmeriCorps and has been our Construction Supervisor since 1998."
-    },
-    {
-      "name": "Nik Hughes",
-      "title": "Customer Service Manager",
-      "email": "nik@habitatrowan.org",
-      "phone": "(704) 642-1222",
-      "description": "Nik started with us as a volunteer when he was in 10th grade at Salisbury High School. While finishing high school and putting himself through Catawba College, he worked part time as a receiving associate. During his senior year at Catawba (11/22), he launched a computer repair service inside the ReStore. Nik graduated from Catawba College with a computer science degree in May 2023. He closed the repair shop in 2024 when he accepted the role of Customer Service Manager, where he focuses on front-of-house operations, guest experience, and volunteer support."
-    }
-  ]
-  
+  {
+    "name": "Coleman Emerson",
+    "title": "Executive Director",
+    "email": "[habitat@habitatrowan.org](mailto:habitat@habitatrowan.org)",
+    "phone": "(704) 642-1222",
+    "ext": "100",
+    "description": "Coleman is nearly a lifelong resident of Rowan County. His family owned and operated a furniture store in Salisbury. After graduating from Catawba College he worked as a manufacturers representative for Bassett Furniture Industries. Later he settled down, got married, and purchased his families' interest in their furniture store. Seeking to experience first hand the value of a job focused on service he closed his store and began working for Habitat in 1998. He considers his work with Habitat to be a blessing, saying that it has allowed him to participate with some very fine people in a very fine cause."
+  },
+  {
+    "name": "Elizabeth Brady",
+    "title": "Director of ReStore Operations",
+    "email": "[store@habitatrowan.org](mailto:store@habitatrowan.org)",
+    "phone": "(704) 642-1222",
+    "ext": "102",
+    "description": "Elizabeth has lived in Salisbury for most of her life. After graduating from Salisbury High School in 1988 and Western Carolina University in 1992, she went to work as a buyer/merchandiser for JCPenney for seven years. She spent the next 8 years raising her family and volunteering at Habitat for Humanity, the N.C. Transportation Museum, Overton Elementary School, and Milford Hills United Methodist Church. Looking to go back to work in a field that would utilize her business training but also be spiritually fulfilling, she says she found the perfect fit with Habitat. She has been ReStore Director since 2006."
+  },
+  {
+    "name": "David Rowh",
+    "title": "Construction Supervisor",
+    "email": "[build@habitatrowan.org](mailto:build@habitatrowan.org)",
+    "description": "A native of Virginia, David first worked with Habitat for Humanity as a volunteer in Florida after Hurricane Andrew in 1992. He came to Salisbury while serving in AmeriCorps and has been our Construction Supervisor since 1998."
+  },
+  {
+    "name": "Jane Hartness",
+    "title": "Volunteer Coordinator and Family Intake Specialist",
+    "email": "[volunteer@habitatrowan.org](mailto:volunteer@habitatrowan.org)",
+    "phone": "(704) 642-1222",
+    "ext": "101",
+    "description": "With the exception of her college years, Jane has lived in Salisbury all her life, and has been involved in church, school and community activities most of that time. She loves to work with volunteers! She has coordinated volunteer services as a profession for 25 years, and enjoys getting to know people who give their time and abilities to help a cause in which they believe. Habitat for Humanity provides a wonderful opportunity for people to help others through various activities and events. She is pleased that Rowan County has the services of Habitat and that she can be a part of this great organization."
+  },
+  {
+    "name": "Nik Hughes",
+    "title": "Customer Service Manager",
+    "email": "[nik@habitatrowan.org](mailto:nik@habitatrowan.org)",
+    "description": "Nik started with us as a volunteer when he was in 10th grade at Salisbury High School. While finishing high school and putting himself through Catawba College, he worked part time as a receiving associate. During his senior year at Catawba (11/22), he launched a computer repair service inside the ReStore. Nik graduated from Catawba College with a computer science degree in May 2023. He closed the repair shop in 2024 when he accepted the role of Customer Service Manager, where he focuses on front-of-house operations, guest experience, and volunteer support."
+  },
+  {
+    "name": "Nate Wrights",
+    "title": "ReStore Donations Manager",
+    "email": "[donations@habitatrowan.org](mailto:donations@habitatrowan.org)",
+    "phone": "(704) 642-1222",
+    "ext": "103",
+    "description": "Nate joined Habitat for Humanity in 2010 as our Donations Manager. Nate holds a BA in Sociology and a minor in Economics from Catawba College. Nate began his service with Habitat for Humanity of Rowan County as a volunteer in 2006 while attending Catawba College."
+  },
+  {
+    "name": "Clinton Jones",
+    "title": "ReStore Receiving Supervisor",
+    "email": "[clinton@habitatrowan.org](mailto:clinton@habitatrowan.org)"
+  },
+  {
+    "name": "Sue Gajewski",
+    "title": "ReStore Customer Service Supervisor",
+    "email": "[rowanrestore@gmail.com](mailto:rowanrestore@gmail.com)"
+  },
+  {
+    "name": "Clem Berger",
+    "title": "ReStore Donations Supervisor",
+    "email": "[clem@habitatrowan.org](mailto:clem@habitatrowan.org)",
+    "description": "Clem joined Habitat for Humanity in 2019. He holds a degree in Criminal Justice from Livingstone College and is a certified personal trainer. Clem loves all things football!"
+  },
+  {
+    "name": "Tyrone Rankin",
+    "title": "ReStore Receiving Associate",
+    "description": "Tyrone began his journey with Habitat for Humanity ReStore as a volunteer while attending Salisbury High School. After graduating, he continued to volunteer and later joined the team as a receiving associate, helping with pickups from homes and businesses."
+  }
+]
