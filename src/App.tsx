@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { ThemeProvider } from './contexts/ThemeContext';
-import Header from './components/Header';
-import Footer from './components/Footer';
+import Header from './components/Nav_Header';
+import Footer from './components/Nav_Footer';
 import Home from './pages/Home';
 import About from './pages/About';
 import OwnHome from './pages/OwnHome';
 import Contact from './pages/Contact';
-import Locations from './pages/Locations';
+import Locations from './pages/Location';
 import News from './pages/Gallery';
 import GetInvolved from './pages/GetInvolved';
 import PrivacyPolicy from './pages/PrivacyPolicy';

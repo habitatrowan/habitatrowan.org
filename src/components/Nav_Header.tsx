@@ -18,7 +18,8 @@ const Header = () => {
 
   const getInvolvedDropdownItems = [
     { name: 'Volunteer', href: '/get-involved#volunteer' },
-    { name: 'Support Us', href: '/get-involved#donate' }
+    { name: 'Support Us', href: '/get-involved#support' },
+    { name: 'Donate Items', href: '/get-involved#donate-items' }
   ];
 
   const navigation = [

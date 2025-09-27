@@ -1,8 +1,7 @@
 import React, { useEffect, useRef } from "react";
-import Contact_Info from "../components/Contact_GIT.tsx";
-import Contact_Connect from "../components/Contact_Connect";
-import Contact_Careers from "../components/Contact_Careers";
-import Contact_FAQ from "../components/Contact_FAQ.tsx";
+import Location_Address from "../components/Location_Address";
+import Location_Map from "../components/Location_Map";
+import Location_Box from "../components/Location_Box";
 
 function useReveal<T extends HTMLElement>() {
   const ref = useRef<T | null>(null);
@@ -21,42 +20,44 @@ function useReveal<T extends HTMLElement>() {
 
 const NEUTRAL_TEXT = "text-neutral-900 dark:text-neutral-50";
 const NEUTRAL_MUTED = "text-neutral-600 dark:text-neutral-300";
-const NEUTRAL_CARD = "bg-white dark:bg-neutral-900";
-const NEUTRAL_BORDER = "border border-neutral-200 dark:border-neutral-700";
-const CARD_BASE = `${NEUTRAL_CARD} ${NEUTRAL_BORDER} rounded-xl shadow-[0_6px_24px_rgba(0,0,0,0.12)]`;
 
-const Contact: React.FC = () => {
+const address = "1707 S Main St, Salisbury, NC 28144";
+
+const Locations: React.FC = () => {
   const headerRef = useReveal<HTMLDivElement>();
-  const wrapperRef = useReveal<HTMLDivElement>();
-  const faqRef = useReveal<HTMLDivElement>();
+  const addressRef = useReveal<HTMLDivElement>();
+  const mapRef = useReveal<HTMLDivElement>();
+  const boxRef = useReveal<HTMLDivElement>();
 
   return (
     <div className={`min-h-screen py-16 ${NEUTRAL_TEXT}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div ref={headerRef} className="text-center mb-12 reveal">
           <h1 className="text-4xl font-extrabold mb-4">
-            <span className="text-[#005596]">Contact</span> <span className="text-[#54B948]">Us</span>
+            <span className="text-[#005596]">Our</span> <span className="text-[#54B948]">Location</span>
           </h1>
           <p className={`text-xl ${NEUTRAL_MUTED} max-w-3xl mx-auto`}>
-            Clean, simple ways to get in touch. Find phone and email, social links, and quick answers.
+            Visit our Rowan County campus for homeowner services, volunteer coordination, and community support.
           </p>
         </div>
 
-        <div className="h-px w-full bg-neutral-200 dark:bg-neutral-800 mb-16" />
+        <div className="h-px w-full bg-neutral-200 dark:bg-neutral-800 mb-12" />
 
-        <div ref={wrapperRef} className={`${CARD_BASE} p-8 space-y-12 reveal`}>
-          <Contact_Info />
-          <div className="h-px w-full bg-neutral-200 dark:bg-neutral-800" />
-          <Contact_Connect />
-          <div className="h-px w-full bg-neutral-200 dark:bg-neutral-800" />
-          <Contact_Careers />
+        <div ref={addressRef} className="reveal mb-12">
+          <Location_Address />
         </div>
 
         <div className="h-px w-full bg-neutral-200 dark:bg-neutral-800 my-12" />
 
-        <section ref={faqRef} className="reveal">
-          <Contact_FAQ />
-        </section>
+        <div ref={mapRef} className="reveal mb-12">
+
+          <Location_Map address={address} title="Habitat Rowan Campus Map" />
+        </div>
+
+
+        <div ref={boxRef} className="reveal">
+          <Location_Box />
+        </div>
       </div>
 
       <style>{`
@@ -67,4 +68,4 @@ const Contact: React.FC = () => {
   );
 };
 
-export default Contact;
+export default Locations;

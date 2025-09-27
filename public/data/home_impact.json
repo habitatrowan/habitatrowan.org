@@ -1,6 +1,5 @@
 [
-    { "number": "155", "label": "Homes Built", "icon": "Home" },
-    { "number": "6-8", "label": "Homes Built Annually", "icon": "Home" },
+    { "number": "152", "label": "Homes Built", "icon": "Home" },
+    { "number": "6-8", "label": "Homes Built Annually", "icon": "Calendar" },
     { "number": "500+", "label": "Volunteers Annually", "icon": "Users" }
   ]
-  
