@@ -163,7 +163,7 @@ const Footer = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="py-3 sm:py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-2">
             <p className="text-sm text-neutral-600 dark:text-neutral-400 text-center sm:text-left">
-              © 2025 Habitat for Humanity of Rowan County, NC
+              © 2025 Habitat for Humanity of Rowan County
             </p>
             <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4">
               <div className="flex gap-1.5">
