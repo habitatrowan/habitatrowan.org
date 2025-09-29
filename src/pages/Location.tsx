@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import Location_Address from "../components/Location_Address";
 import Location_Map from "../components/Location_Map";
-import Location_Box from "../components/Location_Box";
+import Location_Box from "../components/Location_CTA";
 
 function useReveal<T extends HTMLElement>() {
   const ref = useRef<T | null>(null);

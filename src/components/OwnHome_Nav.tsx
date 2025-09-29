@@ -4,12 +4,31 @@ type Section = { id: string; label: string };
 type Props = { sections: Section[]; activeId: string; onSelect: (id: string) => void };
 
 const OwnHome_Nav: React.FC<Props> = ({ sections, activeId, onSelect }) => {
+  const handleScrollTo = (id: string) => {
+    onSelect(id);
+
+    // Small delay to ensure state is updated before scrolling
+    setTimeout(() => {
+      const element = document.getElementById(id);
+      if (element) {
+        const headerOffset = 120; // Account for sticky header + some padding
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    }, 50);
+  };
+
   return (
     <div className="flex flex-wrap gap-2 justify-center">
       {sections.map(({ id, label }) => (
         <button
           key={id}
-          onClick={() => onSelect(id)}
+          onClick={() => handleScrollTo(id)}
           aria-current={activeId === id ? "true" : "false"}
           className="group relative inline-flex items-center justify-center px-5 py-2 rounded-xl font-medium border border-neutral-300 dark:border-neutral-700 overflow-hidden transition-colors"
         >

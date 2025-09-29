@@ -15,6 +15,7 @@ import ToS from './pages/ToS';
 import DataUse from './pages/DataUse';
 import Security from './pages/Security';
 import './styles/theme.css';
+import { Analytics } from "@vercel/analytics/react";
 
 const ScrollToTop: React.FC = () => {
   const { pathname, hash } = useLocation();
@@ -59,6 +60,7 @@ function App() {
           </main>
           <Footer />
         </div>
+        <Analytics />
       </Router>
     </ThemeProvider>
   );

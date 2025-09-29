@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown } from 'lucide-react';
 
@@ -50,6 +50,24 @@ const Header = () => {
     setIsMenuOpen(false);
     setActiveDropdown(null);
   }, [location.pathname, location.hash]);
+
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
+    } else {
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+    };
+  }, [isMenuOpen]);
 
   const baseLink = 'nav-no-wrap px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 focus:outline-none focus:ring-0';
   const idleLink = 'text-secondary';
@@ -146,11 +164,11 @@ const Header = () => {
         {isMenuOpen && (
           <>
             <div
-              className="fixed inset-x-0 top-20 bottom-0 bg-black/0 z-40 lg:hidden"
+              className="fixed inset-0 top-20 bg-black/0 z-40"
               onClick={() => setIsMenuOpen(false)}
               aria-hidden="true"
             />
-            <div className="lg:hidden py-4 border-t border-primary relative z-50 bg-primary">
+            <div className="lg:hidden py-4 border-t border-primary relative z-50 bg-primary max-h-[calc(100vh-5rem)] overflow-y-auto">
               {navigation.map((item) => {
                 const active = isActive(item.href);
                 return (

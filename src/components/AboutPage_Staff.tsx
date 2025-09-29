@@ -22,39 +22,42 @@ const CARD_BASE = `${NEUTRAL_CARD} ${NEUTRAL_BORDER} rounded-xl shadow-[0_6px_24
 
 type Props = {
   items: Staff[];
-  mainPhone: string;
 };
 
-const StaffGrid: React.FC<Props> = ({ items, mainPhone }) => {
+const StaffGrid: React.FC<Props> = ({ items }) => {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
       {items.map((s) => (
-        <article key={s.name} className={`${CARD_BASE} p-8`}>
-          <header className="mb-4">
-            <h3 className={`text-2xl font-extrabold leading-tight ${NEUTRAL_TEXT}`}>
-              {s.name}
-            </h3>
-            <p className={`${NEUTRAL_MUTED} mt-1`}>{s.title}</p>
-          </header>
+        <article key={s.name} className={`${CARD_BASE} p-8 flex flex-col`}>
+          <div className="flex-grow">
+            <header className="mb-4">
+              <h3 className={`text-2xl font-extrabold leading-tight ${NEUTRAL_TEXT}`}>
+                {s.name}
+              </h3>
+              <p className={`${NEUTRAL_MUTED} mt-1`}>{s.title}</p>
+            </header>
 
-          {s.description && (
-            <p className={`${NEUTRAL_MUTED} leading-relaxed mb-6`}>{s.description}</p>
-          )}
+            {s.description && (
+              <p className={`${NEUTRAL_MUTED} leading-relaxed mb-6`}>{s.description}</p>
+            )}
+          </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 text-sm">
+          <div className="flex flex-col sm:flex-row gap-4 text-sm mt-auto">
             {s.email && (
               <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-neutral-600 dark:text-neutral-300" />
                 <span className={`${NEUTRAL_MUTED}`}>{s.email}</span>
               </div>
             )}
-            <div className="flex items-center gap-2">
-              <Phone className="w-4 h-4 text-neutral-600 dark:text-neutral-300" />
-              <span className={`${NEUTRAL_MUTED}`}>
-                {(s.phone || mainPhone)}
-                {s.ext ? ` ext. ${s.ext}` : ""}
-              </span>
-            </div>
+            {s.phone && (
+              <div className="flex items-center gap-2">
+                <Phone className="w-4 h-4 text-neutral-600 dark:text-neutral-300" />
+                <span className={`${NEUTRAL_MUTED}`}>
+                  {s.phone}
+                  {s.ext ? ` ext. ${s.ext}` : ""}
+                </span>
+              </div>
+            )}
           </div>
         </article>
       ))}

@@ -38,12 +38,12 @@ const Hero: React.FC<Props> = ({
   bgSrc = "/images/heroimage.jpg",
   titleLine1 = (
     <>
-      Building <span className="text-[#005596]">Homes</span>,
+      Building <span className="text-white underline decoration-[#005596] decoration-4 underline-offset-4">Homes</span>,
     </>
   ),
   titleLine2 = (
     <>
-      Building <span className="text-[#54B948]">Hope</span>.
+      Building <span className="text-white underline decoration-[#54B948] decoration-4 underline-offset-4">Hope</span>.
     </>
   ),
   subtitle = (
@@ -61,22 +61,18 @@ const Hero: React.FC<Props> = ({
       <img
         src={bgSrc}
         alt="Hero background"
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-cover object-center"
       />
       <div className="absolute inset-0 bg-black/45" />
 
       <div
         ref={heroRef}
-        className="relative z-10 min-h-[78vh] sm:min-h-[72vh] lg:aspect-[16/9] grid place-items-center px-4 sm:px-6 reveal"
+        className="relative z-10 min-h-[75vh] grid place-items-center px-4 sm:px-6 reveal"
       >
         <div className="max-w-3xl md:max-w-4xl text-center font-semibold text-white">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-4 md:mb-6 leading-tight">
-            {titleLine1}
-            <span className="hidden sm:inline">
-              <br />
-            </span>
-            <span className="sm:hidden"> </span>
-            {titleLine2}
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-4 md:mb-6 leading-tight text-white">
+            <div>{titleLine1}</div>
+            <div>{titleLine2}</div>
           </h1>
 
           <p
@@ -85,7 +81,6 @@ const Hero: React.FC<Props> = ({
             {subtitle}
           </p>
 
-          {/* Learn More button */}
           <div className="flex justify-center">
             <LearnMore to={learnMoreTo} />
           </div>

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { Facebook, Instagram, Linkedin, Sun, Moon, Monitor } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
@@ -113,7 +112,7 @@ const Footer = () => {
                 <li key={link.name}>
                   <Link
                     to={link.href}
-                    className="block w-fit font-semibold text-neutral-800 dark:text-neutral-100 hover:underline"
+                    className="block w-fit font-semibold text-neutral-800 dark:text-neutral-100 hover:translate-x-0.5 transition-transform"
                   >
                     {link.name}
                   </Link>
@@ -131,7 +130,7 @@ const Footer = () => {
                 <li key={link.name}>
                   <Link
                     to={link.href}
-                    className="block w-fit font-semibold text-neutral-800 dark:text-neutral-100 hover:underline"
+                    className="block w-fit font-semibold text-neutral-800 dark:text-neutral-100 hover:translate-x-0.5 transition-transform"
                   >
                     {link.name}
                   </Link>
@@ -162,16 +161,16 @@ const Footer = () => {
 
       <div className="border-t border-neutral-200 dark:border-neutral-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="h-12 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-            <p className="text-sm text-neutral-600 dark:text-neutral-400">
+          <div className="py-3 sm:py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-2">
+            <p className="text-sm text-neutral-600 dark:text-neutral-400 text-center sm:text-left">
               © 2025 Habitat for Humanity of Rowan County, NC
             </p>
-            <div className="flex items-center gap-4">
+            <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4">
               <div className="flex gap-1.5">
                 {themeOptions.map(({ value, icon: Icon, label }) => (
                   <button
                     key={value}
-                    onClick={() => setTheme(value as any)}
+                    onClick={() => setTheme(value)}
                     title={label}
                     className={`p-1.5 rounded-md ring-1 ring-neutral-200 dark:ring-neutral-800 ${
                       theme === value ? 'bg-neutral-100 dark:bg-neutral-900' : 'bg-white dark:bg-neutral-950'
@@ -185,7 +184,7 @@ const Footer = () => {
                 href="https://merrittmason.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm text-neutral-600 dark:text-neutral-400 hover:underline"
+                className="text-sm text-neutral-600 dark:text-neutral-400 hover:underline text-center sm:text-left"
               >
                 Designed by Merritt Mason
               </a>

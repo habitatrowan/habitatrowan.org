@@ -41,10 +41,8 @@ const photoGallery = [
 const OwnHome: React.FC = () => {
   const [activeId, setActiveId] = useState<string>(NAV[0].id);
 
-  const scrollToId = (id: string) => {
-    const el = document.getElementById(id);
-    if (!el) return;
-    el.scrollIntoView({ behavior: "smooth", block: "start" });
+  const onSelectNav = (id: string) => {
+    setActiveId(id);
   };
 
   useEffect(() => {
@@ -80,7 +78,7 @@ const OwnHome: React.FC = () => {
         <div className="h-px w-full bg-neutral-200 dark:bg-neutral-800 mb-16" />
 
         <div ref={navRef} className="mb-8 reveal">
-          <OwnHome_Nav sections={NAV} activeId={activeId} onSelect={scrollToId} />
+          <OwnHome_Nav sections={NAV} activeId={activeId} onSelect={onSelectNav} />
         </div>
 
         <div ref={contentRef} className="space-y-12 reveal max-w-5xl mx-auto">

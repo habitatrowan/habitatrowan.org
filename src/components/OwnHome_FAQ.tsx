@@ -1,4 +1,3 @@
-// components/Contact_FAQ.tsx
 import React, { useState } from "react";
 
 const NEUTRAL_MUTED = "text-neutral-600 dark:text-neutral-300";
@@ -8,32 +7,32 @@ const CARD_BASE = `${NEUTRAL_CARD} ${NEUTRAL_BORDER} rounded-xl shadow-[0_6px_24
 
 const faqs = [
   {
-    q: "What are the ReStore hours?",
-    a: "Typical hours are Tuesday–Saturday, 10:00 AM–5:00 PM. Donation drop-offs are accepted until 4:30 PM. Hours may vary on holidays."
+    q: "Who is eligible to apply for a Habitat for Humanity home in Rowan County?",
+    a: "Families must be residents of Rowan County for at least 12 consecutive months, demonstrate the need for decent and affordable housing, and have a household income between 40–80% of the area median income. Applicants must also show the ability to pay an affordable, interest-free mortgage, maintain good credit, and be first-time homeowners."
   },
   {
-    q: "When is the main office open?",
-    a: "The administrative office is open Monday–Friday, 9:00 AM–5:00 PM."
+    q: "What does \"sweat equity\" mean in the application process?",
+    a: "Sweat equity refers to the volunteer hours that future homeowners contribute by working on their own home, helping with other Habitat projects, or attending homeownership education classes. It's part of partnering with Habitat and investing directly in your homeownership journey."
   },
   {
-    q: "Who do I talk to about donating items?",
-    a: "For furniture, appliances, or building materials, ask for the ReStore Donations Desk or the ReStore Manager during ReStore hours."
+    q: "How do I start the application process?",
+    a: "The first step is to complete and submit the Pre-Qualification Document along with required supporting materials. If you pre-qualify, Habitat Rowan will invite you to complete a full application."
   },
   {
-    q: "Who handles homeownership questions?",
-    a: "Ask for Family Services during office hours. They can help with eligibility, application timelines, and information sessions."
+    q: "What happens after I submit my full application?",
+    a: "Once a full application is submitted, Habitat Rowan staff will conduct a home visit and family interview. After that, the volunteer Family Selection Committee reviews the application and determines eligibility."
   },
   {
-    q: "Who should I contact about construction volunteering?",
-    a: "Speak with our Volunteer Coordinator during office hours. They’ll share safety guidelines and schedule options."
+    q: "What happens if my family is selected?",
+    a: "If approved, your family begins the partnership process, including sweat equity hours and homeownership education. You’ll then help build your home alongside volunteers, and the process concludes with a Home Dedication ceremony where you receive the keys to your new home."
   }
 ];
 
-const Contact_FAQ: React.FC = () => {
+const OwnHome_FAQ: React.FC = () => {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
-    <section className={`${CARD_BASE} p-8`}>
+    <section id="faq" className={`${CARD_BASE} p-8`}>
       <h2 className="text-2xl font-extrabold mb-4">Frequently Asked Questions</h2>
 
       <div className="space-y-2">
@@ -46,14 +45,16 @@ const Contact_FAQ: React.FC = () => {
             >
               <button
                 onClick={() => setOpenFaq(isOpen ? null : i)}
-                className="w-full px-5 py-4 flex items-start gap-3 text-left hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors focus:outline-none"
+                className="w-full px-5 py-4 flex items-start justify-between gap-3 text-left hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors focus:outline-none"
+                aria-expanded={isOpen}
+                aria-controls={`faq-panel-${i}`}
               >
-                <span className="w-2.5 h-2.5 rounded-full mt-2 shrink-0 bg-gradient-to-r from-[#005596] to-[#54B948]" />
                 <h3 className="text-base md:text-lg font-semibold">{item.q}</h3>
+                <span className="w-2.5 h-2.5 rounded-full mt-2 shrink-0 bg-gradient-to-r from-[#005596] to-[#54B948]" />
               </button>
 
               {isOpen && (
-                <div className="px-5 pb-5 pl-10">
+                <div id={`faq-panel-${i}`} className="px-5 pb-5">
                   <p className={NEUTRAL_MUTED}>{item.a}</p>
                 </div>
               )}
@@ -65,4 +66,4 @@ const Contact_FAQ: React.FC = () => {
   );
 };
 
-export default Contact_FAQ;
+export default OwnHome_FAQ;

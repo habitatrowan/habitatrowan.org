@@ -30,7 +30,6 @@ function useReveal<T extends HTMLElement>() {
 
 const NEUTRAL_TEXT = "text-neutral-900 dark:text-neutral-50";
 const NEUTRAL_MUTED = "text-neutral-600 dark:text-neutral-300";
-const MAIN_PHONE = "(704) 642-1222";
 
 const SectionHeader = ({ id, children }: { id: string; children: React.ReactNode }) => (
   <div className="my-8">
@@ -50,20 +49,17 @@ const About = () => {
       try {
         const staff = await fetchJson<Staff[]>("/data/about_staff.json");
         if (Array.isArray(staff)) {
-          const augmented = staff.map((s) => {
-            if (s.name === "Coleman Emerson") return { ...s, ext: "100", phone: MAIN_PHONE };
-            if (s.name === "Jane Hartness") return { ...s, ext: "101", phone: MAIN_PHONE };
-            if (s.name === "Elizabeth Brady") return { ...s, ext: "102", phone: MAIN_PHONE };
-            if (s.name === "Nate Wrights") return { ...s, ext: "103", phone: MAIN_PHONE };
-            return s;
-          });
-          setStaffMembers(augmented);
+          setStaffMembers(staff);
         }
-      } catch {}
+      } catch (error) {
+        console.error("Failed to load staff data:", error);
+      }
       try {
         const history = await fetchJson<HistoryMilestone[]>("/data/about_history.json");
         if (Array.isArray(history)) setHistoryMilestones(history);
-      } catch {}
+      } catch (error) {
+        console.error("Failed to load history data:", error);
+      }
     })();
   }, []);
 
@@ -129,7 +125,7 @@ const About = () => {
         </SectionHeader>
         <section>
           <div className="max-w-6xl mx-auto">
-            <StaffGrid items={staffMembers} mainPhone={MAIN_PHONE} />
+            <StaffGrid items={staffMembers} />
           </div>
         </section>
 

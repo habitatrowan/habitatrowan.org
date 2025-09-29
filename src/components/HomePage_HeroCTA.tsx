@@ -14,10 +14,10 @@ type Props = {
 };
 
 const BTN_BASE =
-  "inline-flex items-center justify-center rounded-full font-semibold " +
-  "border-4 border-white text-white " + // thicker outline
-  "px-36 py-3 text-base md:text-lg " +  // extra wide button
-  "bg-white/1 backdrop-blur-lg " +     // glass effect
+  "inline-flex items-center justify-center rounded-full font-semibold whitespace-nowrap " +
+  "border-4 border-white text-white " +
+  "px-8 sm:px-16 md:px-24 lg:px-36 py-3 text-base md:text-lg " +
+  "bg-white/1 backdrop-blur-lg " +
   "transition-all duration-200 ease-[cubic-bezier(.22,.61,.36,1)] " +
   "hover:-translate-y-0.5 hover:bg-white/20 " +
   "focus:outline-none shadow-[0_4px_24px_rgba(0,0,0,0.25)]";

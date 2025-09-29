@@ -9,15 +9,13 @@ const CARD_BASE = `${NEUTRAL_CARD} ${NEUTRAL_BORDER} rounded-xl shadow-[0_6px_24
 const GRAD_BG = { background: "linear-gradient(90deg, #005596 0%, #54B948 100%)" };
 
 const address = "1707 S Main St, Salisbury, NC 28144";
-const phone = "(704) 642-1222";
-const email = "info@habitatrowan.org";
 
 const entries = [
   {
-    name: "Habitat for Humanity",
+    name: "ReStore",
     address,
-    phone,
-    email,
+    phone: "(704) 642-1222",
+    email: "store@habitatrowan.org",
     hours: [
       { label: "Monday", value: "9:00 AM – 5:00 PM" },
       { label: "Tuesday", value: "9:00 AM – 5:00 PM" },
@@ -31,8 +29,8 @@ const entries = [
   {
     name: "Housing Ministry",
     address,
-    phone,
-    email,
+    phone: "(704) 642-6292",
+    email: "habitat@habitatrowan.org",
     hours: [
       { label: "Monday", value: "9:00 AM – 5:00 PM" },
       { label: "Tuesday", value: "9:00 AM – 5:00 PM" },

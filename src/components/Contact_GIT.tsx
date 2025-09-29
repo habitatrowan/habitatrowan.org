@@ -56,8 +56,8 @@ const Contact_Info: React.FC = () => {
                 </div>
                 <h3 className="text-lg font-semibold">{c.title}</h3>
               </div>
-              <div className="flex-1 flex items-center justify-center">
-                <p className="font-medium text-center">{c.info}</p>
+              <div className="flex-1 flex items-center">
+                <p className="font-medium text-left">{c.info}</p>
               </div>
               <p className={`${NEUTRAL_MUTED} text-sm mt-6 text-left`}>
                 {c.description}

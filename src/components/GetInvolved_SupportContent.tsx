@@ -3,9 +3,7 @@ import { Link } from "react-router-dom";
 
 const NEUTRAL_MUTED = "text-neutral-600 dark:text-neutral-300";
 
-type Props = { donateUrl: string };
-
-const GetInvolved_SupportContent: React.FC<Props> = ({ donateUrl }) => {
+const GetInvolved_SupportContent: React.FC = () => {
   return (
     <>
       <div id="support-donate" className="scroll-mt-[var(--header-offset)]">
@@ -16,7 +14,7 @@ const GetInvolved_SupportContent: React.FC<Props> = ({ donateUrl }) => {
         <p className={NEUTRAL_MUTED}>
           Donate online:&nbsp;
           <a
-            href={donateUrl}
+            href="https://www.paypal.com/donate?token=8uFyFbNvwcGn4LgsDxs-nqDHHGwPwvUw_fVlU67wfp9FdO5NCOkcneNwNIXHIz6_LHlSDIsHmzEu32yX"
             target="_blank"
             rel="noopener noreferrer"
             className="underline text-[#005596]"
