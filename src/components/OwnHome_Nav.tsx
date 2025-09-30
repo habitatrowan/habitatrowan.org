@@ -7,11 +7,10 @@ const OwnHome_Nav: React.FC<Props> = ({ sections, activeId, onSelect }) => {
   const handleScrollTo = (id: string) => {
     onSelect(id);
 
-    // Small delay to ensure state is updated before scrolling
     setTimeout(() => {
       const element = document.getElementById(id);
       if (element) {
-        const headerOffset = 120; // Account for sticky header + some padding
+        const headerOffset = 120;
         const elementPosition = element.getBoundingClientRect().top;
         const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 

@@ -42,12 +42,12 @@ const HomePage = () => {
   ];
 
   const partnerLogos: Logo[] = [
-    { src: "/logos/cte.png", alt: "CTE", href: "https://www.cte.com" },
-    { src: "/logos/foodlion.png", alt: "Food Lion", href: "https://www.foodlion.com" },
+    { src: "/logos/cte.png", alt: "CTE", href: "https://www.rssed.org/career-technical-education-cte" },
+    { src: "/logos/foodlion.png", alt: "Food Lion", href: "https://stores.foodlion.com/nc/salisbury/251-faith-rd" },
     { src: "/logos/merrittmason.png", alt: "Merritt Mason", href: "https://www.merrittmason.com/" },
     { src: "/logos/neimanmarcus.png", alt: "Neiman Marcus", href: "https://www.neimanmarcus.com" },
     { src: "/logos/natekiflemariam.png", alt: "Nate Kiflemariam", href: "https://www.linkedin.com/in/nate-kiflemariam/" },
-    { src: "/logos/sun.png", alt: "Sun Warehouse and Distribution", href: "https://www.sun.com" },
+    { src: "/logos/sun.png", alt: "Sun Warehouse and Distribution", href: "https://www.sun-wd.com/" },
     { src: "/logos/claytonhomes.png", alt: "Clayton Homes", href: "https://www.claytonhomes.com" },
     { src: "/logos/macys.png", alt: "Macy's", href: "https://www.macys.com" },
     { src: "/logos/chewy.png", alt: "Chewy", href: "https://www.chewy.com" },

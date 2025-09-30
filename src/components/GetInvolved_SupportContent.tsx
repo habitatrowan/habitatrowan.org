@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 
 const NEUTRAL_MUTED = "text-neutral-600 dark:text-neutral-300";
 
-const GetInvolved_SupportContent: React.FC = () => {
+type Props = { donateUrl: string };
+
+const GetInvolved_SupportContent: React.FC<Props> = ({ donateUrl }) => {
   return (
     <>
       <div id="support-donate" className="scroll-mt-[var(--header-offset)]">
@@ -14,10 +16,10 @@ const GetInvolved_SupportContent: React.FC = () => {
         <p className={NEUTRAL_MUTED}>
           Donate online:&nbsp;
           <a
-            href="https://www.paypal.com/donate?token=8uFyFbNvwcGn4LgsDxs-nqDHHGwPwvUw_fVlU67wfp9FdO5NCOkcneNwNIXHIz6_LHlSDIsHmzEu32yX"
+            href={donateUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="underline text-[#005596]"
+            className="underline text-[#005596] hover:opacity-80"
           >
             PayPal Donation Page
           </a>
@@ -54,7 +56,11 @@ const GetInvolved_SupportContent: React.FC = () => {
           </li>
         </ul>
         <p className={`${NEUTRAL_MUTED} mt-4`}>
-          Reach out via our <Link to="/contact" className="underline text-[#005596]">Contact</Link> page to discuss a prospective land gift.
+          Reach out via our{" "}
+          <Link to="/contact" className="underline text-[#005596] hover:opacity-80">
+            Contact
+          </Link>{" "}
+          page to discuss a prospective land gift.
         </p>
       </div>
 
@@ -66,7 +72,11 @@ const GetInvolved_SupportContent: React.FC = () => {
           Share specialized skills to amplify our impact—construction trades (electrical, plumbing, HVAC, roofing, flooring, painting), as well as legal, accounting, marketing/PR, photography, web development, and grant writing.
         </p>
         <p className={NEUTRAL_MUTED}>
-          To offer services, use our <Link to="/contact" className="underline text-[#005596]">Contact</Link> page.
+          To offer services, use our{" "}
+          <Link to="/contact" className="underline text-[#005596] hover:opacity-80">
+            Contact
+          </Link>{" "}
+          page.
         </p>
       </div>
 
@@ -80,7 +90,7 @@ const GetInvolved_SupportContent: React.FC = () => {
             href="https://www.ebay.com/usr/habitatrowan"
             target="_blank"
             rel="noopener noreferrer"
-            className="underline text-[#005596]"
+            className="underline text-[#005596] hover:opacity-80"
           >
             ebay.com/usr/habitatrowan
           </a>

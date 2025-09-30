@@ -5,6 +5,7 @@ import GetInvolved_VolunteerSignup from "../components/GetInvolved_Form";
 import GetInvolved_SupportNav from "../components/GetInvolved_SupportNav";
 import GetInvolved_SupportContent from "../components/GetInvolved_SupportContent";
 import GetInvolved_DonateItems from "../components/GetInvolved_Items";
+import GetInvolved_Cars from "../components/GetInvolved_Cars";
 
 function useReveal() {
   const ref = useRef<HTMLDivElement | null>(null);
@@ -29,8 +30,7 @@ function useReveal() {
 }
 
 const SIGNUP_PDF_URL = "/docs/volunteer-signup.pdf";
-const PAYPAL_DONATE_URL =
-  "https://www.paypal.com/donate?token=BtnHtaAHXPT-E_BGE1Kbq6QDJRq1MO0DzkTPuMLg1fIBQzftnkhPIBRNjkeEty0nMFhzDcWPffj8TzM6";
+const PAYPAL_DONATE_URL = "https://www.paypal.com/donate/?hosted_button_id=XRMX4AF5DFV62";
 
 const NEUTRAL_TEXT = "text-neutral-900 dark:text-neutral-50";
 const NEUTRAL_MUTED = "text-neutral-600 dark:text-neutral-300";
@@ -51,6 +51,7 @@ const HASH_ALIASES: Record<string, string> = {
   "#donateitems": "#donate-items",
   "#donate": "#donate-items",
   "#items": "#donate-items",
+  "#cars": "#donate-cars",
 };
 
 const HEADER_OFFSET = 96;
@@ -114,16 +115,20 @@ const GetInvolved = () => {
   const supportCardRef = useReveal();
   const donateHeaderRef = useReveal();
   const itemsCardRef = useReveal();
+  const carsHeaderRef = useReveal();
+  const carsCardRef = useReveal();
 
   return (
     <div className={`min-h-screen py-16 ${NEUTRAL_TEXT}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div ref={headerRef} className="text-center mb-8 reveal">
           <h1 className="text-4xl font-extrabold mb-4">
-            <span className="text-[#005596]">Get</span> <span className="text-[#54B948]">Involved</span>
+            <span className="text-[#005596]">Get</span>{" "}
+            <span className="text-[#54B948]">Involved</span>
           </h1>
           <p className={`text-xl ${NEUTRAL_MUTED} max-w-3xl mx-auto`}>
-            Join our community of volunteers and supporters to help us build homes, communities, and hope in Rowan County.
+            Join our community of volunteers and supporters to help us build
+            homes, communities, and hope in Rowan County.
           </p>
         </div>
 
@@ -144,11 +149,13 @@ const GetInvolved = () => {
         <section id="volunteer" className="mb-20 scroll-mt-[var(--header-offset)]">
           <div ref={volunteerRef} className="text-center mb-10 reveal">
             <h2 className="text-3xl font-extrabold mb-4">
-              <span className="text-[#005596]">Volunteer</span> <span className="text-[#54B948]">Opportunities</span>
+              <span className="text-[#005596]">Volunteer</span>{" "}
+              <span className="text-[#54B948]">Opportunities</span>
             </h2>
             <p className={`text-xl ${NEUTRAL_MUTED} max-w-3xl mx-auto`}>
-              Discover meaningful ways to contribute—whether through construction work, ReStore operations, committee
-              participation, or student organizations.
+              Discover meaningful ways to contribute—whether through
+              construction work, ReStore operations, committee participation, or
+              student organizations.
             </p>
           </div>
 
@@ -166,11 +173,13 @@ const GetInvolved = () => {
           <span id="support-nav" className="block h-0" />
           <div ref={supportHeaderRef} className="text-center mb-6 reveal">
             <h2 className="text-3xl font-extrabold mb-3">
-              <span className="text-[#005596]">Support</span> <span className="text-[#54B948]">Us</span>
+              <span className="text-[#005596]">Support</span>{" "}
+              <span className="text-[#54B948]">Us</span>
             </h2>
             <p className={`text-lg ${NEUTRAL_MUTED} max-w-3xl mx-auto`}>
-              Explore different ways to support our mission through monetary donations, land contributions, professional
-              services, and eBay partnerships.
+              Explore different ways to support our mission through monetary
+              donations, land contributions, professional services, and eBay
+              partnerships.
             </p>
           </div>
 
@@ -187,33 +196,68 @@ const GetInvolved = () => {
 
           <div className="h-px w-full bg-neutral-200 dark:bg-neutral-800 mb-16" />
 
-          <div ref={supportCardRef} className={`max-w-5xl mx-auto ${CARD_BASE} p-8 space-y-10 reveal`}>
+          <div
+            ref={supportCardRef}
+            className={`max-w-5xl mx-auto ${CARD_BASE} p-8 space-y-10 reveal`}
+          >
             <GetInvolved_SupportContent donateUrl={PAYPAL_DONATE_URL} />
           </div>
 
           <div className="h-px w-full bg-neutral-200 dark:bg-neutral-800 mb-16" />
         </section>
 
-        {/* Donate Items is its own header/section, outside of Support */}
         <section id="donate-items" className="scroll-mt-[var(--header-offset)]">
-          <div ref={donateHeaderRef} className="max-w-5xl mx-auto mt-8 mb-4 reveal">
-            <h2 className="text-3xl text-center font-extrabold mb-3">
-              <span className="text-[#005596]">Donate</span> <span className="text-[#54B948]">Items</span>
+          <div
+            ref={donateHeaderRef}
+            className="max-w-5xl mx-auto mt-8 mb-4 text-center reveal"
+          >
+            <h2 className="text-3xl font-extrabold mb-3">
+              <span className="text-[#005596]">Donate</span>{" "}
+              <span className="text-[#54B948]">Items</span>
             </h2>
-            <p className={`text-lg text-center ${NEUTRAL_MUTED}`}>
-              Use our Donate Items tool below to see if your item is accepted and how you can contribute.
+            <p className={`text-lg ${NEUTRAL_MUTED}`}>
+              Use our Donate Items tool below to see if your item is accepted
+              and how you can contribute.
             </p>
           </div>
 
           <div className="h-px w-full bg-neutral-200 dark:bg-neutral-800 mb-16" />
 
-          <div ref={itemsCardRef} className={`max-w-5xl mx-auto mt-2 ${CARD_BASE} p-8 reveal`}>
+          <div
+            ref={itemsCardRef}
+            className={`max-w-5xl mx-auto mt-2 ${CARD_BASE} p-8 reveal`}
+          >
             <GetInvolved_DonateItems />
+          </div>
+        </section>
+
+        <div className="h-px w-full bg-neutral-200 dark:bg-neutral-800 my-16" />
+
+        <section id="donate-cars" className="scroll-mt-[var(--header-offset)]">
+          <div
+            ref={carsHeaderRef}
+            className="max-w-5xl mx-auto mt-8 mb-4 text-center reveal"
+          >
+            <h2 className="text-3xl font-extrabold mb-3">
+              <span className="text-[#005596]">Donate</span>{" "}
+              <span className="text-[#54B948]">Cars</span>
+            </h2>
+            <p className={`text-lg ${NEUTRAL_MUTED}`}>
+              Did you know by donating your vehicle to Habitat you can help
+              build and repair affordable homes while also helping the
+              environment?
+            </p>
+          </div>
+
+          <div
+            ref={carsCardRef}
+            className={`max-w-5xl mx-auto mt-2 ${CARD_BASE} p-8 reveal`}
+          >
+            <GetInvolved_Cars />
           </div>
         </section>
       </div>
 
-      {/* legacy anchor kept harmlessly; aliases route #donate -> #donate-items */}
       <div id="donate" aria-hidden="true" className="h-0 w-0 overflow-hidden" />
 
       <style>{`

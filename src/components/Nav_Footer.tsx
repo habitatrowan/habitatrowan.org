@@ -21,8 +21,8 @@ const Footer = () => {
     { name: 'Monetary Donations', href: '/get-involved#support-donate' },
     { name: 'Land Donations', href: '/get-involved#support-land' },
     { name: 'Professional Services', href: '/get-involved#support-professional' },
-    { name: 'eBay', href: '/get-involved#support-ebay' },
     { name: 'Donate Items', href: '/get-involved#donate-items' },
+    { name: 'Cars for Homes', href: '/get-involved#cars-for-homes' },
   ];
 
   const quickLinks = [
@@ -53,8 +53,11 @@ const Footer = () => {
   ] as const;
 
   return (
-    <footer className="text-neutral-900 dark:text-neutral-50 bg-white dark:bg-neutral-950 border-t border-neutral-200 dark:border-neutral-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <footer className="relative text-neutral-900 dark:text-neutral-50 bg-white dark:bg-neutral-950 border-t border-neutral-200 dark:border-neutral-800">
+      {/* gradient divider */}
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#005596] to-[#54B948]" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-6 items-start text-sm">
           <div className="flex flex-col">
             <Link to="/" className="inline-flex items-center mb-3">
@@ -105,7 +108,7 @@ const Footer = () => {
 
           <div>
             <div className="text-sm text-neutral-600 dark:text-neutral-400 mb-1">
-              Donate
+              Get Involved
             </div>
             <ul className="space-y-1">
               {donateLinks.map((link) => (

@@ -1,5 +1,4 @@
-// components/GetInvolved_Items.tsx
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { CheckCircle, XCircle, Search } from "lucide-react";
 
 const NEUTRAL_MUTED = "text-neutral-600 dark:text-neutral-300";
@@ -12,44 +11,49 @@ const tabHoverRed = "hover:bg-red-600 hover:text-white hover:border-red-600";
 const inputBase = "w-full rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-10 py-2 outline-none focus:ring-2 focus:ring-neutral-300 dark:focus:ring-neutral-700";
 const chipBase = "inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium";
 
-const ACCEPTED = [
-  "Albums","Appliances (working)","Antiques","Architectural salvage","Art","Bathtubs (new or claw-foot)","Books",
-  "Cabinets (complete sets)","CDs","Ceiling fan blades/globes","Construction materials","Doors","Electrical supplies",
-  "Flooring","Furniture (good condition)","Garden supplies","Hardware","Housewares","Lawn equipment","Light fixtures",
-  "Lumber (usable lengths)","Mantels","Military items","Mirrors (framed)","Musical instruments","Paint (≤ 2 years old)",
-  "Patio furniture","Pet supplies","Plants","Plumbing fixtures","Potty chairs (handicap)","Rugs (no stains/odors)",
-  "Scooters","Shrubs and trees","Shutters","Siding","Sinks (no double-bowl)","Showers","Shower chairs","Taxidermy",
-  "Tools","Toys (1980s & older)","Flat-screen TVs","Vacuum cleaners","Wallpaper (full rolls)","Windows","Wheelchairs"," Vintage/Silver/Tinsel Christmas Trees",
-];
-
-const REJECTED = [
-  "Baby cribs (Per Federal Law)","Baby items","Bathtubs (Metal/Non-clawfoot)","Box springs","Broken items",
-  "Cabinet parts (Doors/Drawers Only)","Ceiling fans (See Accepted)","Clothing/Shoes",
-  "Christmas Trees (See Accepted)","Countertops","Cribs (Except Antique Metal)","Desks (Damaged)",
-  "Damaged Furniture","Glass (Unframed)","Mattresses","Hospital beds",
-  "Mirrors (Unframed)","Organs","Pianos","Shower doors","Sleeper sofas (See NC-Law)","Sliding glass doors",
-  "Storm windows","CRT TVs","Tile","Toilets","Modern toys (Sub-1990s)"
-];
-
 function normalize(s: string) {
   return s.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
 }
 
 const GetInvolved_Items: React.FC = () => {
+  const [accepted, setAccepted] = useState<string[]>([]);
+  const [rejected, setRejected] = useState<string[]>([]);
   const [tab, setTab] = useState<"accepted" | "rejected">("accepted");
   const [query, setQuery] = useState("");
+
+  useEffect(() => {
+    let alive = true;
+    (async () => {
+      try {
+        const [a, r] = await Promise.all([
+          fetch("/data/GetInvolved_Accepted.json").then((res) => res.json()).catch(() => []),
+          fetch("/data/GetInvolved_Denied.json").then((res) => res.json()).catch(() => []),
+        ]);
+        if (!alive) return;
+        setAccepted(Array.isArray(a) ? a : []);
+        setRejected(Array.isArray(r) ? r : []);
+      } catch {
+        if (!alive) return;
+        setAccepted([]);
+        setRejected([]);
+      }
+    })();
+    return () => {
+      alive = false;
+    };
+  }, []);
 
   const q = normalize(query);
 
   const acceptedFiltered = useMemo(() => {
-    if (!q) return ACCEPTED;
-    return ACCEPTED.filter((i) => normalize(i).includes(q));
-  }, [q]);
+    if (!q) return accepted;
+    return accepted.filter((i) => normalize(i).includes(q));
+  }, [q, accepted]);
 
   const rejectedFiltered = useMemo(() => {
-    if (!q) return REJECTED;
-    return REJECTED.filter((i) => normalize(i).includes(q));
-  }, [q]);
+    if (!q) return rejected;
+    return rejected.filter((i) => normalize(i).includes(q));
+  }, [q, rejected]);
 
   const overallStatus = useMemo(() => {
     if (!q) return null;
@@ -127,6 +131,7 @@ const GetInvolved_Items: React.FC = () => {
                 <span className={`${NEUTRAL_MUTED} leading-tight`}>{item}</span>
               </li>
             ))}
+            {acceptedFiltered.length === 0 && <li className={NEUTRAL_MUTED}>No items.</li>}
           </ul>
         </div>
       )}
@@ -140,6 +145,7 @@ const GetInvolved_Items: React.FC = () => {
                 <span className={`${NEUTRAL_MUTED} leading-tight`}>{item}</span>
               </li>
             ))}
+            {rejectedFiltered.length === 0 && <li className={NEUTRAL_MUTED}>No items.</li>}
           </ul>
         </div>
       )}

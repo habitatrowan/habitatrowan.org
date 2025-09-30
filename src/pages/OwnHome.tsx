@@ -1,8 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
-import ZCarousel from "../components/z_Carousel";
 import OwnHome_Nav from "../components/OwnHome_Nav";
 import OwnHome_Checklist from "../components/OwnHome_Checklist";
-import OwnHome_App from "../components/OwnHome_App";
+import OwnHome_App from "../components/OwnHome_Apply";
 import OwnHome_FAQ from "../components/OwnHome_FAQ";
 
 function useReveal<T extends HTMLElement>() {
@@ -31,12 +30,6 @@ const NAV = [
   { id: "faq", label: "FAQ" }
 ];
 
-const photoGallery = [
-  "/images/OwnHome_carousel1.JPG",
-  "/images/OwnHome_carousel2.JPG",
-  "/images/OwnHome_carousel3.jpg",
-  "/images/OwnHome_carousel4.jpg"
-];
 
 const OwnHome: React.FC = () => {
   const [activeId, setActiveId] = useState<string>(NAV[0].id);
@@ -87,11 +80,6 @@ const OwnHome: React.FC = () => {
           <OwnHome_FAQ />
         </div>
 
-        <div className="h-px w-full bg-neutral-200 dark:bg-neutral-800 my-16" />
-
-        <section ref={carouselRef} className="mt-0 mb-12 reveal">
-          <ZCarousel images={photoGallery} intervalMs={5000} aspect="aspect-[16/9]" rounded="rounded-xl" alt="Habitat program highlights" />
-        </section>
       </div>
 
       <style>{`

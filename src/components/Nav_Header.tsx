@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown } from 'lucide-react';
 
@@ -6,6 +6,7 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const location = useLocation();
+  const scrollLockY = useRef(0);
 
   const aboutDropdownItems = [
     { name: 'About Habitat', href: '/about#about-habitat' },
@@ -19,7 +20,8 @@ const Header = () => {
   const getInvolvedDropdownItems = [
     { name: 'Volunteer', href: '/get-involved#volunteer' },
     { name: 'Support Us', href: '/get-involved#support' },
-    { name: 'Donate Items', href: '/get-involved#donate-items' }
+    { name: 'Donate Items', href: '/get-involved#donate-items' },
+    { name: 'Cars for Homes', href: '/get-involved#cars-for-homes' }
   ];
 
   const navigation = [
@@ -53,19 +55,33 @@ const Header = () => {
 
   useEffect(() => {
     if (isMenuOpen) {
-      document.body.style.overflow = 'hidden';
-      document.body.style.position = 'fixed';
-      document.body.style.width = '100%';
+      scrollLockY.current = window.scrollY || window.pageYOffset || 0;
+      const body = document.body as HTMLBodyElement;
+      body.style.position = 'fixed';
+      body.style.top = `-${scrollLockY.current}px`;
+      body.style.left = '0';
+      body.style.right = '0';
+      body.style.width = '100%';
+      body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = '';
-      document.body.style.position = '';
-      document.body.style.width = '';
+      const body = document.body as HTMLBodyElement;
+      const y = Math.abs(parseInt(body.style.top || '0', 10)) || scrollLockY.current;
+      body.style.position = '';
+      body.style.top = '';
+      body.style.left = '';
+      body.style.right = '';
+      body.style.width = '';
+      body.style.overflow = '';
+      if (y) window.scrollTo(0, y);
     }
-
     return () => {
-      document.body.style.overflow = '';
-      document.body.style.position = '';
-      document.body.style.width = '';
+      const body = document.body as HTMLBodyElement;
+      body.style.position = '';
+      body.style.top = '';
+      body.style.left = '';
+      body.style.right = '';
+      body.style.width = '';
+      body.style.overflow = '';
     };
   }, [isMenuOpen]);
 
@@ -168,42 +184,45 @@ const Header = () => {
               onClick={() => setIsMenuOpen(false)}
               aria-hidden="true"
             />
-            <div className="lg:hidden py-4 border-t border-primary relative z-50 bg-primary max-h-[calc(100vh-5rem)] overflow-y-auto">
-              {navigation.map((item) => {
-                const active = isActive(item.href);
-                return (
-                  <div key={item.name} className="mb-2">
-                    <Link
-                      to={item.href}
-                      onClick={() => setIsMenuOpen(false)}
-                      className={`block px-4 py-3 text-base font-medium ${active ? activeLink : `${idleLink} ${hoverLink}`} focus:outline-none focus:ring-0`}
-                    >
-                      {item.name}
-                    </Link>
-                    {item.dropdown && (
-                      <div className="ml-6 space-y-1">
-                        {item.dropdown.map((dropdownItem) => (
-                          <Link
-                            key={dropdownItem.name}
-                            to={dropdownItem.href}
-                            onClick={() => setIsMenuOpen(false)}
-                            className="block px-4 py-2 text-sm text-tertiary hover:text-[#005596] hover:bg-blue-50 dark:hover:bg-blue-900/10 transition-colors focus:outline-none focus:ring-0"
-                          >
-                            {dropdownItem.name}
-                          </Link>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-              <Link
-                to="/get-involved#support"
-                onClick={() => setIsMenuOpen(false)}
-                className="block mx-4 mt-4 bg-gradient-to-r from-[#005596] to-[#54B948] hover:opacity-90 text-white px-4 py-3 rounded-lg font-semibold transition-colors duration-200 text-center focus:outline-none focus:ring-0"
-              >
-                Donate
-              </Link>
+            <div className="fixed inset-x-0 top-20 bottom-0 z-50 bg-primary border-t border-primary overflow-y-auto overscroll-contain [-webkit-overflow-scrolling:touch]">
+              <div className="py-4">
+                {navigation.map((item) => {
+                  const active = isActive(item.href);
+                  return (
+                    <div key={item.name} className="mb-2">
+                      <Link
+                        to={item.href}
+                        onClick={() => setIsMenuOpen(false)}
+                        className={`block px-4 py-3 text-base font-medium ${active ? activeLink : `${idleLink} ${hoverLink}`} focus:outline-none focus:ring-0`}
+                      >
+                        {item.name}
+                      </Link>
+                      {item.dropdown && (
+                        <div className="ml-6 space-y-1">
+                          {item.dropdown.map((dropdownItem) => (
+                            <Link
+                              key={dropdownItem.name}
+                              to={dropdownItem.href}
+                              onClick={() => setIsMenuOpen(false)}
+                              className="block px-4 py-2 text-sm text-tertiary hover:text-[#005596] hover:bg-blue-50 dark:hover:bg-blue-900/10 transition-colors focus:outline-none focus:ring-0"
+                            >
+                              {dropdownItem.name}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+                <Link
+                  to="/get-involved#support"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="block mx-4 mt-4 mb-2 bg-gradient-to-r from-[#005596] to-[#54B948] hover:opacity-90 text-white px-4 py-3 rounded-lg font-semibold transition-colors duration-200 text-center focus:outline-none focus:ring-0"
+                >
+                  Donate
+                </Link>
+                <div className="h-2" />
+              </div>
             </div>
           </>
         )}

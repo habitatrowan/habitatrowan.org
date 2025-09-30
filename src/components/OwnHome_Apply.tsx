@@ -41,13 +41,13 @@ const OwnHome_App: React.FC<Props> = ({ prequalUrl }) => {
 
       <div id="apply" className="rounded-xl p-8 text-center bg-gradient-to-r from-[#005596] to-[#54B948]">
         <h3 className="text-2xl font-extrabold mb-3 text-white">Ready to Apply?</h3>
-        <p className="mb-6 text-white/90">If you meet the eligibility criteria, download the pre-qualification form to start the process.</p>
+        <p className="mb-6 text-white/90">If you meet the eligibility criteria, download and print the pre-qualification form to start the process.</p>
         <a
           href="/qualification_form.pdf"
           target="_blank"
           className={`${BTN_BASE} border border-white/30 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20`}
         >
-          Download Pre-Qualification Form (PDF)
+          Download Application Form
         </a>
       </div>
     </section>
