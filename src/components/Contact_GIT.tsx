@@ -22,7 +22,7 @@ const Contact_Info: React.FC = () => {
     },
     {
       title: "Email",
-      info: "info@habitatrowan.org",
+      info: "habitat@habitatrowan.org",
       href: "mailto:info@habitatrowan.org",
       description: "Response time 24–48 hours",
       icon: Mail,
