@@ -1,6 +1,6 @@
 
-```markdown
-# Habitat Rowan Website
+
+# Habitat for Humanity of Rowan County
 
 Designed by Merritt M. and Nate K.
 
@@ -25,22 +25,10 @@ It serves as a public-facing site to share the mission, projects, events, volunt
 
 ---
 
-## 📂 Project Structure
-```project-root/
-│── index.html
-│── about.html
-│── contact.html
-│── staff/          # staff directory pages
-│── articles/       # news & blog posts
-│── assets/
-│    ├── css/
-│    ├── js/
-│    └── images/
-└── README.md
-
 ## 🌍 Deployment
 
 Deployed at: [https://www.habitatrowan.org](https://www.habitatrowan.org)
+
 ---
 
 ## 🤝 Contributing
