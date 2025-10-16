@@ -32,7 +32,7 @@ const HomePage = () => {
 
   const featuredImages = ["/images/Home_googler2.png", "/images/Home_googler3.png", "/images/Home_googler4.png"];
   const photoGallery = [
-    "/images/Home_gallery1.jpg",
+    "/images/DevTeam.jpg",
     "/images/Home_gallery2.jpg",
     "/images/Home_gallery3.jpg",
     "/images/Home_gallery4.jpg",

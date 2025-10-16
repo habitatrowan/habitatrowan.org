@@ -115,6 +115,7 @@ const GetInvolved = () => {
   const supportCardRef = useReveal();
   const donateHeaderRef = useReveal();
   const itemsCardRef = useReveal();
+  const pickupCardRef = useReveal();
   const carsHeaderRef = useReveal();
   const carsCardRef = useReveal();
 
@@ -228,6 +229,26 @@ const GetInvolved = () => {
             className={`max-w-5xl mx-auto mt-2 ${CARD_BASE} p-8 reveal`}
           >
             <GetInvolved_DonateItems />
+          </div>
+
+          <div
+            ref={pickupCardRef}
+            className={`max-w-3xl mx-auto mt-6 ${CARD_BASE} p-6 text-center space-y-4 reveal`}
+          >
+            <p className={`text-lg ${NEUTRAL_MUTED}`}>
+              Larger items or entire households can be scheduled for pickup by calling
+              our Donations Manager at 704-642-1222 ext.103 or by using the link below.
+            </p>
+            <a
+              href="https://forms.gle/EhLVBXRqxc3r3oReA"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-[#005596] to-[#54B948] p-[1px] text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#54B948]"
+            >
+              <span className="inline-flex w-full items-center justify-center rounded-lg bg-white/10 px-6 py-2.5 text-white backdrop-blur-md transition group-hover:bg-white/15">
+                Schedule Pickup Online
+              </span>
+            </a>
           </div>
         </section>
 

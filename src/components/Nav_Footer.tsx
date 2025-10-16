@@ -43,7 +43,7 @@ const Footer = () => {
   const socials = [
     { name: 'Facebook', href: 'https://www.facebook.com/habitatrowannc', icon: Facebook },
     { name: 'Instagram', href: 'https://www.instagram.com/habitatrowan', icon: Instagram },
-    { name: 'LinkedIn', href: 'https://www.linkedin.com/company/habitat-for-humanity-of-rowan-county', icon: Linkedin },
+    { name: 'LinkedIn', href: 'https://www.linkedin.com/company/habitat-for-humanity-restore-of-rowan-county-nc/', icon: Linkedin },
   ];
 
   const themeOptions = [
