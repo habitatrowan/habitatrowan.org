@@ -34,10 +34,6 @@ const HomePage = () => {
   const photoGallery = [
     "/images/DevTeam.jpg",
     "/images/Home_gallery2.jpg",
-    "/images/Home_gallery3.jpg",
-    "/images/Home_gallery4.jpg",
-    "/images/Home_gallery5.jpg",
-    "/images/Home_gallery6.JPG",
     "/images/Home_gallery7.JPG",
   ];
 
