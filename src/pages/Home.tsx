@@ -34,7 +34,7 @@ const HomePage = () => {
   const photoGallery = [
     "/images/DevTeam.jpg",
     "/images/Home_gallery2.jpg",
-    "/images/Home_gallery7.JPG",
+    "/images/Home_gallery7.JPG"
   ];
 
   const partnerLogos: Logo[] = [
