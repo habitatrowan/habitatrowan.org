@@ -68,6 +68,7 @@ const About = () => {
   const missionRef = useReveal<HTMLDivElement>();
   const visionRef = useReveal<HTMLDivElement>();
   const presRef = useReveal<HTMLDivElement>();
+  const staffRef = useReveal<HTMLDivElement>();
   const historyRef = useReveal<HTMLDivElement>();
 
   return (
@@ -123,7 +124,7 @@ const About = () => {
           <span className="text-[#005596]">Our</span>{" "}
           <span className="text-[#54B948]">Staff</span>
         </SectionHeader>
-        <section>
+        <section ref={staffRef} className="reveal">
           <div className="max-w-6xl mx-auto">
             <StaffGrid items={staffMembers} />
           </div>

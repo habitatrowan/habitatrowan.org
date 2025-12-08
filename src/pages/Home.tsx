@@ -92,7 +92,7 @@ const HomePage = () => {
 
       <section id="gallery" className="py-10 scroll-mt-28">
         <div ref={galleryRef} className="max-w-6xl mx-auto px-4 reveal">
-          <FadeCarousel images={photoGallery} intervalMs={4500} aspect="aspect-[16/9]" rounded="rounded-xl" />
+          <FadeCarousel images={photoGallery} intervalMs={13500} aspect="aspect-[16/9]" rounded="rounded-xl" />
         </div>
       </section>
 
