@@ -28,9 +28,9 @@ const AboutStatements: React.FC<Props> = ({ introCount }) => {
           in need. We continue to build 6–8 homes annually with the help of hundreds of volunteers each year.
         </p>
 
-        <div className="rounded-xl p-6 md:p-7 shadow-[0_6px_24px_rgba(0,0,0,0.12)] text-left bg-gradient-to-r from-[#005596] to-[#54B948]">
-          <h3 className="text-xl font-bold mb-3 text-white">All Are Welcome</h3>
-          <p className="text-white leading-relaxed">
+        <div className="rounded-xl p-6 md:p-7 shadow-[0_6px_24px_rgba(0,0,0,0.12)] text-left" style={{ background: "var(--bg-secondary)" }}>
+          <h3 className="text-xl font-bold mb-3 text-neutral-900">All Are Welcome</h3>
+          <p className="text-neutral-600 leading-relaxed">
             Habitat for Humanity of Rowan County welcomes volunteers and supporters from all backgrounds. We do not
             discriminate based on race, religion, nationality, political affiliation, sexual orientation, or gender identity.
             All are welcome to join our mission of building homes, communities, and hope.
