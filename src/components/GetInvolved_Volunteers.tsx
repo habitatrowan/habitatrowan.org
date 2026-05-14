@@ -2,9 +2,9 @@
 import React from "react";
 import { Hammer, ShoppingCart, Users, GraduationCap } from "lucide-react";
 
-const NEUTRAL_MUTED = "text-neutral-600 dark:text-neutral-300";
-const BORDER_SOFT = "border border-neutral-200 dark:border-neutral-800";
-const ICON_BG = "bg-gradient-to-r from-[#005596] to-[#54B948]";
+const NEUTRAL_MUTED = "text-neutral-600";
+const BORDER_SOFT = "border border-neutral-200";
+const ICON_BG = "border-2 border-neutral-900 bg-transparent";
 
 const opportunities = [
   {
@@ -62,7 +62,7 @@ const GetInvolved_Volunteers: React.FC = () => {
             <div key={op.id} className={`rounded-xl p-6 ${BORDER_SOFT} flex flex-col h-full`}>
               <div className="flex items-center gap-3 mb-3">
                 <div className={`w-10 h-10 rounded-full flex items-center justify-center ${ICON_BG}`}>
-                  <Icon className="w-5 h-5 text-white" />
+                  <Icon className="w-5 h-5 text-neutral-900" />
                 </div>
                 <h4 className="text-lg font-bold">{op.title}</h4>
               </div>
@@ -73,11 +73,11 @@ const GetInvolved_Volunteers: React.FC = () => {
 
               <ul className="mt-auto space-y-2 text-sm">
                 <li className="flex items-start gap-3">
-                  <span className="w-2.5 h-2.5 rounded-full mt-1.5 shrink-0 bg-gradient-to-r from-[#005596] to-[#54B948]" />
+                  <span className="w-2.5 h-2.5 rounded-full mt-1.5 shrink-0 bg-neutral-900" />
                   <span className={NEUTRAL_MUTED}><strong>Requirements:</strong> {op.requirements}</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="w-2.5 h-2.5 rounded-full mt-1.5 shrink-0 bg-gradient-to-r from-[#005596] to-[#54B948]" />
+                  <span className="w-2.5 h-2.5 rounded-full mt-1.5 shrink-0 bg-neutral-900" />
                   <span className={NEUTRAL_MUTED}><strong>Schedule:</strong> {op.schedule}</span>
                 </li>
               </ul>
@@ -91,7 +91,7 @@ const GetInvolved_Volunteers: React.FC = () => {
         <ul className="space-y-2">
           {safetyRules.map((rule, i) => (
             <li key={i} className="flex items-start gap-3">
-              <span className="w-2.5 h-2.5 rounded-full mt-1.5 shrink-0 bg-gradient-to-r from-[#005596] to-[#54B948]" />
+              <span className="w-2.5 h-2.5 rounded-full mt-1.5 shrink-0 bg-neutral-900" />
               <span className={NEUTRAL_MUTED}>{rule}</span>
             </li>
           ))}

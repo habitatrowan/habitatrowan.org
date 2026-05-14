@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from "react";
-import LearnMore from "./HomePage_HeroCTA";
 
 type Props = {
   id?: string;
@@ -7,10 +6,7 @@ type Props = {
   titleLine1?: React.ReactNode;
   titleLine2?: React.ReactNode;
   subtitle?: React.ReactNode;
-  learnMoreTo?: "/about";
 };
-
-const NEUTRAL_MUTED = "text-neutral-600 dark:text-neutral-300";
 
 function useReveal<T extends HTMLElement>() {
   const ref = useRef<T | null>(null);
@@ -21,11 +17,11 @@ function useReveal<T extends HTMLElement>() {
       (entries) =>
         entries.forEach((e) => {
           if (e.isIntersecting) {
-            el.classList.add("reveal-in");
+            el.classList.add("hero-reveal-in");
             obs.unobserve(el);
           }
         }),
-      { threshold: 0.15 }
+      { threshold: 0.05 }
     );
     obs.observe(el);
     return () => obs.disconnect();
@@ -38,58 +34,83 @@ const Hero: React.FC<Props> = ({
   bgSrc = "/images/heroimage.jpg",
   titleLine1 = (
     <>
-      Building <span className="text-white underline decoration-[#005596] decoration-4 underline-offset-4">Homes</span>,
+      Building{" "}
+      <em className="not-italic" style={{ color: "#FFFFFF", textDecoration: "underline", textDecorationColor: "#005596", textDecorationThickness: "4px", textUnderlineOffset: "6px" }}>
+        Homes
+      </em>
+      ,
     </>
   ),
   titleLine2 = (
     <>
-      Building <span className="text-white underline decoration-[#54B948] decoration-4 underline-offset-4">Hope</span>.
+      Building{" "}
+      <em className="not-italic" style={{ color: "#FFFFFF", textDecoration: "underline", textDecorationColor: "#54B948", textDecorationThickness: "4px", textUnderlineOffset: "6px" }}>
+        Hope
+      </em>
+      .
     </>
   ),
   subtitle = (
     <>
       Seeking to put God&apos;s love into action, bringing people together to
-      build homes, communities and hope in Rowan County.
+      build homes, communities, and hope in Rowan County.
     </>
   ),
-  learnMoreTo = "/about",
 }) => {
   const heroRef = useReveal<HTMLDivElement>();
 
   return (
     <section id={id} className="relative w-full overflow-hidden scroll-mt-28">
+      {/* Background image */}
       <img
         src={bgSrc}
         alt="Hero background"
         className="absolute inset-0 w-full h-full object-cover object-center"
       />
-      <div className="absolute inset-0 bg-black/45" />
+
+      {/* Multi-layer overlay for depth and atmosphere */}
+      <div className="absolute inset-0" style={{ background: "linear-gradient(165deg, rgba(0,30,60,0.30) 0%, rgba(0,0,0,0.55) 60%, rgba(0,0,0,0.75) 100%)" }} />
+      {/* Bottom vignette to anchor content */}
+      <div className="absolute inset-x-0 bottom-0 h-40" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.45), transparent)" }} />
 
       <div
         ref={heroRef}
-        className="relative z-10 min-h-[75vh] grid place-items-center px-4 sm:px-6 reveal"
+        className="relative z-10 hero-reveal"
+        style={{ minHeight: "88vh", display: "grid", placeItems: "center", padding: "6rem 1rem 4rem" }}
       >
-        <div className="max-w-3xl md:max-w-4xl text-center font-semibold text-white">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-4 md:mb-6 leading-tight text-white">
+        <div className="max-w-4xl text-center text-white">
+          {/* Eyebrow label */}
+          <div className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full border border-white/25 bg-white/10 backdrop-blur-sm">
+            <span className="text-xs sm:text-sm font-body font-semibold tracking-widest uppercase text-white/90">
+              Habitat for Humanity · Rowan County
+            </span>
+          </div>
+
+          <h1
+            className="font-display font-black text-white leading-[0.95] mb-6"
+            style={{ fontSize: "clamp(3rem, 9vw, 6.5rem)" }}
+          >
             <div>{titleLine1}</div>
             <div>{titleLine2}</div>
           </h1>
 
           <p
-            className={`text-base sm:text-lg md:text-2xl mb-6 md:mb-8 max-w-2xl mx-auto text-white/95 ${NEUTRAL_MUTED}`}
+            className="font-body text-white/90 leading-relaxed mb-10 mx-auto"
+            style={{ fontSize: "clamp(1rem, 2.2vw, 1.35rem)", maxWidth: "38rem" }}
           >
             {subtitle}
           </p>
 
-          <div className="flex justify-center">
-            <LearnMore to={learnMoreTo} />
-          </div>
         </div>
       </div>
 
       <style>{`
-        .reveal { opacity: 0; transform: translateY(24px); }
-        .reveal-in { opacity: 1; transform: translateY(0); transition: opacity 600ms cubic-bezier(.22,.61,.36,1), transform 600ms cubic-bezier(.22,.61,.36,1); }
+        .hero-reveal { opacity: 0; transform: translateY(32px); }
+        .hero-reveal-in {
+          opacity: 1;
+          transform: translateY(0);
+          transition: opacity 900ms cubic-bezier(.22,.61,.36,1), transform 900ms cubic-bezier(.22,.61,.36,1);
+        }
       `}</style>
     </section>
   );

@@ -5,15 +5,15 @@ const Terms: React.FC = () => {
     <div className="min-h-screen py-16">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <header className="mb-10 text-center">
-          <h1 className="text-4xl font-bold text-neutral-900 dark:text-neutral-50">Terms of Service</h1>
-          <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-300">
+          <h1 className="text-4xl font-bold text-neutral-900">Terms of Service</h1>
+          <p className="mt-2 text-sm text-neutral-600">
             Effective Date: September 18, 2025
           </p>
         </header>
 
-        <div className="space-y-8 text-neutral-800 dark:text-neutral-200">
+        <div className="space-y-8 text-neutral-800">
           <section>
-            <h2 className="text-xl font-semibold text-neutral-900 dark:text-neutral-50 mb-2">
+            <h2 className="text-xl font-semibold text-neutral-900 mb-2">
               Acceptance of Terms
             </h2>
             <p>
@@ -22,7 +22,7 @@ const Terms: React.FC = () => {
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold text-neutral-900 dark:text-neutral-50 mb-2">
+            <h2 className="text-xl font-semibold text-neutral-900 mb-2">
               Use of Website
             </h2>
             <ul className="list-disc pl-6 space-y-1">
@@ -32,7 +32,7 @@ const Terms: React.FC = () => {
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold text-neutral-900 dark:text-neutral-50 mb-2">
+            <h2 className="text-xl font-semibold text-neutral-900 mb-2">
               Intellectual Property
             </h2>
             <p>
@@ -42,7 +42,7 @@ const Terms: React.FC = () => {
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold text-neutral-900 dark:text-neutral-50 mb-2">
+            <h2 className="text-xl font-semibold text-neutral-900 mb-2">
               Donations
             </h2>
             <p>
@@ -52,7 +52,7 @@ const Terms: React.FC = () => {
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold text-neutral-900 dark:text-neutral-50 mb-2">
+            <h2 className="text-xl font-semibold text-neutral-900 mb-2">
               Third-Party Links
             </h2>
             <p>
@@ -61,7 +61,7 @@ const Terms: React.FC = () => {
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold text-neutral-900 dark:text-neutral-50 mb-2">
+            <h2 className="text-xl font-semibold text-neutral-900 mb-2">
               Disclaimers
             </h2>
             <p>
@@ -70,7 +70,7 @@ const Terms: React.FC = () => {
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold text-neutral-900 dark:text-neutral-50 mb-2">
+            <h2 className="text-xl font-semibold text-neutral-900 mb-2">
               Limitation of Liability
             </h2>
             <p>
@@ -80,7 +80,7 @@ const Terms: React.FC = () => {
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold text-neutral-900 dark:text-neutral-50 mb-2">
+            <h2 className="text-xl font-semibold text-neutral-900 mb-2">
               Changes to Terms
             </h2>
             <p>
@@ -89,7 +89,7 @@ const Terms: React.FC = () => {
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold text-neutral-900 dark:text-neutral-50 mb-2">
+            <h2 className="text-xl font-semibold text-neutral-900 mb-2">
               Governing Law
             </h2>
             <p>
@@ -98,14 +98,14 @@ const Terms: React.FC = () => {
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold text-neutral-900 dark:text-neutral-50 mb-2">
+            <h2 className="text-xl font-semibold text-neutral-900 mb-2">
               Contact Us
             </h2>
             <p>
               Questions about these Terms? Contact us at{" "}
               <a
                 href="mailto:info@habitatrowan.org"
-                className="underline text-neutral-900 dark:text-neutral-50"
+                className="underline text-neutral-900"
               >
                 info@habitatrowan.org
               </a>{" "}
@@ -113,7 +113,7 @@ const Terms: React.FC = () => {
             </p>
           </section>
 
-          <section className="text-sm text-neutral-600 dark:text-neutral-400">
+          <section className="text-sm text-neutral-600">
             <p>
               This document is a general template and not legal advice. Consult counsel for your specific situation.
             </p>

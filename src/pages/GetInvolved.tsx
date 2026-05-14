@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import ZCarousel from "../components/z_Carousel";
 import GetInvolved_Volunteers from "../components/GetInvolved_Volunteers";
 import GetInvolved_VolunteerSignup from "../components/GetInvolved_Form";
 import GetInvolved_SupportNav from "../components/GetInvolved_SupportNav";
@@ -32,10 +31,10 @@ function useReveal() {
 const SIGNUP_PDF_URL = "/docs/volunteer-signup.pdf";
 const PAYPAL_DONATE_URL = "https://www.paypal.com/donate/?hosted_button_id=XRMX4AF5DFV62";
 
-const NEUTRAL_TEXT = "text-neutral-900 dark:text-neutral-50";
-const NEUTRAL_MUTED = "text-neutral-600 dark:text-neutral-300";
-const NEUTRAL_CARD = "bg-white dark:bg-neutral-900";
-const NEUTRAL_BORDER = "border border-neutral-200 dark:border-neutral-700";
+const NEUTRAL_TEXT = "text-neutral-900";
+const NEUTRAL_MUTED = "text-neutral-600";
+const NEUTRAL_CARD = "bg-white";
+const NEUTRAL_BORDER = "border border-neutral-200";
 const CARD_BASE = `${NEUTRAL_CARD} ${NEUTRAL_BORDER} rounded-xl shadow-[0_6px_24px_rgba(0,0,0,0.12)]`;
 
 const SUPPORT_SECTIONS = [
@@ -55,15 +54,6 @@ const HASH_ALIASES: Record<string, string> = {
 };
 
 const HEADER_OFFSET = 96;
-
-const photoGallery = [
-  "/images/GetInvolved_gallery1.jpg",
-  "/images/GetInvolved_gallery2.jpg",
-  "/images/GetInvolved_gallery3.jpg",
-  "/images/GetInvolved_gallery4.jpg",
-  "/images/GetInvolved_gallery7.jpg",
-  "/images/GetInvolved_gallery6.jpg",
-];
 
 const GetInvolved = () => {
   const [activeSupportId, setActiveSupportId] = useState<string>(SUPPORT_SECTIONS[0].id);
@@ -106,7 +96,6 @@ const GetInvolved = () => {
   }, []);
 
   const headerRef = useReveal();
-  const carouselRef = useReveal();
   const volunteerRef = useReveal();
   const cardRef = useReveal();
   const signupRef = useReveal();
@@ -123,9 +112,8 @@ const GetInvolved = () => {
     <div className={`min-h-screen py-16 ${NEUTRAL_TEXT}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div ref={headerRef} className="text-center mb-8 reveal">
-          <h1 className="text-4xl font-extrabold mb-4">
-            <span className="text-[#005596]">Get</span>{" "}
-            <span className="text-[#54B948]">Involved</span>
+          <h1 className="text-4xl font-extrabold mb-4 text-neutral-900">
+            Get Involved
           </h1>
           <p className={`text-xl ${NEUTRAL_MUTED} max-w-3xl mx-auto`}>
             Join our community of volunteers and supporters to help us build
@@ -133,32 +121,10 @@ const GetInvolved = () => {
           </p>
         </div>
 
-        <div className="h-px w-full bg-neutral-200 dark:bg-neutral-800 mb-16" />
-
-        <section ref={carouselRef} className="mb-16 reveal">
-          <ZCarousel
-            images={photoGallery}
-            intervalMs={5000}
-            aspect="aspect-[16/9]"
-            rounded="rounded-xl"
-            alt="Habitat activity"
-          />
-        </section>
-
-        <div className="h-px w-full bg-neutral-200 dark:bg-neutral-800 mb-16" />
+        <div className="h-px w-full bg-neutral-200 mb-16" />
 
         <section id="volunteer" className="mb-20 scroll-mt-[var(--header-offset)]">
-          <div ref={volunteerRef} className="text-center mb-10 reveal">
-            <h2 className="text-3xl font-extrabold mb-4">
-              <span className="text-[#005596]">Volunteer</span>{" "}
-              <span className="text-[#54B948]">Opportunities</span>
-            </h2>
-            <p className={`text-xl ${NEUTRAL_MUTED} max-w-3xl mx-auto`}>
-              Discover meaningful ways to contribute—whether through
-              construction work, ReStore operations, committee participation, or
-              student organizations.
-            </p>
-          </div>
+          <div ref={volunteerRef} />
 
           <div ref={cardRef} className={`max-w-5xl mx-auto reveal ${CARD_BASE} p-8`}>
             <GetInvolved_Volunteers />
@@ -168,14 +134,13 @@ const GetInvolved = () => {
           </div>
         </section>
 
-        <div className="h-px w-full bg-neutral-200 dark:bg-neutral-800 mb-16" />
+        <div className="h-px w-full bg-neutral-200 mb-16" />
 
         <section id="support" className="mb-16 scroll-mt-[var(--header-offset)]">
           <span id="support-nav" className="block h-0" />
           <div ref={supportHeaderRef} className="text-center mb-6 reveal">
-            <h2 className="text-3xl font-extrabold mb-3">
-              <span className="text-[#005596]">Support</span>{" "}
-              <span className="text-[#54B948]">Us</span>
+            <h2 className="text-3xl font-extrabold mb-3 text-neutral-900">
+              Support Us
             </h2>
             <p className={`text-lg ${NEUTRAL_MUTED} max-w-3xl mx-auto`}>
               Explore different ways to support our mission through monetary
@@ -195,7 +160,7 @@ const GetInvolved = () => {
             />
           </div>
 
-          <div className="h-px w-full bg-neutral-200 dark:bg-neutral-800 mb-16" />
+          <div className="h-px w-full bg-neutral-200 mb-16" />
 
           <div
             ref={supportCardRef}
@@ -204,7 +169,7 @@ const GetInvolved = () => {
             <GetInvolved_SupportContent donateUrl={PAYPAL_DONATE_URL} />
           </div>
 
-          <div className="h-px w-full bg-neutral-200 dark:bg-neutral-800 mb-16" />
+          <div className="h-px w-full bg-neutral-200 mb-16" />
         </section>
 
         <section id="donate-items" className="scroll-mt-[var(--header-offset)]">
@@ -212,9 +177,8 @@ const GetInvolved = () => {
             ref={donateHeaderRef}
             className="max-w-5xl mx-auto mt-8 mb-4 text-center reveal"
           >
-            <h2 className="text-3xl font-extrabold mb-3">
-              <span className="text-[#005596]">Donate</span>{" "}
-              <span className="text-[#54B948]">Items</span>
+            <h2 className="text-3xl font-extrabold mb-3 text-neutral-900">
+              Donate Items
             </h2>
             <p className={`text-lg ${NEUTRAL_MUTED}`}>
               Use our Donate Items tool below to see if your item is accepted
@@ -222,7 +186,7 @@ const GetInvolved = () => {
             </p>
           </div>
 
-          <div className="h-px w-full bg-neutral-200 dark:bg-neutral-800 mb-16" />
+          <div className="h-px w-full bg-neutral-200 mb-16" />
 
           <div
             ref={itemsCardRef}
@@ -252,16 +216,15 @@ const GetInvolved = () => {
           </div>
         </section>
 
-        <div className="h-px w-full bg-neutral-200 dark:bg-neutral-800 my-16" />
+        <div className="h-px w-full bg-neutral-200 my-16" />
 
         <section id="donate-cars" className="scroll-mt-[var(--header-offset)]">
           <div
             ref={carsHeaderRef}
             className="max-w-5xl mx-auto mt-8 mb-4 text-center reveal"
           >
-            <h2 className="text-3xl font-extrabold mb-3">
-              <span className="text-[#005596]">Donate</span>{" "}
-              <span className="text-[#54B948]">Cars</span>
+            <h2 className="text-3xl font-extrabold mb-3 text-neutral-900">
+              Donate Cars
             </h2>
             <p className={`text-lg ${NEUTRAL_MUTED}`}>
               Did you know by donating your vehicle to Habitat you can help

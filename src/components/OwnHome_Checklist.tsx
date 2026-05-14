@@ -1,8 +1,8 @@
 import React from "react";
 
-const NEUTRAL_MUTED = "text-neutral-600 dark:text-neutral-300";
-const NEUTRAL_CARD = "bg-white dark:bg-neutral-900";
-const NEUTRAL_BORDER = "border border-neutral-200 dark:border-neutral-700";
+const NEUTRAL_MUTED = "text-neutral-600";
+const NEUTRAL_CARD = "bg-white";
+const NEUTRAL_BORDER = "border border-neutral-200";
 const CARD_BASE = `${NEUTRAL_CARD} ${NEUTRAL_BORDER} rounded-xl shadow-[0_6px_24px_rgba(0,0,0,0.12)]`;
 
 const items = [
@@ -23,7 +23,7 @@ const OwnHome_Checklist: React.FC = () => {
       <ul className="space-y-3">
         {items.map((t, i) => (
           <li key={i} className="flex items-start gap-3">
-            <span className="w-2.5 h-2.5 rounded-full mt-1.5 shrink-0 bg-gradient-to-r from-[#005596] to-[#54B948]" />
+            <span className="w-2.5 h-2.5 rounded-full mt-1.5 shrink-0 bg-neutral-900" />
             <span className={NEUTRAL_MUTED}>{t}</span>
           </li>
         ))}

@@ -23,10 +23,10 @@ function useReveal<T extends HTMLElement>() {
   return ref;
 }
 
-const NEUTRAL_TEXT = "text-neutral-900 dark:text-neutral-50";
-const NEUTRAL_MUTED = "text-neutral-600 dark:text-neutral-300";
-const NEUTRAL_CARD = "bg-white dark:bg-neutral-900";
-const NEUTRAL_BORDER = "border border-neutral-200 dark:border-neutral-700";
+const NEUTRAL_TEXT = "text-neutral-900";
+const NEUTRAL_MUTED = "text-neutral-600";
+const NEUTRAL_CARD = "bg-white";
+const NEUTRAL_BORDER = "border border-neutral-200";
 const CARD_BASE = `${NEUTRAL_CARD} ${NEUTRAL_BORDER} rounded-xl shadow-[0_6px_24px_rgba(0,0,0,0.12)]`;
 
 const housingImages = [
@@ -52,7 +52,7 @@ const partnerImages = [
   "/images/Home_gallery2.jpg"
 ];
 
-const SECTION_DIVIDER = <div className="h-px w-full bg-neutral-200 dark:bg-neutral-800 my-12" />;
+const SECTION_DIVIDER = <div className="h-px w-full bg-neutral-200 my-12" />;
 
 const News: React.FC = () => {
   const headerRef = useReveal<HTMLDivElement>();
@@ -65,15 +65,14 @@ const News: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div ref={headerRef} className="text-center mb-12 reveal">
-          <h1 className="text-4xl font-extrabold mb-4">
-            <span className="text-[#005596]">Photo</span>{" "}
-            <span className="text-[#54B948]">Gallery</span>
+          <h1 className="text-4xl font-extrabold mb-4 text-neutral-900">
+            Photo Gallery
           </h1>
           <p className={`text-xl ${NEUTRAL_MUTED} max-w-3xl mx-auto`}>
             A look at our work across Rowan County — from build days and home dedications to ReStore life and the partners who make it possible.
           </p>
         </div>
-        <div className="h-px w-full bg-neutral-200 dark:bg-neutral-800 mb-16" />
+        <div className="h-px w-full bg-neutral-200 mb-16" />
 
         <section ref={housingRef} className="reveal">
           <div className="mb-6">

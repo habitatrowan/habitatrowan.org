@@ -1,124 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;0,9..144,800;0,9..144,900;1,9..144,400;1,9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  /* Brand Colors - consistent across themes */
-  --blue: #005596; /* Habitat Blue, Pantone 294 */
-  --green: #54B948; /* Habitat Green, Pantone 361 */
+  /* Brand Colors — exact Habitat brand, never change */
+  --blue: #005596;
+  --green: #54B948;
 
-  /* Light theme colors */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f8fafc;
-  --bg-tertiary: #f1f5f9;
-  --text-primary: #000000;
-  --text-secondary: #475569;
-  --text-tertiary: #64748b;
-  --border-primary: #e2e8f0;
-  --border-secondary: #cbd5e1;
-  --shadow: rgba(0, 0, 0, 0.1);
+  /* Light theme — warm cream base */
+  --bg-primary: #FAFAF6;
+  --bg-secondary: #F3F3EB;
+  --bg-tertiary: #EAEAE0;
+  --text-primary: #1A1A14;
+  --text-secondary: #4A4A3A;
+  --text-tertiary: #6B6B58;
+  --border-primary: #E2E2D6;
+  --border-secondary: #CCCCC0;
+  --shadow: rgba(26, 26, 20, 0.10);
+  --surface: #FFFFFF;
+  --surface-raised: #FDFDF9;
 }
 
-.dark {
-  /* Dark theme colors */
-  --bg-primary: #000000;
-  --bg-secondary: #0f172a;
-  --bg-tertiary: #1e293b;
-  --text-primary: #ffffff;
-  --text-secondary: #cbd5e1;
-  --text-tertiary: #94a3b8;
-  --border-primary: #334155;
-  --border-secondary: #475569;
-  --shadow: rgba(255, 255, 255, 0.1);
-}
 
-/* Apply CSS variables */
+/* ─── Global typography ─────────────────────────────── */
 body {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
   background-color: var(--bg-primary);
   color: var(--text-primary);
   transition: background-color 0.3s ease, color 0.3s ease;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Custom utility classes */
-.bg-primary { background-color: var(--bg-primary); }
-.bg-secondary { background-color: var(--bg-secondary); }
-.bg-tertiary { background-color: var(--bg-tertiary); }
-.text-primary { color: var(--text-primary); }
-.text-secondary { color: var(--text-secondary); }
-.text-tertiary { color: var(--text-tertiary); }
-.border-primary { border-color: var(--border-primary); }
-.border-secondary { border-color: var(--border-secondary); }
-.habitat-blue { color: var(--blue); }
-.habitat-green { color: var(--green); }
-.bg-habitat-blue { background-color: var(--blue); }
-.bg-habitat-green { background-color: var(--green); }
+h1, h2, h3, h4 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-optical-sizing: auto;
+}
 
-/* Smooth transitions */
-* {
+/* ─── Atmospheric grain overlay ─────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+}
+
+/* ─── Utility classes ────────────────────────────────── */
+.bg-primary   { background-color: var(--bg-primary); }
+.bg-secondary { background-color: var(--bg-secondary); }
+.bg-tertiary  { background-color: var(--bg-tertiary); }
+.text-primary   { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-tertiary  { color: var(--text-tertiary); }
+.border-primary   { border-color: var(--border-primary); }
+.border-secondary { border-color: var(--border-secondary); }
+.habitat-blue  { color: var(--blue); }
+.habitat-green { color: var(--green); }
+.bg-habitat-blue  { background-color: var(--blue); }
+.bg-habitat-green { background-color: var(--green); }
+.font-display { font-family: 'Fraunces', Georgia, serif; }
+.font-body    { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
+
+/* ─── Smooth transitions ─────────────────────────────── */
+*, *::before, *::after {
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
-/* Focus styles for accessibility */
-button:focus,
-input:focus,
-textarea:focus,
-select:focus,
-a:focus {
+/* ─── Focus styles ───────────────────────────────────── */
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+a:focus-visible {
   outline: 2px solid var(--blue);
   outline-offset: 2px;
 }
-
-/* Navigation specific styles */
-.nav-no-wrap {
-  white-space: nowrap;
+button:focus, input:focus, textarea:focus, select:focus, a:focus {
+  outline: none;
 }
 
-/* Dropdown styles */
+/* ─── Navigation ─────────────────────────────────────── */
+.nav-no-wrap { white-space: nowrap; }
+
+/* Glass nav on scroll */
+.nav-glass {
+  backdrop-filter: blur(12px) saturate(1.4);
+  -webkit-backdrop-filter: blur(12px) saturate(1.4);
+  background-color: color-mix(in srgb, var(--bg-primary) 88%, transparent) !important;
+  box-shadow: 0 4px 24px -4px var(--shadow);
+}
+
+/* ─── Dropdown ───────────────────────────────────────── */
 .dropdown-menu {
   opacity: 0;
   visibility: hidden;
   transform: translateY(-10px);
   transition: all 0.2s ease;
 }
-
 .dropdown:hover .dropdown-menu {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
+/* ─── Brand gradient utilities ───────────────────────── */
+.brand-gradient { background: linear-gradient(135deg, var(--blue) 0%, var(--green) 100%); }
+.brand-gradient-text {
+  background: linear-gradient(135deg, var(--blue) 0%, var(--green) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-::-webkit-scrollbar-track {
-  background-color: var(--bg-secondary);
+/* ─── Section reveal animation ───────────────────────── */
+.reveal { opacity: 0; transform: translateY(28px); }
+.reveal-in {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 700ms cubic-bezier(.22,.61,.36,1), transform 700ms cubic-bezier(.22,.61,.36,1);
 }
+.reveal-delay-1 { transition-delay: 80ms !important; }
+.reveal-delay-2 { transition-delay: 160ms !important; }
+.reveal-delay-3 { transition-delay: 240ms !important; }
 
-::-webkit-scrollbar-thumb {
-  background-color: var(--border-secondary);
-  border-radius: 4px;
-}
+/* ─── Custom scrollbar ───────────────────────────────── */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background-color: var(--bg-secondary); }
+::-webkit-scrollbar-thumb { background-color: var(--border-secondary); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background-color: var(--text-tertiary); }
 
-::-webkit-scrollbar-thumb:hover {
-  background-color: var(--text-tertiary);
-}
+/* ─── Updates card scrollbar ─────────────────────────── */
+.updates-scrollbar { scrollbar-width: none; }
+.updates-scrollbar:hover { scrollbar-width: thin; scrollbar-color: rgba(163,163,163,0.6) transparent; }
+.dark .updates-scrollbar:hover { scrollbar-color: rgba(64,64,64,0.6) transparent; }
+.updates-scrollbar::-webkit-scrollbar { height: 6px; }
+.updates-scrollbar::-webkit-scrollbar-track { background: transparent; }
+.updates-scrollbar::-webkit-scrollbar-thumb { background: transparent; border-radius: 8px; }
+.updates-scrollbar:hover::-webkit-scrollbar-thumb { background: rgba(163,163,163,0.6); }
+.dark .updates-scrollbar:hover::-webkit-scrollbar-thumb { background: rgba(64,64,64,0.6); }
 
-/* Print styles */
+/* ─── Print ──────────────────────────────────────────── */
 @media print {
-  .no-print {
-    display: none !important;
-  }
+  .no-print { display: none !important; }
 }
 
-/* High contrast mode support */
+/* ─── High contrast ──────────────────────────────────── */
 @media (prefers-contrast: high) {
-  :root {
-    --bg-secondary: #ffffff;
-  }
+  :root  { --bg-secondary: #ffffff; }
+  .dark  { --bg-secondary: #000000; }
+}
 
-  .dark {
-    --bg-secondary: #000000;
+/* ─── Reduced motion ─────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .allow-motion .fade-layer {
+    transition: opacity 700ms cubic-bezier(.22,.61,.36,1) !important;
+  }
+  .allow-motion .reveal-in {
+    transition: opacity 600ms cubic-bezier(.22,.61,.36,1), transform 600ms cubic-bezier(.22,.61,.36,1) !important;
   }
 }

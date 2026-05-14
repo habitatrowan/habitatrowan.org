@@ -12,11 +12,11 @@ const GetInvolved_Cars: React.FC = () => {
   return (
     <section
       id="cars-for-homes"
-      className="rounded-xl p-8 shadow-[0_6px_24px_rgba(0,0,0,0.12)] bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 space-y-8"
+      className="space-y-8"
     >
       <header className="text-center">
         <h2 className="text-3xl font-extrabold mb-4">How to donate your vehicle</h2>
-        <p className="text-neutral-600 dark:text-neutral-300 max-w-2xl mx-auto">
+        <p className="text-neutral-600 max-w-2xl mx-auto">
           We make it fast and easy to donate a vehicle and you may{" "}
           <a
             href="https://www.habitat.org/support/donate-your-car/tax-benefits"
@@ -33,18 +33,18 @@ const GetInvolved_Cars: React.FC = () => {
       <ol className="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-0">
         {steps.map(({ icon: Icon, label }, idx) => (
           <li key={label} className="flex flex-col items-center text-center relative flex-1">
-            <div className="w-16 h-16 rounded-full bg-white dark:bg-neutral-900 ring-1 ring-neutral-300 dark:ring-neutral-700 flex items-center justify-center shadow-md z-10">
+            <div className="w-16 h-16 rounded-full bg-white ring-1 ring-neutral-300 flex items-center justify-center shadow-md z-10">
               <Icon className="w-7 h-7 text-[#005596]" />
             </div>
-            <p className="mt-2 text-sm font-medium text-neutral-800 dark:text-neutral-100">{label}</p>
+            <p className="mt-2 text-sm font-medium text-neutral-800">{label}</p>
             {idx < steps.length - 1 && (
-              <div className="absolute top-8 left-1/2 right-[-50%] h-0.5 bg-neutral-300 dark:bg-neutral-700 hidden md:block z-0" />
+              <div className="absolute top-8 left-1/2 right-[-50%] h-0.5 bg-neutral-300 hidden md:block z-0" />
             )}
           </li>
         ))}
       </ol>
 
-      <div className="space-y-4 text-neutral-700 dark:text-neutral-200 max-w-3xl mx-auto">
+      <div className="space-y-4 text-neutral-700 max-w-3xl mx-auto">
         <p>
           Since launching the national vehicle donation program <strong>Cars for Homes</strong> in 2005, Habitat has accepted over 160,000 vehicles for reselling or recycling, raising funds for Habitat to partner with local families to build stability and security that a safe, affordable home allows.
         </p>

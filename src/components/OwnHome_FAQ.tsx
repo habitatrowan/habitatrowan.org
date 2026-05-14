@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
-const NEUTRAL_MUTED = "text-neutral-600 dark:text-neutral-300";
-const NEUTRAL_CARD = "bg-white dark:bg-neutral-900";
-const NEUTRAL_BORDER = "border border-neutral-200 dark:border-neutral-700";
+const NEUTRAL_MUTED = "text-neutral-600";
+const NEUTRAL_CARD = "bg-white";
+const NEUTRAL_BORDER = "border border-neutral-200";
 const CARD_BASE = `${NEUTRAL_CARD} ${NEUTRAL_BORDER} rounded-xl shadow-[0_6px_24px_rgba(0,0,0,0.12)]`;
 
 const faqs = [
@@ -45,12 +45,12 @@ const OwnHome_FAQ: React.FC = () => {
             >
               <button
                 onClick={() => setOpenFaq(isOpen ? null : i)}
-                className="w-full px-5 py-4 flex items-start justify-between gap-3 text-left hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors focus:outline-none"
+                className="w-full px-5 py-4 flex items-start justify-between gap-3 text-left hover:bg-neutral-50:bg-neutral-800 transition-colors focus:outline-none"
                 aria-expanded={isOpen}
                 aria-controls={`faq-panel-${i}`}
               >
                 <h3 className="text-base md:text-lg font-semibold">{item.q}</h3>
-                <span className="w-2.5 h-2.5 rounded-full mt-2 shrink-0 bg-gradient-to-r from-[#005596] to-[#54B948]" />
+                <span className="w-2.5 h-2.5 rounded-full mt-2 shrink-0 bg-neutral-900" />
               </button>
 
               {isOpen && (

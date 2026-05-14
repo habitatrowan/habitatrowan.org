@@ -1,9 +1,9 @@
 import React from "react";
 
-const NEUTRAL_TEXT = "text-neutral-900 dark:text-neutral-50";
-const NEUTRAL_MUTED = "text-neutral-600 dark:text-neutral-300";
-const NEUTRAL_CARD = "bg-white dark:bg-neutral-900";
-const NEUTRAL_BORDER = "border border-neutral-200 dark:border-neutral-700";
+const NEUTRAL_TEXT = "text-neutral-900";
+const NEUTRAL_MUTED = "text-neutral-600";
+const NEUTRAL_CARD = "bg-white";
+const NEUTRAL_BORDER = "border border-neutral-200";
 const CARD_BASE = `${NEUTRAL_CARD} ${NEUTRAL_BORDER} rounded-2xl shadow-sm`;
 
 type Props = { introCount: number };

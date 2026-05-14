@@ -68,7 +68,7 @@ const FadeCarousel: React.FC<Props> = ({
                 onClick={() => setIdx(i)}
                 className={[
                   "w-3 h-3 rounded-full transition-all",
-                  i === idx ? "bg-neutral-400 dark:bg-neutral-900" : "bg-neutral-300 dark:bg-neutral-600",
+                  i === idx ? "bg-neutral-400" : "bg-neutral-300",
                 ].join(" ")}
                 aria-label={`Go to slide ${i + 1}`}
               />
@@ -78,14 +78,14 @@ const FadeCarousel: React.FC<Props> = ({
           {/* arrows */}
           <button
             onClick={prev}
-            className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/25 hover:bg-black/35 text-white p-2 rounded-full transition-all focus:outline-none hover:ring-2 ring-neutral-300 dark:ring-neutral-700"
+            className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/25 hover:bg-black/35 text-white p-2 rounded-full transition-all focus:outline-none hover:ring-2 ring-neutral-300"
             aria-label="Previous image"
           >
             <ChevronLeft className="w-6 h-6" />
           </button>
           <button
             onClick={next}
-            className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/25 hover:bg-black/35 text-white p-2 rounded-full transition-all focus:outline-none hover:ring-2 ring-neutral-300 dark:ring-neutral-700"
+            className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/25 hover:bg-black/35 text-white p-2 rounded-full transition-all focus:outline-none hover:ring-2 ring-neutral-300"
             aria-label="Next image"
           >
             <ChevronRight className="w-6 h-6" />

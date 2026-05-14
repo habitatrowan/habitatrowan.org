@@ -28,15 +28,15 @@ function useReveal<T extends HTMLElement>() {
   return ref;
 }
 
-const NEUTRAL_TEXT = "text-neutral-900 dark:text-neutral-50";
-const NEUTRAL_MUTED = "text-neutral-600 dark:text-neutral-300";
+const NEUTRAL_TEXT = "text-neutral-900";
+const NEUTRAL_MUTED = "text-neutral-600";
 
 const SectionHeader = ({ id, children }: { id: string; children: React.ReactNode }) => (
   <div className="my-8">
     <h2 id={id} className="text-3xl font-extrabold text-center whitespace-nowrap scroll-mt-28 mb-4">
       {children}
     </h2>
-    <div className="h-px w-full bg-neutral-200 dark:bg-neutral-800" />
+    <div className="h-px w-full bg-neutral-200" />
   </div>
 );
 
@@ -75,65 +75,49 @@ const About = () => {
     <div className={`min-h-screen py-16 ${NEUTRAL_TEXT}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-14">
         <header ref={headerRef} className="text-center reveal">
-          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-3">
-            <span className="text-[#005596]">About</span>{" "}
-            <span className="text-[#54B948]">Us</span>
+          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-3 text-neutral-900">
+            About Us
           </h1>
           <p className={`text-lg ${NEUTRAL_MUTED} max-w-2xl mx-auto`}>
             Who we are, what we believe, and the people behind the work.
           </p>
         </header>
 
-        <div className="h-px w-full bg-neutral-200 dark:bg-neutral-800" />
+        <div className="h-px w-full bg-neutral-200" />
 
         <section ref={aboutRef} className="reveal">
           <AboutStatements introCount={152} />
         </section>
 
-        <SectionHeader id="mission">
-          <span className="text-[#005596]">Our</span>{" "}
-          <span className="text-[#54B948]">Mission</span>
-        </SectionHeader>
+        <SectionHeader id="mission">Our Mission</SectionHeader>
         <section ref={missionRef} className="reveal">
           <div className="max-w-3xl mx-auto">
             <OurMission />
           </div>
         </section>
 
-        <SectionHeader id="vision">
-          <span className="text-[#005596]">Our</span>{" "}
-          <span className="text-[#54B948]">Vision</span>
-        </SectionHeader>
+        <SectionHeader id="vision">Our Vision</SectionHeader>
         <section ref={visionRef} className="reveal">
           <div className="max-w-3xl mx-auto">
             <OurVision />
           </div>
         </section>
 
-        <SectionHeader id="president">
-          <span className="text-[#005596]">Our</span>{" "}
-          <span className="text-[#54B948]">President</span>
-        </SectionHeader>
+        <SectionHeader id="president">Our President</SectionHeader>
         <section ref={presRef} className="reveal">
           <div className="max-w-4xl mx-auto">
             <PresidentCard nameFirst="Jeff" nameLast="Wetmore" title="President" showContact={false} />
           </div>
         </section>
 
-        <SectionHeader id="staff">
-          <span className="text-[#005596]">Our</span>{" "}
-          <span className="text-[#54B948]">Staff</span>
-        </SectionHeader>
+        <SectionHeader id="staff">Our Staff</SectionHeader>
         <section ref={staffRef} className="reveal">
           <div className="max-w-6xl mx-auto">
             <StaffGrid items={staffMembers} />
           </div>
         </section>
 
-        <SectionHeader id="history">
-          <span className="text-[#005596]">Our</span>{" "}
-          <span className="text-[#54B948]">History</span>
-        </SectionHeader>
+        <SectionHeader id="history">Our History</SectionHeader>
         <section ref={historyRef} className="reveal">
           <div className="max-w-4xl mx-auto">
             <HistoryTimeline items={historyMilestones} />

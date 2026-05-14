@@ -2,11 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Phone, Mail, MapPin } from "lucide-react";
 
-const NEUTRAL_MUTED = "text-neutral-600 dark:text-neutral-300";
-const NEUTRAL_CARD = "bg-white dark:bg-neutral-900";
-const NEUTRAL_BORDER = "border border-neutral-200 dark:border-neutral-700";
+const NEUTRAL_MUTED = "text-neutral-600";
+const NEUTRAL_CARD = "bg-white";
+const NEUTRAL_BORDER = "border border-neutral-200";
 const CARD_BASE = `${NEUTRAL_CARD} ${NEUTRAL_BORDER} rounded-xl p-6 shadow-[0_6px_24px_rgba(0,0,0,0.12)] flex flex-col justify-between`;
-const ICON_GRADIENT = "bg-gradient-to-r from-[#005596] to-[#54B948]";
+const ICON_GRADIENT = "border-2 border-neutral-900 bg-transparent";
 
 const Contact_Info: React.FC = () => {
   const address = "1707 S Main St, Salisbury, NC 28144";
@@ -52,7 +52,7 @@ const Contact_Info: React.FC = () => {
                 <div
                   className={`w-12 h-12 rounded-full flex items-center justify-center shadow-[0_2px_12px_rgba(0,0,0,0.12)] ${ICON_GRADIENT}`}
                 >
-                  <Icon className="w-6 h-6 text-white" />
+                  <Icon className="w-6 h-6 text-neutral-900" />
                 </div>
                 <h3 className="text-lg font-semibold">{c.title}</h3>
               </div>

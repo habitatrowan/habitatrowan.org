@@ -20,8 +20,8 @@ function useReveal<T extends HTMLElement>() {
 }
 
 const PREQUAL_PDF_URL = "/docs/pre-qualification.pdf";
-const NEUTRAL_TEXT = "text-neutral-900 dark:text-neutral-50";
-const NEUTRAL_MUTED = "text-neutral-600 dark:text-neutral-300";
+const NEUTRAL_TEXT = "text-neutral-900";
+const NEUTRAL_MUTED = "text-neutral-600";
 
 const NAV = [
   { id: "eligibility", label: "Eligibility" },
@@ -62,13 +62,13 @@ const OwnHome: React.FC = () => {
     <div className={`min-h-screen py-16 ${NEUTRAL_TEXT}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div ref={headerRef} className="text-center mb-10 reveal">
-          <h1 className="text-4xl font-extrabold mb-3">
-            <span className="text-[#005596]">Housing</span> <span className="text-[#54B948]">Ministry</span>
+          <h1 className="text-4xl font-extrabold mb-3 text-neutral-900">
+            Housing Ministry
           </h1>
           <p className={`text-xl ${NEUTRAL_MUTED} max-w-3xl mx-auto`}>Habitat partners with families to help them achieve the strength, stability, and independence of homeownership.</p>
         </div>
 
-        <div className="h-px w-full bg-neutral-200 dark:bg-neutral-800 mb-16" />
+        <div className="h-px w-full bg-neutral-200 mb-16" />
 
         <div ref={navRef} className="mb-8 reveal">
           <OwnHome_Nav sections={NAV} activeId={activeId} onSelect={onSelectNav} />

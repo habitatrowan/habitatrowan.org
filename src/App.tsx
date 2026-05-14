@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { ThemeProvider } from './contexts/ThemeContext';
 import Header from './components/Nav_Header';
 import Footer from './components/Nav_Footer';
 import Home from './pages/Home';
@@ -14,6 +13,7 @@ import PrivacyPolicy from './pages/PrivacyPolicy';
 import ToS from './pages/ToS';
 import DataUse from './pages/DataUse';
 import Security from './pages/Security';
+import CTAGetInvolved from './components/CTA_GetInvolved';
 import './styles/theme.css';
 import { Analytics } from "@vercel/analytics/react";
 
@@ -36,33 +36,32 @@ const ScrollToTop: React.FC = () => {
 
 function App() {
   return (
-    <ThemeProvider>
-      <Router>
-        <ScrollToTop />
-        <div className="min-h-screen bg-primary text-primary">
-          <Header />
-          <main>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/get-involved" element={<GetInvolved />} />
-              <Route path="/volunteer" element={<GetInvolved />} />
-              <Route path="/donate" element={<GetInvolved />} />
-              <Route path="/own-home" element={<OwnHome />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/locations" element={<Locations />} />
-              <Route path="/gallery" element={<News />} />
-              <Route path="/privacy" element={<PrivacyPolicy />} />
-              <Route path="/tos" element={<ToS />} />
-              <Route path="/data" element={<DataUse />} />
-              <Route path="/security" element={<Security />} />
-            </Routes>
-          </main>
-          <Footer />
-        </div>
-        <Analytics />
-      </Router>
-    </ThemeProvider>
+    <Router>
+      <ScrollToTop />
+      <div className="min-h-screen bg-primary text-primary">
+        <Header />
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/get-involved" element={<GetInvolved />} />
+            <Route path="/volunteer" element={<GetInvolved />} />
+            <Route path="/donate" element={<GetInvolved />} />
+            <Route path="/own-home" element={<OwnHome />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/locations" element={<Locations />} />
+            <Route path="/gallery" element={<News />} />
+            <Route path="/privacy" element={<PrivacyPolicy />} />
+            <Route path="/tos" element={<ToS />} />
+            <Route path="/data" element={<DataUse />} />
+            <Route path="/security" element={<Security />} />
+          </Routes>
+        </main>
+        <CTAGetInvolved />
+        <Footer />
+      </div>
+      <Analytics />
+    </Router>
   );
 }
 

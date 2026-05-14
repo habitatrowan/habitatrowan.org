@@ -1,6 +1,6 @@
 import React from "react";
 
-const NEUTRAL_TEXT = "text-neutral-900 dark:text-neutral-50";
+const NEUTRAL_TEXT = "text-neutral-900";
 
 type Section = { id: string; label: string };
 
@@ -20,7 +20,7 @@ const GetInvolved_SupportNav: React.FC<Props> = ({ sections, activeId, onSelect 
             key={id}
             onClick={() => onSelect(id)}
             aria-current={active ? "true" : "false"}
-            className={`group relative inline-flex items-center justify-center h-11 min-w-[200px] px-5 rounded-xl font-medium overflow-hidden border backdrop-blur-sm transition-all whitespace-nowrap text-center ${NEUTRAL_TEXT} border-neutral-300 dark:border-neutral-700 bg-white/10 dark:bg-white/10`}
+            className={`group relative inline-flex items-center justify-center h-11 min-w-[200px] px-5 rounded-xl font-medium overflow-hidden border backdrop-blur-sm transition-all whitespace-nowrap text-center ${NEUTRAL_TEXT} border-neutral-300 bg-white/10`}
           >
             <span className="relative z-10 transition-colors group-hover:text-white">{label}</span>
             <span

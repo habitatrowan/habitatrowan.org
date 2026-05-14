@@ -5,15 +5,15 @@ const DataUse: React.FC = () => {
     <div className="min-h-screen py-16">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <header className="mb-10 text-center">
-          <h1 className="text-4xl font-bold text-neutral-900 dark:text-neutral-50">
+          <h1 className="text-4xl font-bold text-neutral-900">
             Data Use Policy
           </h1>
-          <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-300">
+          <p className="mt-2 text-sm text-neutral-600">
             Effective Date: September 27, 2025
           </p>
         </header>
 
-        <div className="space-y-8 text-neutral-800 dark:text-neutral-200">
+        <div className="space-y-8 text-neutral-800">
           <section>
             <h2 className="text-lg font-semibold mb-2">Purpose of Data Collection</h2>
             <p>
@@ -58,7 +58,7 @@ const DataUse: React.FC = () => {
             </ul>
           </section>
 
-          <section className="text-sm text-neutral-600 dark:text-neutral-400">
+          <section className="text-sm text-neutral-600">
             <p>
               This policy is intended as a general framework. For specific questions or requests related to data use,
               please contact us at <a href="mailto:info@habitatrowan.org" className="underline">info@habitatrowan.org</a>.

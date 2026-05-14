@@ -1,12 +1,12 @@
 import React from "react";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 
-const NEUTRAL_TEXT = "text-neutral-900 dark:text-neutral-50";
-const NEUTRAL_MUTED = "text-neutral-600 dark:text-neutral-300";
-const NEUTRAL_CARD = "bg-white dark:bg-neutral-900";
-const NEUTRAL_BORDER = "border border-neutral-200 dark:border-neutral-700";
-const CARD_BASE = `${NEUTRAL_CARD} ${NEUTRAL_BORDER} rounded-xl shadow-[0_6px_24px_rgba(0,0,0,0.12)] transition-all duration-300 ease-[cubic-bezier(.22,.61,.36,1)] hover:-translate-y-0.5 hover:shadow-[0_10px_40px_rgba(0,0,0,0.18)] hover:ring-2 ring-neutral-300 dark:ring-neutral-700`;
-const GRAD_BG = { background: "linear-gradient(90deg, #005596 0%, #54B948 100%)" };
+const NEUTRAL_TEXT = "text-neutral-900";
+const NEUTRAL_MUTED = "text-neutral-600";
+const NEUTRAL_CARD = "bg-white";
+const NEUTRAL_BORDER = "border border-neutral-200";
+const CARD_BASE = `${NEUTRAL_CARD} ${NEUTRAL_BORDER} rounded-xl shadow-[0_6px_24px_rgba(0,0,0,0.12)] transition-all duration-300 ease-[cubic-bezier(.22,.61,.36,1)] hover:-translate-y-0.5 hover:shadow-[0_10px_40px_rgba(0,0,0,0.18)] hover:ring-2 ring-neutral-300`;
+const GRAD_BG = { background: "transparent", border: "2px solid #171717" };
 
 const address = "1707 S Main St, Salisbury, NC 28144";
 
@@ -53,7 +53,7 @@ const Location_Address: React.FC = () => {
 
             <div className="grid grid-cols-[3rem,1fr] gap-4 items-start">
               <span className="w-12 h-12 rounded-full flex items-center justify-center" style={GRAD_BG}>
-                <MapPin className="w-5 h-5 text-white" />
+                <MapPin className="w-5 h-5 text-neutral-900" />
               </span>
               <div>
                 <p className="font-semibold">Address</p>
@@ -63,7 +63,7 @@ const Location_Address: React.FC = () => {
 
             <div className="grid grid-cols-[3rem,1fr] gap-4 items-start">
               <span className="w-12 h-12 rounded-full flex items-center justify-center" style={GRAD_BG}>
-                <Phone className="w-5 h-5 text-white" />
+                <Phone className="w-5 h-5 text-neutral-900" />
               </span>
               <div>
                 <p className="font-semibold">Phone</p>
@@ -73,7 +73,7 @@ const Location_Address: React.FC = () => {
 
             <div className="grid grid-cols-[3rem,1fr] gap-4 items-start">
               <span className="w-12 h-12 rounded-full flex items-center justify-center" style={GRAD_BG}>
-                <Mail className="w-5 h-5 text-white" />
+                <Mail className="w-5 h-5 text-neutral-900" />
               </span>
               <div>
                 <p className="font-semibold">Email</p>
@@ -83,7 +83,7 @@ const Location_Address: React.FC = () => {
 
             <div className="grid grid-cols-[3rem,1fr] gap-4 items-start">
               <span className="w-12 h-12 rounded-full flex items-center justify-center" style={GRAD_BG}>
-                <Clock className="w-5 h-5 text-white" />
+                <Clock className="w-5 h-5 text-neutral-900" />
               </span>
               <div>
                 <p className="font-semibold mb-1">Hours</p>

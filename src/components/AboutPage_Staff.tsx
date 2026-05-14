@@ -11,14 +11,14 @@ export type Staff = {
 };
 
 const ICONS = { Home: HomeIcon, Users };
-const NEUTRAL_TEXT = "text-neutral-900 dark:text-neutral-50";
-const NEUTRAL_MUTED = "text-neutral-600 dark:text-neutral-300";
-const NEUTRAL_CARD = "bg-white dark:bg-neutral-900";
-const NEUTRAL_BORDER = "border border-neutral-200 dark:border-neutral-700";
+const NEUTRAL_TEXT = "text-neutral-900";
+const NEUTRAL_MUTED = "text-neutral-600";
+const NEUTRAL_CARD = "bg-white";
+const NEUTRAL_BORDER = "border border-neutral-200";
 const CARD_BASE = `${NEUTRAL_CARD} ${NEUTRAL_BORDER} rounded-xl shadow-[0_6px_24px_rgba(0,0,0,0.12)]
                    transition-all duration-300 ease-[cubic-bezier(.22,.61,.36,1)]
                    hover:-translate-y-0.5 hover:shadow-[0_10px_40px_rgba(0,0,0,0.18)] hover:ring-2
-                   ring-neutral-300 dark:ring-neutral-700`;
+                   ring-neutral-300`;
 
 type Props = {
   items: Staff[];
@@ -45,13 +45,13 @@ const StaffGrid: React.FC<Props> = ({ items }) => {
           <div className="flex flex-col sm:flex-row gap-4 text-sm mt-auto">
             {s.email && (
               <div className="flex items-center gap-2">
-                <Mail className="w-4 h-4 text-neutral-600 dark:text-neutral-300" />
+                <Mail className="w-4 h-4 text-neutral-600" />
                 <span className={`${NEUTRAL_MUTED}`}>{s.email}</span>
               </div>
             )}
             {s.phone && (
               <div className="flex items-center gap-2">
-                <Phone className="w-4 h-4 text-neutral-600 dark:text-neutral-300" />
+                <Phone className="w-4 h-4 text-neutral-600" />
                 <span className={`${NEUTRAL_MUTED}`}>
                   {s.phone}
                   {s.ext ? ` ext. ${s.ext}` : ""}

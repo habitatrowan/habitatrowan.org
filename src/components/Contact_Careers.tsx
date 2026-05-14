@@ -8,7 +8,7 @@ const Contact_Careers: React.FC = () => {
   return (
     <>
       <h2 className="text-3xl font-extrabold mb-2">Careers</h2>
-      <p className="text-neutral-600 dark:text-neutral-300 mb-6">Explore opportunities to work with Habitat for Humanity of Rowan County.</p>
+      <p className="text-neutral-600 mb-6">Explore opportunities to work with Habitat for Humanity of Rowan County.</p>
       <div className="max-w-xl">
         <a
           href={linkedinUrl}

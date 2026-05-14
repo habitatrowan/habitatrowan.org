@@ -1,14 +1,14 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { CheckCircle, XCircle, Search } from "lucide-react";
 
-const NEUTRAL_MUTED = "text-neutral-600 dark:text-neutral-300";
+const NEUTRAL_MUTED = "text-neutral-600";
 const tabBase = "inline-flex items-center justify-center px-4 py-2 rounded-lg font-medium border transition-colors";
-const tabNeutral = "border-neutral-300 dark:border-neutral-700";
+const tabNeutral = "border-neutral-300";
 const tabActiveGreen = "bg-green-600 text-white border-green-600";
 const tabActiveRed = "bg-red-600 text-white border-red-600";
 const tabHoverGreen = "hover:bg-green-600 hover:text-white hover:border-green-600";
 const tabHoverRed = "hover:bg-red-600 hover:text-white hover:border-red-600";
-const inputBase = "w-full rounded-lg border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-10 py-2 outline-none focus:ring-2 focus:ring-neutral-300 dark:focus:ring-neutral-700";
+const inputBase = "w-full rounded-lg border border-neutral-300 bg-white px-10 py-2 outline-none focus:ring-2 focus:ring-neutral-300:ring-neutral-700";
 const chipBase = "inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium";
 
 function normalize(s: string) {
@@ -115,7 +115,7 @@ const GetInvolved_Items: React.FC = () => {
             </span>
           )}
           {overallStatus === "unknown" && (
-            <span className={`${chipBase} bg-neutral-200 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200`}>
+            <span className={`${chipBase} bg-neutral-200 text-neutral-800`}>
               <Search className="w-4 h-4" /> Not found
             </span>
           )}
@@ -123,7 +123,7 @@ const GetInvolved_Items: React.FC = () => {
       )}
 
       {!showBoth && tab === "accepted" && (
-        <div className="rounded-xl p-6 border border-neutral-200 dark:border-neutral-800">
+        <div className="rounded-xl p-6 border border-neutral-200">
           <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-2 gap-x-8">
             {acceptedFiltered.map((item) => (
               <li key={`a-${item}`} className="flex items-start gap-2">
@@ -137,7 +137,7 @@ const GetInvolved_Items: React.FC = () => {
       )}
 
       {!showBoth && tab === "rejected" && (
-        <div className="rounded-xl p-6 border border-neutral-200 dark:border-neutral-800">
+        <div className="rounded-xl p-6 border border-neutral-200">
           <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-2 gap-x-8">
             {rejectedFiltered.map((item) => (
               <li key={`r-${item}`} className="flex items-start gap-2">
@@ -152,8 +152,8 @@ const GetInvolved_Items: React.FC = () => {
 
       {showBoth && (
         <div className="space-y-8">
-          <div className="rounded-xl p-6 border border-neutral-200 dark:border-neutral-800">
-            <h4 className="font-semibold mb-3 text-green-700 dark:text-green-400">Accepted</h4>
+          <div className="rounded-xl p-6 border border-neutral-200">
+            <h4 className="font-semibold mb-3 text-green-700">Accepted</h4>
             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-2 gap-x-8">
               {acceptedFiltered.map((item) => (
                 <li key={`a2-${item}`} className="flex items-start gap-2">
@@ -165,8 +165,8 @@ const GetInvolved_Items: React.FC = () => {
             </ul>
           </div>
 
-          <div className="rounded-xl p-6 border border-neutral-200 dark:border-neutral-800">
-            <h4 className="font-semibold mb-3 text-red-700 dark:text-red-400">Not Accepted</h4>
+          <div className="rounded-xl p-6 border border-neutral-200">
+            <h4 className="font-semibold mb-3 text-red-700">Not Accepted</h4>
             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-2 gap-x-8">
               {rejectedFiltered.map((item) => (
                 <li key={`r2-${item}`} className="flex items-start gap-2">
@@ -180,7 +180,7 @@ const GetInvolved_Items: React.FC = () => {
         </div>
       )}
 
-      <p className="mt-4 text-xs text-neutral-500 dark:text-neutral-400">Updated September 2025</p>
+      <p className="mt-4 text-xs text-neutral-500">Updated September 2025</p>
     </div>
   );
 };

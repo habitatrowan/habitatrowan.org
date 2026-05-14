@@ -1,8 +1,8 @@
 import React from "react";
 
-const NEUTRAL_MUTED = "text-neutral-600 dark:text-neutral-300";
-const NEUTRAL_CARD = "bg-white dark:bg-neutral-900";
-const NEUTRAL_BORDER = "border border-neutral-200 dark:border-neutral-700";
+const NEUTRAL_MUTED = "text-neutral-600";
+const NEUTRAL_CARD = "bg-white";
+const NEUTRAL_BORDER = "border border-neutral-200";
 const CARD_BASE = `${NEUTRAL_CARD} ${NEUTRAL_BORDER} rounded-xl shadow-[0_6px_24px_rgba(0,0,0,0.12)]`;
 const BTN_BASE = "inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold shadow-[0_2px_12px_rgba(0,0,0,0.08)] transition-all duration-200 ease-[cubic-bezier(.22,.61,.36,1)] hover:-translate-y-0.5 hover:shadow-[0_6px_24px_rgba(0,0,0,0.12)] focus:outline-none";
 
@@ -27,7 +27,7 @@ const OwnHome_App: React.FC<Props> = ({ prequalUrl }) => {
         <ol className="space-y-5">
           {steps.map((s) => (
             <li key={s.step} className="flex gap-5 items-start">
-              <div className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 font-bold text-white bg-gradient-to-r from-[#005596] to-[#54B948]">
+              <div className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 font-bold text-neutral-900 border-2 border-neutral-900 bg-transparent">
                 {s.step}
               </div>
               <div className="flex-1">
@@ -39,13 +39,13 @@ const OwnHome_App: React.FC<Props> = ({ prequalUrl }) => {
         </ol>
       </div>
 
-      <div id="apply" className="rounded-xl p-8 text-center bg-gradient-to-r from-[#005596] to-[#54B948]">
-        <h3 className="text-2xl font-extrabold mb-3 text-white">Ready to Apply?</h3>
-        <p className="mb-6 text-white/90">If you meet the eligibility criteria, download and print the pre-qualification form to start the process.</p>
+      <div id="apply" className="rounded-xl p-8 text-center">
+        <h3 className="text-2xl font-extrabold mb-3 text-neutral-900">Ready to Apply?</h3>
+        <p className="mb-6 text-neutral-600">If you meet the eligibility criteria, download and print the pre-qualification form to start the process.</p>
         <a
           href="/qualification_form.pdf"
           target="_blank"
-          className={`${BTN_BASE} border border-white/30 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20`}
+          className={`${BTN_BASE} border border-neutral-300 bg-white text-neutral-900 hover:bg-neutral-50`}
         >
           Download Application Form
         </a>

@@ -1,7 +1,7 @@
 import React from "react";
 import { Facebook, Instagram } from "lucide-react";
 
-const NEUTRAL_MUTED = "text-neutral-600 dark:text-neutral-300";
+const NEUTRAL_MUTED = "text-neutral-600";
 
 const igLinks = [
   { name: "Instagram — Rowan ReStore", url: "https://www.instagram.com/rowanrestore/" },

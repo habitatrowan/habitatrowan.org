@@ -5,33 +5,40 @@ import { Menu, X, ChevronDown } from 'lucide-react';
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
   const scrollLockY = useRef(0);
 
   const aboutDropdownItems = [
     { name: 'About Habitat', href: '/about#about-habitat' },
-    { name: 'Our Mission', href: '/about#mission' },
-    { name: 'Our Vision', href: '/about#vision' },
+    { name: 'Our Mission',   href: '/about#mission' },
+    { name: 'Our Vision',    href: '/about#vision' },
     { name: 'Our President', href: '/about#president' },
-    { name: 'Our Staff', href: '/about#staff' },
-    { name: 'History', href: '/about#history' }
+    { name: 'Our Staff',     href: '/about#staff' },
+    { name: 'History',       href: '/about#history' }
   ];
 
   const getInvolvedDropdownItems = [
-    { name: 'Volunteer', href: '/get-involved#volunteer' },
-    { name: 'Support Us', href: '/get-involved#support' },
-    { name: 'Donate Items', href: '/get-involved#donate-items' },
-    { name: 'Cars for Homes', href: '/get-involved#cars-for-homes' }
+    { name: 'Volunteer',       href: '/get-involved#volunteer' },
+    { name: 'Support Us',      href: '/get-involved#support' },
+    { name: 'Donate Items',    href: '/get-involved#donate-items' },
+    { name: 'Cars for Homes',  href: '/get-involved#cars-for-homes' }
   ];
 
   const navigation = [
-    { name: 'About', href: '/about', dropdown: aboutDropdownItems },
-    { name: 'Get Involved', href: '/get-involved', dropdown: getInvolvedDropdownItems },
-    { name: 'Own a Home', href: '/own-home' },
-    { name: 'Gallery', href: '/gallery' },
-    { name: 'Location', href: '/locations' },
-    { name: 'Contact', href: '/contact' }
+    { name: 'About',       href: '/about',        dropdown: aboutDropdownItems },
+    { name: 'Get Involved',href: '/get-involved',  dropdown: getInvolvedDropdownItems },
+    { name: 'Own a Home',  href: '/own-home' },
+    { name: 'Gallery',     href: '/gallery' },
+    { name: 'Location',    href: '/locations' },
+    { name: 'Contact',     href: '/contact' }
   ];
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const handleDropdownEnter = (name: string) => setActiveDropdown(name);
   const handleDropdownLeave = () => setActiveDropdown(null);
@@ -85,22 +92,28 @@ const Header = () => {
     };
   }, [isMenuOpen]);
 
-  const baseLink = 'nav-no-wrap px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 focus:outline-none focus:ring-0';
+  const baseLink =
+    'nav-no-wrap px-3 py-2 rounded-lg text-sm font-semibold font-body tracking-wide transition-all duration-200 focus-visible:outline-none';
   const idleLink = 'text-secondary';
-  const hoverLink = 'hover:text-[#005596] hover:bg-blue-50 dark:hover:bg-blue-900/10';
-  const activeLink = 'text-[#005596] bg-blue-50 dark:bg-blue-900/20';
+  const hoverLink = 'hover:text-[#005596] hover:bg-[#005596]/8';
+  const activeLink = 'text-[#005596] bg-[#005596]/8';
 
   return (
-    <header className="bg-primary border-b border-primary shadow-sm sticky top-0 z-50">
+    <header
+      className={[
+        'sticky top-0 z-50 transition-all duration-300',
+        scrolled
+          ? 'nav-glass border-b border-transparent'
+          : 'bg-primary border-b border-primary',
+      ].join(' ')}
+    >
+
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           <Link
             to="/"
-            onClick={() => {
-              setIsMenuOpen(false);
-              setActiveDropdown(null);
-            }}
-            className="flex items-center shrink-0 transition-opacity focus:outline-none focus:ring-0"
+            onClick={() => { setIsMenuOpen(false); setActiveDropdown(null); }}
+            className="flex items-center shrink-0 transition-opacity"
           >
             <img
               src="/images/rowanlogo_long.png"
@@ -109,7 +122,8 @@ const Header = () => {
             />
           </Link>
 
-          <div className="hidden lg:flex items-center space-x-6">
+          {/* Desktop nav */}
+          <div className="hidden lg:flex items-center space-x-1">
             {navigation.map((item) => {
               const active = isActive(item.href);
 
@@ -123,23 +137,28 @@ const Header = () => {
                   >
                     <Link
                       to={item.href}
-                      className={`${baseLink} ${active ? activeLink : `${idleLink} ${hoverLink}`} flex items-center`}
+                      className={`${baseLink} ${active ? activeLink : `${idleLink} ${hoverLink}`} flex items-center gap-1`}
                     >
                       {item.name}
-                      <ChevronDown className="w-3 h-3 ml-1" />
+                      <ChevronDown
+                        className={`w-3 h-3 transition-transform duration-200 ${activeDropdown === item.name ? 'rotate-0' : '-rotate-90'}`}
+                      />
                     </Link>
                     <div
-                      className={`absolute top-full left-0 mt-1 w-56 bg-primary border border-primary rounded-lg shadow-lg py-2 transition-all duration-150 ease-out ${
+                      className={[
+                        'absolute top-full left-0 mt-2 w-56 rounded-xl shadow-xl py-2 z-50',
+                        'bg-[var(--surface)] border border-[var(--border-primary)]',
+                        'transition-all duration-150 ease-out',
                         activeDropdown === item.name
                           ? 'opacity-100 visible translate-y-0'
-                          : 'opacity-0 invisible -translate-y-1'
-                      }`}
+                          : 'opacity-0 invisible -translate-y-2',
+                      ].join(' ')}
                     >
                       {item.dropdown.map((dropdownItem) => (
                         <Link
                           key={dropdownItem.name}
                           to={dropdownItem.href}
-                          className="block px-4 py-2 text-sm text-secondary hover:text-[#005596] hover:bg-blue-50 dark:hover:bg-blue-900/10 transition-colors focus:outline-none focus:ring-0"
+                          className="block px-4 py-2.5 text-sm font-body font-medium text-secondary hover:text-[#005596] hover:bg-[#005596]/6 transition-colors"
                         >
                           {dropdownItem.name}
                         </Link>
@@ -162,21 +181,23 @@ const Header = () => {
 
             <Link
               to="/get-involved#support"
-              className="bg-gradient-to-r from-[#005596] to-[#54B948] hover:opacity-90 text-white px-6 py-2 rounded-lg text-sm font-semibold transition-all duration-200 focus:outline-none focus:ring-0"
+              className="ml-4 bg-brand-gradient text-white px-6 py-2.5 rounded-xl text-sm font-semibold font-body tracking-wide shadow-[0_4px_16px_rgba(0,85,150,0.35)] hover:shadow-[0_6px_24px_rgba(0,85,150,0.45)] hover:-translate-y-px transition-all duration-200"
             >
               Donate
             </Link>
           </div>
 
+          {/* Mobile menu button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-expanded={isMenuOpen}
-            className="lg:hidden p-2 rounded-lg text-secondary hover:bg-secondary ml-4 focus:outline-none focus:ring-0"
+            className="lg:hidden p-2 rounded-xl text-secondary hover:bg-secondary ml-4"
           >
             {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
 
+        {/* Mobile menu */}
         {isMenuOpen && (
           <>
             <div
@@ -189,22 +210,22 @@ const Header = () => {
                 {navigation.map((item) => {
                   const active = isActive(item.href);
                   return (
-                    <div key={item.name} className="mb-2">
+                    <div key={item.name} className="mb-1">
                       <Link
                         to={item.href}
                         onClick={() => setIsMenuOpen(false)}
-                        className={`block px-4 py-3 text-base font-medium ${active ? activeLink : `${idleLink} ${hoverLink}`} focus:outline-none focus:ring-0`}
+                        className={`block px-4 py-3 text-base font-body font-semibold tracking-wide ${active ? activeLink : `${idleLink} ${hoverLink}`}`}
                       >
                         {item.name}
                       </Link>
                       {item.dropdown && (
-                        <div className="ml-6 space-y-1">
+                        <div className="ml-6 space-y-0.5">
                           {item.dropdown.map((dropdownItem) => (
                             <Link
                               key={dropdownItem.name}
                               to={dropdownItem.href}
                               onClick={() => setIsMenuOpen(false)}
-                              className="block px-4 py-2 text-sm text-tertiary hover:text-[#005596] hover:bg-blue-50 dark:hover:bg-blue-900/10 transition-colors focus:outline-none focus:ring-0"
+                              className="block px-4 py-2 text-sm font-body text-tertiary hover:text-[#005596] hover:bg-[#005596]/6 transition-colors"
                             >
                               {dropdownItem.name}
                             </Link>
@@ -217,7 +238,7 @@ const Header = () => {
                 <Link
                   to="/get-involved#support"
                   onClick={() => setIsMenuOpen(false)}
-                  className="block mx-4 mt-4 mb-2 bg-gradient-to-r from-[#005596] to-[#54B948] hover:opacity-90 text-white px-4 py-3 rounded-lg font-semibold transition-colors duration-200 text-center focus:outline-none focus:ring-0"
+                  className="block mx-4 mt-4 mb-2 bg-brand-gradient text-white px-4 py-3 rounded-xl font-semibold font-body text-center shadow-[0_4px_16px_rgba(0,85,150,0.30)]"
                 >
                   Donate
                 </Link>

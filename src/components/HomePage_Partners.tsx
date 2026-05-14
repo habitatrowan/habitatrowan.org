@@ -34,7 +34,7 @@ const LogoMarquee: React.FC<Props> = ({
               src={logo.src}
               alt={logo.alt}
               loading="lazy"
-              className="block object-contain opacity-90 hover:opacity-100 transition-opacity filter grayscale brightness-0 dark:invert dark:contrast-200"
+              className="block object-contain opacity-90 hover:opacity-100 transition-opacity filter grayscale brightness-0"
               style={{ maxHeight: imgMaxH, maxWidth: "100%" }}
             />
           );
@@ -42,7 +42,7 @@ const LogoMarquee: React.FC<Props> = ({
           return (
             <div
               key={`${logo.alt}-${i}`}
-              className="rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 shadow-[0_2px_12px_rgba(0,0,0,0.06)] flex items-center justify-center"
+              className="rounded-xl border border-neutral-200 bg-white shadow-[0_2px_12px_rgba(0,0,0,0.06)] flex items-center justify-center"
               style={{ height, padding: padPx }}
             >
               {logo.href ? (
@@ -65,12 +65,12 @@ const LogoMarquee: React.FC<Props> = ({
 
         {/* Partner With Us tile */}
         <div
-          className="rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 shadow-[0_2px_12px_rgba(0,0,0,0.06)] flex items-center justify-center text-center"
+          className="rounded-xl border border-neutral-200 bg-white shadow-[0_2px_12px_rgba(0,0,0,0.06)] flex items-center justify-center text-center"
           style={{ height, padding: padPx }}
         >
           <Link
             to="/contact"
-            className="text-sm font-semibold text-neutral-800 dark:text-neutral-100 focus:outline-none focus:ring-0"
+            className="text-sm font-semibold text-neutral-800 focus:outline-none focus:ring-0"
           >
             Want to partner?<br />Get in touch →
           </Link>

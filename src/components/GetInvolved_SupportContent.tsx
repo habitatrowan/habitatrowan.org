@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const NEUTRAL_MUTED = "text-neutral-600 dark:text-neutral-300";
+const NEUTRAL_MUTED = "text-neutral-600";
 
 type Props = { donateUrl: string };
 
@@ -25,12 +25,12 @@ const GetInvolved_SupportContent: React.FC<Props> = ({ donateUrl }) => {
           </a>
           .
         </p>
-        <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-2">
+        <p className="text-sm text-neutral-500 mt-2">
           Prefer to mail a check? Send to: <strong>P.O. Box 3356, Salisbury, NC 28145-3356</strong>
         </p>
       </div>
 
-      <div className="h-px w-full bg-neutral-200 dark:bg-neutral-800" />
+      <div className="h-px w-full bg-neutral-200" />
 
       <div id="support-land" className="scroll-mt-[var(--header-offset)]">
         <h3 className="text-2xl font-extrabold mb-3">Land Donations</h3>
@@ -39,19 +39,19 @@ const GetInvolved_SupportContent: React.FC<Props> = ({ donateUrl }) => {
         </p>
         <ul className="space-y-2">
           <li className="flex items-start gap-3">
-            <span className="w-2.5 h-2.5 rounded-full mt-1.5 shrink-0 bg-neutral-400 dark:bg-neutral-600" />
+            <span className="w-2.5 h-2.5 rounded-full mt-1.5 shrink-0 bg-neutral-400" />
             <span className={NEUTRAL_MUTED}>Located within Rowan County</span>
           </li>
           <li className="flex items-start gap-3">
-            <span className="w-2.5 h-2.5 rounded-full mt-1.5 shrink-0 bg-neutral-400 dark:bg-neutral-600" />
+            <span className="w-2.5 h-2.5 rounded-full mt-1.5 shrink-0 bg-neutral-400" />
             <span className={NEUTRAL_MUTED}>Suitable for residential construction</span>
           </li>
           <li className="flex items-start gap-3">
-            <span className="w-2.5 h-2.5 rounded-full mt-1.5 shrink-0 bg-neutral-400 dark:bg-neutral-600" />
+            <span className="w-2.5 h-2.5 rounded-full mt-1.5 shrink-0 bg-neutral-400" />
             <span className={NEUTRAL_MUTED}>Clear title; no liens</span>
           </li>
           <li className="flex items-start gap-3">
-            <span className="w-2.5 h-2.5 rounded-full mt-1.5 shrink-0 bg-neutral-400 dark:bg-neutral-600" />
+            <span className="w-2.5 h-2.5 rounded-full mt-1.5 shrink-0 bg-neutral-400" />
             <span className={NEUTRAL_MUTED}>Utilities access; meets zoning</span>
           </li>
         </ul>
@@ -64,7 +64,7 @@ const GetInvolved_SupportContent: React.FC<Props> = ({ donateUrl }) => {
         </p>
       </div>
 
-      <div className="h-px w-full bg-neutral-200 dark:bg-neutral-800" />
+      <div className="h-px w-full bg-neutral-200" />
 
       <div id="support-professional" className="scroll-mt-[var(--header-offset)]">
         <h3 className="text-2xl font-extrabold mb-3">Professional Services</h3>
@@ -80,7 +80,7 @@ const GetInvolved_SupportContent: React.FC<Props> = ({ donateUrl }) => {
         </p>
       </div>
 
-      <div className="h-px w-full bg-neutral-200 dark:bg-neutral-800" />
+      <div className="h-px w-full bg-neutral-200" />
 
       <div id="support-ebay" className="scroll-mt-[var(--header-offset)]">
         <h3 className="text-2xl font-extrabold mb-3">Shop &amp; Support</h3>
@@ -96,7 +96,7 @@ const GetInvolved_SupportContent: React.FC<Props> = ({ donateUrl }) => {
           </a>
           .
         </p>
-        <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-1">
+        <p className="text-sm text-neutral-500 mt-1">
           eBay seller name: <strong>habitatrowan</strong>
         </p>
       </div>
