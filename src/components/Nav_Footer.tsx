@@ -62,6 +62,7 @@ const Footer = () => {
                 src="/images/rowanlogo.png"
                 alt="Habitat Rowan Logo"
                 className="w-20 h-20 rounded-xl object-contain"
+                loading="lazy"
               />
             </Link>
 
