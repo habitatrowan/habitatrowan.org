@@ -116,7 +116,7 @@ const Header = () => {
             className="flex items-center shrink-0 transition-opacity"
           >
             <img
-              src="/images/rowanlogo_long.png"
+              src="/images/rowanlogo_long.webp"
               alt="Habitat for Humanity of Rowan County"
               className="h-32 md:h-32 lg:h-36 xl:h-40 2xl:h-44 w-auto object-contain"
             />

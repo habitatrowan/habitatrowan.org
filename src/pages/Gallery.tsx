@@ -30,26 +30,26 @@ const NEUTRAL_BORDER = "border border-neutral-200";
 const CARD_BASE = `${NEUTRAL_CARD} ${NEUTRAL_BORDER} rounded-xl shadow-[0_6px_24px_rgba(0,0,0,0.12)]`;
 
 const housingImages = [
-  "/images/OwnHome_carousel2.JPG",
-  "/images/Home_gallery4.jpg",
-  "/images/OwnHome_carousel4.jpg",
-  "/images/OwnHome_carousel1.JPG",
+  "/images/OwnHome_carousel2.webp",
+  "/images/Home_gallery4.webp",
+  "/images/OwnHome_carousel4.webp",
+  "/images/OwnHome_carousel1.webp",
 ];
 
 const restoreImages = [
-  "/images/Gallery_Restore1.JPG",
-  "/images/Gallery_Restore2.JPG",
-  "/images/Gallery_Restore3.JPG",
-  "/images/Gallery_Restore4.JPG"
+  "/images/Gallery_Restore1.webp",
+  "/images/Gallery_Restore2.webp",
+  "/images/Gallery_Restore3.webp",
+  "/images/Gallery_Restore4.webp"
 ];
 
 const partnerImages = [
-  "/images/Gallery_Partner1.jpg",
-  "/images/Gallery_Partner2.jpg",
-  "/images/Home_gallery7.JPG",
-  "/images/Home_gallery6.JPG",
-  "/images/Home_gallery5.jpg",
-  "/images/Home_gallery2.jpg"
+  "/images/Gallery_Partner1.webp",
+  "/images/Gallery_Partner2.webp",
+  "/images/Home_gallery7.webp",
+  "/images/Home_gallery6.webp",
+  "/images/Home_gallery5.webp",
+  "/images/Home_gallery2.webp"
 ];
 
 const SECTION_DIVIDER = <div className="h-px w-full bg-neutral-200 my-12" />;

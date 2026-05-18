@@ -31,7 +31,7 @@ function useReveal<T extends HTMLElement>() {
 
 const Hero: React.FC<Props> = ({
   id = "hero",
-  bgSrc = "/images/heroimage.jpg",
+  bgSrc = "/images/heroimage.webp",
   titleLine1 = (
     <>
       Building{" "}
@@ -66,6 +66,8 @@ const Hero: React.FC<Props> = ({
         src={bgSrc}
         alt="Hero background"
         className="absolute inset-0 w-full h-full object-cover object-center"
+        loading="eager"
+        fetchPriority="high"
       />
 
       {/* Multi-layer overlay for depth and atmosphere */}

@@ -59,7 +59,7 @@ const Footer = () => {
           <div className="flex flex-col gap-5">
             <Link to="/" className="inline-flex items-center">
               <img
-                src="/images/rowanlogo.png"
+                src="/images/rowanlogo.webp"
                 alt="Habitat Rowan Logo"
                 className="w-20 h-20 rounded-xl object-contain"
                 loading="lazy"

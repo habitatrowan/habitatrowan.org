@@ -54,7 +54,7 @@ const FadeCarousel: React.FC<Props> = ({
             i === idx ? "opacity-100" : "opacity-0",
           ].join(" ")}
         >
-          <img src={src} alt={alt} className="w-full h-full object-cover" loading="lazy" />
+          <img src={src} alt={alt} className="w-full h-full object-cover" loading={i === 0 ? "eager" : "lazy"} />
         </div>
       ))}
 

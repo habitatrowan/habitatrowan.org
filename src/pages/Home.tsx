@@ -27,8 +27,8 @@ const HomePage = () => {
   const missionRef   = useReveal<HTMLDivElement>();
   const reviewsRef   = useReveal<HTMLDivElement>();
 
-  const featuredImages = ["/images/Home_googler2.png", "/images/Home_googler3.png", "/images/Home_googler4.png"];
-  const photoGallery   = ["/images/DevTeam.jpg", "/images/Home_gallery2.jpg", "/images/Home_gallery7.JPG"];
+  const featuredImages = ["/images/Home_googler2.webp", "/images/Home_googler3.webp", "/images/Home_googler4.webp"];
+  const photoGallery   = ["/images/DevTeam.webp", "/images/Home_gallery2.webp", "/images/Home_gallery7.webp"];
 
   const partnerLogos: Logo[] = [
     { src: "/logos/cte.png",           alt: "CTE",                          href: "https://www.rssed.org/career-technical-education-cte" },
@@ -58,7 +58,7 @@ const HomePage = () => {
   return (
     <div className="allow-motion">
       {/* ── Hero ─────────────────────────────────────────── */}
-      <Hero bgSrc="/images/heroimage.jpg" />
+      <Hero bgSrc="/images/heroimage.webp" />
 
       {/* ── Updates ──────────────────────────────────────── */}
       <Updates dataUrl="/data/home_updates.json" />
